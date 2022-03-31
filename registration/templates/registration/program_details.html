@@ -1,0 +1,106 @@
+{% extends "registration/layout.html" %}
+{% block body %}
+{% load static %}
+
+<div class="px-3 py-3 pt-md-5 pb-md-5 mx-auto text-center">
+  <p class="h1 mb-3">{{program_name_arabic}}</p>
+  <p class="lead">
+    مرحبا بك في كود_ سودان، ونتمنى لك رحلة تعليمة متميزة، رؤية كود_ سودان هي جعل السودان مركز تكنلوجي في أفريقيا، كل
+    برامجنا عملية بحيث تقوم ببناء 3 مشاريع على الأقل، و مبنية على إحتياج السوق بحيث تتوفر لك أفضل الفرص لدخول سوق العمل
+    مباشرة بعد نهاية <mark>برنامج {{program_name_arabic}}</mark>
+  </p>
+  <a class="btn btn-outline-primary btn-lg" href="{% url 'registration:program_enrollment' %}" role="button">سجل
+    الآن</a>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card text-center mb-5">
+      <div class="card-header">
+        <h5 class="my-1 font-weight-normal">مميزات برامج كود_ سودان</h5>
+      </div>
+      <div class="card-body">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{% static '/img/features/1.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/img/features/2.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/img/features/3.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/img/features/4.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/img/features/5.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">السابق</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">التالي</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row mb-5">
+  <div class="col-sm-6">
+    <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">النسخة الذهبية</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">15,000 جنيه <small class="text-muted">/ شهر</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>كل مميزات النسخة الأساسية</li>
+            <li>وصول مجاني و مدى الحياة لمكتبة كود_ سودان</li>
+            <li>تسجيل مجاني لأي كورس على منصة كود_ سودان التعليمية.</li>
+          </ul>
+          <a class="btn btn-outline-primary btn-lg" href="{% url 'registration:program_enrollment' %}" role="button">قم
+            بالتسجيل الآن</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-sm-6">
+    <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">النسخة الأساسية</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">12,000 جنيه <small class="text-muted">/ شهر</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>مجتمع متفاعل ومحفز على التعلم</li>
+            <li>شهادة إكمال البرنامج من كود_ سودان</li>
+            <li>كل برامجنا أونلاين فممكن تتابعنا من أي مكان و أي زمان</li>
+            <li>كل المدرسيين عندهم خبرة عملية في البرامج البدرسوها</li>
+            <li>العمل على مشاريع صغيرة + مشروع تطبيق كامل</li>
+            <li>تسجيل لكل المحاضرات لتفادي سوء الإنترنت وانقطاع الكهرباء</li>
+          </ul>
+          <a class="btn btn-outline-primary btn-lg" href="{% url 'registration:program_enrollment' %}" role="button">قم
+            بالتسجيل الآن</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+{% endblock %}
