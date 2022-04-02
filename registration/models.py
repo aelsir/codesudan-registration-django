@@ -48,7 +48,7 @@ class Batch(models.Model):
     id=models.AutoField(primary_key=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
     number = models.IntegerField()
-    started_at = models.DateField()
+    starting_at = models.DateField()
 
     def __str__(self):
         return (f"{self.number}")

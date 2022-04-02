@@ -1,6 +1,7 @@
+from cProfile import label
 from django.db.models.base import Model
 from django.forms import ModelForm, fields, widgets
-from .models import Registration, Student
+from .models import Batch, Registration, Student
 from django import forms
 
 
@@ -103,6 +104,15 @@ class student_details_from(ModelForm):
 
         }
 
+class new_enrollment_form_1(ModelForm):
+    class Meta:
+        model=Batch
+        fields = ['program', 'number', 'starting_at']
+
+        
+
+
+
 
 class new_program_form(ModelForm):
     class Meta:
@@ -149,7 +159,8 @@ class new_enrollment_from(ModelForm):
         )
 
 
-class first_lec_free_from(ModelForm):
+
+class first_lec_free_form(ModelForm):
     confirm_transaction = forms.IntegerField(label="تأكيد رقم العملية", widget=forms.TextInput(attrs={"class": "form-control"}))
     class Meta:
         model=Registration
