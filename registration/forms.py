@@ -52,6 +52,16 @@ class student_details_from(ModelForm):
             ("East Darfur", "شرق دارفور"),
             ("East Darfur", "غرب كردفان"),
             ]
+
+        OCCUPATIONS = [
+            ("Student", "طالب"),
+            ("Graduated", "خريج"),
+            ("Employee", "عامل"),
+            ("Other", "أخرى"),
+            ]
+
+        GENDER_CHOICE = [("M", 'ذكر'), ("F", "أنثى")]
+
         fields=["first_name", "father_name", "email", "gender", "birthday", "occupation", "university", "specialization", "state", "address"]
         labels = {
             "first_name": "إسمك",
@@ -59,7 +69,7 @@ class student_details_from(ModelForm):
             "email":"بريدك الإلكتروني",
             "gender": "النوع",
             "birthday":"تاريخ ميلادك",
-            "occupation":"المهنة",
+            "occupation":"العمل",
             "university":"الجامعة",
             "specialization":"التخصص",
             "state":"الولاية",
@@ -81,9 +91,9 @@ class student_details_from(ModelForm):
             "first_name": forms.TextInput(attrs={"class": "form-control mb-2", "required": True}),
             "father_name": forms.TextInput(attrs={"class": "form-control", "required": True}),
             "email": forms.EmailInput(attrs={"class": "form-control", "required": True}),
-            "gender": forms.Select(attrs={"class": "form-select", "required": True}),
-            "birthday": forms.DateInput(attrs={"type": "date"}),
-            "occupation": forms.TextInput(attrs={"class": "form-control", "required": True}),
+            "gender": forms.Select(choices=GENDER_CHOICE, attrs={"class": "form-select", "required": True}),
+            "birthday": forms.DateInput(attrs={"type": "date", "required": True}),
+            "occupation": forms.Select(choices=OCCUPATIONS, attrs={"class": "form-select", "required": True}),
             "university": forms.TextInput(attrs={"class": "form-control", "required": True}), 
             "specialization": forms.TextInput(attrs={"class": "form-control", "required": True}), 
             "state": forms.Select(choices=SUDAN_STATES, attrs={"class": "form-select"}), 
@@ -163,6 +173,5 @@ class first_lec_free_from(ModelForm):
             "package",
             "transaction_id"
         )
-
 
 

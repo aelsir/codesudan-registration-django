@@ -47,4 +47,4 @@ def get_quote():
     except Exception as e:
         print(e)
         return None
-    return 1
+    return quote
