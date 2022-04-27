@@ -1,6 +1,7 @@
+from urllib import response
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
-from .models import Registration
+from .models import Registration, Student
 from django.http import HttpResponse
 from .utils import *
 
@@ -19,5 +20,11 @@ def registrations_list(request):
 @staff_member_required
 def download_registration_csv(request):
     data = download_csv(request, Registration.objects.all())
+    response = HttpResponse(data, content_type='text/csv; charset=utf-8-sig')
+    return response
+
+@staff_member_required
+def download_students_csv(request):
+    data = download_csv(request, Student.objects.all())
     response = HttpResponse(data, content_type='text/csv; charset=utf-8-sig')
     return response
