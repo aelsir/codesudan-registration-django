@@ -4,7 +4,7 @@ def send_sms(phone_number, sms_to_send, name = None, program = None):
 
 
     
-    API_KEY = "Z2lwbXVHcGtNdG5HRWlLY0lpY2w="
+    API_KEY = "Z2RydUM9bkJIYkdvcHNDTXhEcmY="
     SENDER_ID = "CodeSudan"
 
 

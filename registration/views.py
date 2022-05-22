@@ -203,10 +203,7 @@ def student_details(request):
 @login_required(redirect_field_name=None)
 def program_registration(request):
     if request.method == "GET":
-        
         quote = get_quote()
-
-
         return render(request, "registration/program_registration.html", {
             "form": new_program_form(),
             "progress": 40,
