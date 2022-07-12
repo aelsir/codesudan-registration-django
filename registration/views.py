@@ -1,5 +1,5 @@
 # TODO: Localization to english and then Sudanese Arabic
-# TODO: security for phone number and transaction ID
+# TODO: security for phone number and transaction IDs
 
 
 from urllib import response
