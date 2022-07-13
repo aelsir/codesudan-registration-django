@@ -31,6 +31,7 @@ def send_sms(phone_number, sms_to_send, name = None, program = None):
     'Cookie': 'laravel_session=eyJpdiI6IlNrdXBkODlyRkNXTEY1ZGVkMkNCMEE9PSIsInZhbHVlIjoiY0VBVEJOcHRCdENLTnZTMW9FVldKdFQyNER3ajQwdzZzTW1NSWd6RFRVTXhxcVplWTZrSDQ3ZmhYWTdYQnN4NXZ0czZKbkQ3amVLbEZJMEhweFl1cnc9PSIsIm1hYyI6IjEzZjFhODYzOWUwYzgyNWNkMTFmNjlkM2RmNDVhMzdjYmM4Y2U2ZTlkYTNmNWZkYmUwYmZhNjM1ZTgxZmFmN2QifQ%3D%3D'
     }
 
-    conn.request("POST", f"/smsv1/sms/api?action=send-sms&api_key=Z2lwbXVHcGtNdG5HRWlLY0lpY2w=&to={phone_number}&from=CodeSudan&sms={sms_body}&unicode=1", payload, headers)
+    conn.request("POST", f"/smsv1/sms/api?action=send-sms&api_key={API_KEY}&to={phone_number}&from={SENDER_ID}&sms={sms_body}&unicode=1", payload, headers)
     res = conn.getresponse()
     data = res.read()
+    print(data)

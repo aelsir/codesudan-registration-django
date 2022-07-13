@@ -223,9 +223,11 @@ def program_registration(request):
                     "form": new_registration,
                     "error_message": "هنالك مشكلة في البيانات التي قمت بإدخالها"
                 })
-            
-            # send an SMS when the person registered for a program
-            send_sms(request.user.username, sms_to_send="program_registration_sms", program=program.name_arabic)
+            try:
+                # send an SMS when the person registered for a program
+                send_sms(request.user.username, sms_to_send="program_registration_sms", program=program.name_arabic)
+            except Exception as e:
+                print(e)
 
 
             request.session["form_id"] = registrated.id
