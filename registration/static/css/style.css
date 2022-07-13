@@ -1,16 +1,20 @@
-.gradient-custom {
-  /* fallback for old browsers */
-  background: burlywood;
+html,
+body {
+  height: 20%;
 }
 
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-  font-size: 1rem;
-  line-height: 2.15;
-  padding-left: .75em;
-  padding-right: .75em;
-}
-.card-registration .select-arrow {
-  top: 13px;
+body {
+  display: grid;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #F8F9FA;
 }
 
-
+#main_card{
+  width: 100%;
+  max-width: 90%;
+  padding: 15px;
+  margin: auto;
+  background-color: white;
+}
