@@ -1,20 +1,37 @@
 html,
 body {
-  height: 20%;
+    height: 20%;
 }
 
 body {
-  display: grid;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #F8F9FA;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    display: grid;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #F8F9FA;
 }
 
-#main_card{
-  width: 100%;
-  max-width: 90%;
-  padding: 15px;
-  margin: auto;
-  background-color: white;
+#main_card {
+    width: 100%;
+    max-width: 90%;
+    padding: 15px;
+    margin: auto;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }

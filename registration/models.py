@@ -44,14 +44,29 @@ class Program(models.Model):
     def __str__(self):
         return(self.name_arabic)
 
+MODE_CHOICES = (
+    ("online", "أونلاين"),
+    ("offline", "اوفلاين")
+)
 class Batch(models.Model):
     id=models.AutoField(primary_key=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
-    number = models.IntegerField()
+    number = models.SmallIntegerField()
     starting_at = models.DateField()
+    ending_at = models.DateField()
+    basic_edition_price = models.IntegerField()
+    golden_edition_price = models.IntegerField()
+    mode = models.CharField(
+        max_length=20,
+        choices= MODE_CHOICES,
+        default= "online"
+    )
+    curriculum = models.TextField()
+
+
 
     def __str__(self):
-        return (f"{self.number}")
+        return (f"{self.program}")
 
 
 class Registration(models.Model):

@@ -110,26 +110,37 @@ class new_enrollment_form_1(ModelForm):
         fields = ['program', 'number', 'starting_at']
 
         
+class new_registration_batch(ModelForm):
+    class Meta:
+        model= Batch
+        fields = ["id", "program", "starting_at", "number", "ending_at"]
 
+        labels = {
+            "number": "ما هو البرنامج الذي تريد التسجيل فيه",
+        }
+
+        widgets = {
+            "starting_at": forms.TextInput(attrs={"class": "form-control", "required": True})
+        }
 
 
 
 class new_program_form(ModelForm):
     class Meta:
-        model=Registration
-        fields = ["program",]
+        model=Batch
+        fields = ["id", "number"]
 
         labels = {
-            "program": "ما هو البرنامج الذي تريد التسجيل فيه",
+            "number": "ما هو البرنامج الذي تريد التسجيل فيه",
         }
 
     
         widgets={
-            "program": forms.Select(attrs={"class": "form-select"}),
+            "number": forms.Select(attrs={"class": "form-select"}),
 
         }
         required = (
-            "program",
+            "number",
         )
 
 

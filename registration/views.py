@@ -204,8 +204,9 @@ def student_details(request):
 def program_registration(request):
     if request.method == "GET":
         quote = get_quote()
+        new_registrations = Batch.objects.all()
         return render(request, "registration/program_registration.html", {
-            "form": new_program_form(),
+            "form": new_registration_batch(instance=new_registrations),
             "progress": 40,
             "quote": quote,
         })
