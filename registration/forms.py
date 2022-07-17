@@ -1,6 +1,6 @@
 from cProfile import label
 from django.db.models.base import Model
-from django.forms import ModelForm, fields, widgets
+from django.forms import ModelForm, fields, inlineformset_factory, modelformset_factory, widgets
 from .models import Batch, Registration, Student
 from django import forms
 
@@ -128,20 +128,8 @@ class new_registration_batch(ModelForm):
 class new_program_form(ModelForm):
     class Meta:
         model=Batch
-        fields = ["id", "number"]
+        fields = "__all__"
 
-        labels = {
-            "number": "ما هو البرنامج الذي تريد التسجيل فيه",
-        }
-
-    
-        widgets={
-            "number": forms.Select(attrs={"class": "form-select"}),
-
-        }
-        required = (
-            "number",
-        )
 
 
 class new_enrollment_from(ModelForm):

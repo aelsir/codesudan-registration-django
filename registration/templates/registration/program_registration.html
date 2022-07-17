@@ -1,25 +1,63 @@
 {% extends "registration/layout.html" %}
-
+{% load static %}
 {% block body %}
-<h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center">التسجيل لبرامج كود_ سودان</h3>
+<h3 class="mb-4 mt-2 p-2 text-center">الدفع المتاحة حاليا
+</h3>
+<hr>
 <form action="{% url 'registration:program_registration' %}" method='POST'>
     {% csrf_token %}
-    <div class="row">
-        <div class="md-6 mb-4 d-flex justify-content-center">
-            <div class="form-outline text-center">
-                <label class="form-label">{{ form.number.label }}</label>
-                <div>
-                    <p>{{form.starting_at}}</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for batch in batches %}
+            <div class="col-5 m-2 card">
+                <div class="card-body ">
+                    <img class="card-img-top pb-4" src="{{ batch.photo.url }}" alt="Card image cap">
+                    <h5 class="card-title">{{batch.program}} الدفعة رقم {{batch.number}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">نهاية التسجيل للبرنامج {{batch.ending_at}}</h6>
+                    <p class="card-text">{{batch.summery}}</p>
+                    <input type="number" name="batch_id" value="{{ batch.id }}" hidden>
+                    <a href="{% url 'registration:program_details' batch_id=batch.id %}" class="btn btn-primary">سجل الآن</a>
+
+                    <button type="submit" class="btn btn-primary">سجل الآن</button>
+
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="md-6 mb-4 d-flex justify-content-center">
-            <div class="mt-4 pt-2">
-                <button type="submit" class="btn btn-primary">تفاصيل البرنامج</button>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </form>
+
+<div class="bg-light text-center mt-3 mb-3 p-2">
+    <div class="">
+        <h4 class="mt-2 mb-2 text-center ">
+            نعمل مع كبريات الشركات و المؤسسات في السودان
+        </h4>
+
+        <hr class="mb-3">
+
+        <div class="row rounded justify-content-center">
+            <div class="col rounded">
+                <img id="collaboration_logo" src="{% static '/img/logos/haggar_logo.png' %}" alt="">
+            </div>
+
+            <div class="col rounded">
+                <img id="collaboration_logo" src="{% static '/img/logos/UMST Logo.png' %}" alt="">
+            </div>
+
+            <div class="col rounded">
+                <img id="collaboration_logo" src="{% static '/img/logos/Manara Logo.png' %}" alt="">
+            </div>
+
+            <div class="col rounded">
+                <img id="collaboration_logo" src="{% static '/img/logos/uog_logo.png' %}" alt="">
+            </div>
+
+            <div class="col rounded">
+                <img id="collaboration_logo" src="{% static '/img/logos/sandt_logo.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

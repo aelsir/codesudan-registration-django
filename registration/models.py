@@ -44,6 +44,9 @@ class Program(models.Model):
     def __str__(self):
         return(self.name_arabic)
 
+    def __unicode__(self):
+        return self.name_arabic
+
 MODE_CHOICES = (
     ("online", "أونلاين"),
     ("offline", "اوفلاين")
@@ -62,6 +65,8 @@ class Batch(models.Model):
         default= "online"
     )
     curriculum = models.TextField()
+    summery = models.TextField()
+    photo = models.ImageField(null=True, upload_to="media/")
 
 
 
@@ -73,6 +78,7 @@ class Registration(models.Model):
     id = models.AutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, default=None)
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     package = models.CharField(max_length=64)
     is_register = models.BooleanField(default=False)

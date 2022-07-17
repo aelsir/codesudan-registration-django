@@ -35,3 +35,8 @@ body {
         font-size: 3.5rem;
     }
 }
+
+
+#collaboration_logo{
+    max-height: 4em;
+}

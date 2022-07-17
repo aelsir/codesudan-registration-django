@@ -4,44 +4,57 @@
 {% load static %} 
 
 
-<h3 class="mb-4 pb-2 pb-md-0 text-center">
-  <img src="{% static '/img/logo.png' %}" alt="" width="250">
-</h3>
 
-<form action="{% url 'registration:register_student' %}" method='POST'>
-  {% csrf_token %}
-  <div class="row">
-    <div class="md-6 mb-4 d-flex justify-content-center">
-      <div class="form-outline text-center">
-        <label class="form-label">{{form.username.label}}</label>
-        {{form.username}}
-        <div class="form-text">{{form.username.help_text}}</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="md-6 mb-4 d-flex justify-content-center">
-      <div class="form-outline text-center">
-        <label class="form-label">{{form.password.label}}</label>
-        <div>
-          <center>{{form.password}}</center>
+<div class="container px-5 py-1 col-xl-11 col-xxl-10">
+    <div class="row align-items-center g-lg-5 py-5">
+
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form action="{% url 'registration:register_student' %}" method='POST' class="p-4 p-md-5 border rounded-3 bg-light">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="md-6 mb-4 d-flex justify-content-center">
+                    <div class="form-outline text-center">
+                      <label class="form-label">{{form.username.label}}</label>
+                      {{form.username}}
+                      <div class="form-text">{{form.username.help_text}}</div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="row">
+                  <div class="md-6 mb-4 d-flex justify-content-center">
+                    <div class="form-outline text-center">
+                      <label class="form-label">{{form.password.label}}</label>
+                      <div>
+                        <center>{{form.password}}</center>
+                      </div>
+                      <div class="form-text">{{form.password.help_text}}</div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="row">
+                  <div class="md-6 mb-4 d-flex justify-content-center">
+                    <div class="mt-4 pt-2">
+                      <button type="submit" class="btn btn-primary">تسجيل</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
         </div>
-        <div class="form-text">{{form.password.help_text}}</div>
-      </div>
+
+        <div class="col-lg-7 text-center justify-content-center mt-3">
+            <h4 class="mb-4 pb-2 pb-md-0 text-center">
+                <img src="{% static '/img/logo.png' %}" alt="" width="200">
+            </h4>
+
+            <h1 class="display-4 fw-bold lh-1 mb-3">مرحبا بكم في كود_ سودان</h1>
+            <p class="col fs-4">نسعى لأن نجعل السودان مركز تكنلوجي للمنطقة المحيطة، ولمن نقول السودان ما قصدنا الخرطوم
+            </p>
+        </div>
+
     </div>
-  </div>
-
-  <div class="row">
-    <div class="md-6 mb-4 d-flex justify-content-center">
-      <div class="mt-4 pt-2">
-        <button type="submit" class="btn btn-primary">تسجيل</button>
-      </div>
-    </div>
-  </div>
-</form>
-
-
-
+</div>
 
 {% endblock %}

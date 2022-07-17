@@ -2,6 +2,7 @@
 # TODO: security for phone number and transaction IDs
 
 
+from datetime import datetime
 from urllib import response
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
@@ -11,6 +12,8 @@ from django.http import HttpResponse, HttpResponseRedirect, request
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.forms import formset_factory
+
 
 
 from .models import *
@@ -204,50 +207,30 @@ def student_details(request):
 def program_registration(request):
     if request.method == "GET":
         quote = get_quote()
-        new_registrations = Batch.objects.all()
+        all_batches = Batch.objects.filter(ending_at__gte=datetime.today())
         return render(request, "registration/program_registration.html", {
-            "form": new_registration_batch(instance=new_registrations),
-            "progress": 40,
+            "batches": all_batches,
+            "progress": 40, 
             "quote": quote,
         })
     elif request.method == "POST":
-        new_registration = new_program_form(request.POST)
-        if new_registration.is_valid():
-            program = new_registration.cleaned_data["program"]
-            try:
-                registrated = Registration.objects.create(
-                    student=request.user, program=program, is_register=True, is_enroll=False)
 
-            except Exception as e:
-                print(e)
-                return render(request, "registration/program_registration.html", {
-                    "form": new_registration,
-                    "error_message": "هنالك مشكلة في البيانات التي قمت بإدخالها"
-                })
-            try:
-                # send an SMS when the person registered for a program
-                send_sms(request.user.username, sms_to_send="program_registration_sms", program=program.name_arabic)
-            except Exception as e:
-                print(e)
-
-
-            request.session["form_id"] = registrated.id
-            request.session["programs_count"] = Registration.objects.filter(
-                student=request.user, is_enroll=False).count()
-            return render(request, f"registration/program_details.html", {
-                "program_code": str(program.code),
-                "program_name_arabic": str(program.name_arabic),
-                "program_name_english": str(program.name_english),
-                "track_name_arabic": str(program.track.name_arabic),
-                "track_name_english": str(program.track.name_english),
-                "progress": 40,
-            })
-        else:
-            return render(request, "registration/program_registration.html", {
-                "form": new_registration,
-                "error_message": "الرجاء المحاولة مرة أخرى"
-            })
-
+        # get the batch id from the template to create new registration
+        if request.POST.get('batch_id', False):
+            batch_id = request.POST['batch_id']
+            
+   
+@login_required
+def program_details(request, batch_id):
+    if request.method == "GET":
+        quote = get_quote()
+        batch = Batch.objects.get(id=batch_id)
+        print(type(batch.golden_edition_price))
+        return render(request, "registration/program_details.html", {
+            "batch": batch,
+            "progress": 60,
+            "quote": quote,
+        })
 
 @login_required(redirect_field_name=None)
 def program_enrollment(request):

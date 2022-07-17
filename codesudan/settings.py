@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'registration',
+    'django.contrib.humanize',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -140,3 +141,4 @@ LOGIN_URL = '/login/'  #Define your login page url..
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
