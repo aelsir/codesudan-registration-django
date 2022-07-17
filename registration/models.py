@@ -44,9 +44,6 @@ class Program(models.Model):
     def __str__(self):
         return(self.name_arabic)
 
-    def __unicode__(self):
-        return self.name_arabic
-
 MODE_CHOICES = (
     ("online", "أونلاين"),
     ("offline", "اوفلاين")
@@ -71,7 +68,7 @@ class Batch(models.Model):
 
 
     def __str__(self):
-        return (f"{self.program}")
+        return (f"الدفعة {self.number} من {self.program}")
 
 
 class Registration(models.Model):

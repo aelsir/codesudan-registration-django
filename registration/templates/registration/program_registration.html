@@ -16,7 +16,6 @@
                     <h6 class="card-subtitle mb-2 text-muted">نهاية التسجيل للبرنامج {{batch.ending_at}}</h6>
                     <p class="card-text">{{batch.summery}}</p>
                     <input type="number" name="batch_id" value="{{ batch.id }}" hidden>
-                    <a href="{% url 'registration:program_details' batch_id=batch.id %}" class="btn btn-primary">سجل الآن</a>
 
                     <button type="submit" class="btn btn-primary">سجل الآن</button>
 

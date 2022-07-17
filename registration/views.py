@@ -4,6 +4,7 @@
 
 from datetime import datetime
 from urllib import response
+from xml.dom.domreg import registered
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 from django.urls import reverse
@@ -205,8 +206,9 @@ def student_details(request):
 
 @login_required(redirect_field_name=None)
 def program_registration(request):
+    quote = get_quote()
+
     if request.method == "GET":
-        quote = get_quote()
         all_batches = Batch.objects.filter(ending_at__gte=datetime.today())
         return render(request, "registration/program_registration.html", {
             "batches": all_batches,
@@ -214,72 +216,76 @@ def program_registration(request):
             "quote": quote,
         })
     elif request.method == "POST":
-
         # get the batch id from the template to create new registration
         if request.POST.get('batch_id', False):
             batch_id = request.POST['batch_id']
-            registered = Registration.objects.create(student=sess)
+            batch = Batch.objects.get(id=batch_id)
 
-            
-   
-@login_required
-def program_details(request, batch_id):
-    if request.method == "GET":
-        quote = get_quote()
-        batch = Batch.objects.get(id=batch_id)
-        print(type(batch.golden_edition_price))
-        return render(request, "registration/program_details.html", {
+            try:
+                registrated = Registration.objects.create(student=request.user, program=Program.objects.get(name_arabic=getattr(batch, "program")),batch= batch, is_register=True, is_enroll=False)
+                request.session['registration_id'] = registrated.id
+            except Exception as e:
+                print(e)
+                return HttpResponseRedirect(reverse("registration:index"))
+
+
+            return render(request, "registration/program_details.html", {
             "batch": batch,
             "progress": 60,
             "quote": quote,
         })
+     
 
 @login_required(redirect_field_name=None)
-def program_enrollment(request):
+def program_enrollment(request, package):
+    quote = get_quote()
     if request.method == "GET":
+
         try:
-            enrollment_form = Registration.objects.get(
-                pk=request.session.get("form_id"))
-        except:
+            registrated = Registration.objects.get(pk=request.session['registration_id'])
+            registrated.package = package
+            registrated.save()
+        except Exception as e:
+            print(e)
             return HttpResponseRedirect(reverse("registration:program_registration"))
-        if enrollment_form.is_register == False:
+
+        if registrated.is_register == False:
             return HttpResponseRedirect(reverse("registration:program_registration"))
         else:
-            old_enrollment_form = new_enrollment_from()
-            old_enrollment_form.initial["package"] = enrollment_form.package
-            old_enrollment_form.initial["transaction_id"] = enrollment_form.transaction_id
-            old_enrollment_form.initial["confirm_transaction"] = enrollment_form.transaction_id
+            enrollment_form = new_enrollment_from()
+            enrollment_form.initial["transaction_id"] = registrated.transaction_id
+            enrollment_form.initial["confirm_transaction"] = registrated.transaction_id
+
+            #get the batch to update the prices accordingly in the html
+            batch = Batch.objects.get(pk=registrated.batch.id)
 
             #get the quotation using get_quote function from the utils file
-            quote = get_quote()
-
             return render(request, "registration/program_enrollment.html", {
-                "form": old_enrollment_form,
+                "form": enrollment_form,
                 "progress": 80,
                 "quote": quote,
+                "package": package,
+                "batch": batch
             })
-
+            
     elif request.method == "POST":
         new_enrollment = new_enrollment_from(request.POST)
         if new_enrollment.is_valid():
             transaction_id = int(new_enrollment.cleaned_data["transaction_id"])
-            confirm_transaction = int(
-                new_enrollment.cleaned_data["confirm_transaction"])
-            package = new_enrollment.cleaned_data["package"]
+            confirm_transaction = int(new_enrollment.cleaned_data["confirm_transaction"])
             if transaction_id == confirm_transaction and transaction_id > 100000:
                 try:
-                    Registration.objects.filter(pk=request.session.get("form_id")).update(
-                        transaction_id=transaction_id, package=package, is_enroll=True)
-                    registration_form = Registration.objects.filter(
-                        pk=request.session.get("form_id"))
+                    Registration.objects.filter(pk=request.session.get("registration_id")).update(transaction_id=transaction_id, is_enroll=True)
+                    registration_form = Registration.objects.get(pk=request.session.get("registration_id"))
+                    
                 except:
                     return render(request, "registration/program_enrollment.html", {
                         "form": new_enrollment,
                         "progress": 60
                     })
-
+                print(registration_form)
                 #send and SMS after enrollment
-                send_sms(request.user.username, sms_to_send="program_enrollment_sms", program=registration_form[0].program.name_arabic)
+                send_sms(request.user.username, sms_to_send="program_enrollment_sms", program=registration_form.program.name_arabic)
 
                 return render(request, "registration/successful.html", {
                     "progress": 100,

@@ -2,11 +2,16 @@
 
 {% block body %}
 {% load static %}
+{% load humanize %}
 
 <div class="d-grid gap-3 me-5 mt-5 ms-5">
     <div class="alert alert-primary" role="alert">
-        يمكنك الآن دفع الرسوم على حسب النسخة التي قمت بإختيارها 12,000 جنيه للنسخة الأساسية و 15,000 للنسخة الذهبية على
-        حساب بنكك:
+        {% if package == "golden" %}
+        يمكنك الآن دفع رسوم النسخة الذهبية {{batch.golden_edition_price|intcomma}} على حساب بنكك:
+        {% elif package == "basic" %}
+        يمكنك الآن دفع رسوم النسخة الذهبية {{batch.basic_edition_price|intcomma}} على حساب بنكك:
+        
+        {% endif %}
         <br>
         رقم الحساب: 1626615
         <br>
@@ -30,18 +35,8 @@
             </div>
         </div>
     </div>
-    <form action="{% url 'registration:program_enrollment' %}" method='POST'>
+    <form action="{% url 'registration:program_enrollment' package="package" %}" method='POST'>
         {% csrf_token %}
-
-        <div class="row">
-            <div class="md-6 mb-4 d-flex justify-content-center">
-                <div class="form-outline text-center">
-                    <label class="form-label">{{form.package.label}}</label>
-                    {{form.package}}
-                    <div class="form-text">{{form.package.help_text}}</div>
-                </div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="md-6 mb-4 d-flex justify-content-center">
