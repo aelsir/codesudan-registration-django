@@ -218,6 +218,8 @@ def program_registration(request):
         # get the batch id from the template to create new registration
         if request.POST.get('batch_id', False):
             batch_id = request.POST['batch_id']
+            registered = Registration.objects.create(student=sess)
+
             
    
 @login_required
