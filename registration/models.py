@@ -63,8 +63,6 @@ class Batch(models.Model):
     )
     curriculum = models.TextField()
     summery = models.TextField()
-    photo = models.ImageField(null=True, upload_to="media/")
-
 
 
     def __str__(self):
