@@ -207,7 +207,6 @@ def student_details(request):
 @login_required(redirect_field_name=None)
 def program_registration(request):
     quote = get_quote()
-
     if request.method == "GET":
         all_batches = Batch.objects.filter(ending_at__gte=datetime.today())
         return render(request, "registration/program_registration.html", {
@@ -215,10 +214,14 @@ def program_registration(request):
             "progress": 40, 
             "quote": quote,
         })
-    elif request.method == "POST":
-        # get the batch id from the template to create new registration
-        if request.POST.get('batch_id', False):
-            batch_id = request.POST['batch_id']
+            
+     
+
+@login_required(redirect_field_name=None)
+def program_details(request, batch_id):
+    quote = get_quote()
+    if request.method == "GET":
+            print(batch_id)
             batch = Batch.objects.get(id=batch_id)
 
             try:
@@ -234,7 +237,7 @@ def program_registration(request):
             "progress": 60,
             "quote": quote,
         })
-     
+
 
 @login_required(redirect_field_name=None)
 def program_enrollment(request, package):

@@ -15,9 +15,8 @@
                     <h5 class="card-title">{{batch.program}} الدفعة رقم {{batch.number}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">نهاية التسجيل للبرنامج {{batch.ending_at}}</h6>
                     <p class="card-text">{{batch.summery}}</p>
-                    <input type="number" name="batch_id" value="{{ batch.id }}" hidden>
-
-                    <button type="submit" class="btn btn-primary">سجل الآن</button>
+                    <p class="card-text">{{batch.id}}</p>
+                    <a class="btn btn-primary" href="{% url 'registration:program_details' batch_id=batch.id %}">سجل الآن</a>
 
                 </div>
             </div>
@@ -29,7 +28,7 @@
 <div class="bg-light text-center mt-3 mb-3 p-2">
     <div class="">
         <h4 class="mt-2 mb-2 text-center ">
-            نعمل مع كبريات الشركات و المؤسسات في السودان
+            شركائنا في النجاح
         </h4>
 
         <hr class="mb-3">
