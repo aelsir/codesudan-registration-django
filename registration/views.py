@@ -214,22 +214,32 @@ def program_registration(request):
             "progress": 40, 
             "quote": quote,
         })
-            
-     
+                 
 
 @login_required(redirect_field_name=None)
 def program_details(request, batch_id):
     quote = get_quote()
     if request.method == "GET":
-            print(batch_id)
             batch = Batch.objects.get(id=batch_id)
 
-            try:
-                registrated = Registration.objects.create(student=request.user, program=Program.objects.get(name_arabic=getattr(batch, "program")),batch= batch, is_register=True, is_enroll=False)
+            registrated = Registration.objects.filter(student=request.user, batch=batch, is_enroll=False).first()
+            
+            if registrated == None:
+                try:
+                    registration = Registration.objects.create(student=request.user, program=Program.objects.get(name_arabic=getattr(batch, "program")),batch= batch, is_register=True, is_enroll=False)
+                    request.session['registration_id'] = registration.id
+                except Exception as e:
+                    print(e)
+                    return HttpResponseRedirect(reverse("registration:index"))
+            else:
                 request.session['registration_id'] = registrated.id
-            except Exception as e:
-                print(e)
-                return HttpResponseRedirect(reverse("registration:index"))
+                
+            return render(request, "registration/program_details.html", {
+                "batch": batch,
+                "progress": 60,
+                "quote": quote,
+            })
+            
 
 
             return render(request, "registration/program_details.html", {
@@ -312,7 +322,7 @@ def program_enrollment(request, package):
 def my_programs(request):
     if request.method == "GET":
         all_programs = Registration.objects.filter(
-            student=request.user, is_enroll=False).order_by("-created_at")
+            student=request.user,).order_by("-created_at")
         return render(request, "registration/my_programs.html", {
             "all_programs": all_programs,
         })

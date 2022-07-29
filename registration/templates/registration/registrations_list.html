@@ -18,7 +18,7 @@
     <tbody>
         <tr>
             <th scope="row">{{item.student.first_name}} {{item.student.father_name}}</th>
-            <td>{{item.program.name_arabic}}</td>
+            <td>{{item.program.name_arabic}} الدفعة {{item.batch.number}}</td>
             <td>{{item.created_at}}</td>
             <td>
                 {% if item.is_enroll %}
