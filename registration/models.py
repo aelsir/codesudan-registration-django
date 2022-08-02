@@ -75,12 +75,13 @@ class Registration(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE, default=None)
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
-    package = models.CharField(max_length=64)
+    package = models.CharField(max_length=64, blank=True)
     is_register = models.BooleanField(default=False)
-    transaction_id = models.PositiveBigIntegerField(null=True, default=None)
-    is_enroll = models.BooleanField(default=False)
-    is_phoned = models.BooleanField(default=False)
-    is_texted = models.BooleanField(default=False)
+    is_phoned = models.BooleanField(default=False, blank=True)
+    is_texted = models.BooleanField(default=False, blank=True)
+    transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
+    is_enroll = models.BooleanField(default=False, blank=True)
+    
 
     def __str__(self):
         return(f"{self.student.first_name} PN {self.student.username} registerd for {self.program} is_enroll {self.is_enroll}")
