@@ -77,8 +77,8 @@ class Registration(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     package = models.CharField(max_length=64, blank=True)
     is_register = models.BooleanField(default=False)
-    is_phoned = models.BooleanField(default=False, blank=True)
     is_texted = models.BooleanField(default=False, blank=True)
+    is_phoned = models.BooleanField(default=False, blank=True)
     transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
     is_enroll = models.BooleanField(default=False, blank=True)
     
