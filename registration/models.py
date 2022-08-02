@@ -79,6 +79,8 @@ class Registration(models.Model):
     is_register = models.BooleanField(default=False)
     transaction_id = models.PositiveBigIntegerField(null=True, default=None)
     is_enroll = models.BooleanField(default=False)
+    is_phoned = models.BooleanField(default=False)
+    is_texted = models.BooleanField(default=False)
 
     def __str__(self):
         return(f"{self.student.first_name} PN {self.student.username} registerd for {self.program} is_enroll {self.is_enroll}")

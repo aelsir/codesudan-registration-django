@@ -5,8 +5,10 @@ from .models import *
 
 def get_phone_number(obj):
     return(f"{obj.student.username}")
+def get_batch_number(obj):
+    return(f"{obj.batch.number}")
 class RegistrationAdmin(admin.ModelAdmin):
-    list_display = ('student', get_phone_number, 'program', 'batch', 'created_at', 'package', 'is_enroll', 'transaction_id')
+    list_display = ('student', get_phone_number, 'program', get_batch_number, 'created_at', 'package', 'is_enroll', 'transaction_id', 'is_texted', 'is_phoned')
     list_filter = ('created_at', 'is_enroll', 'program')
 
 def full_name(obj):
