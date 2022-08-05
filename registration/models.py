@@ -6,8 +6,6 @@ from datetime import date
 
 # Create your models here.
 class Student(AbstractUser):
-    
-
     is_complete = models.BooleanField(null=False, default=False)
     first_name = models.CharField(max_length=64, blank=True, null=True)
     father_name = models.CharField(max_length=64, blank=True, null=True)
