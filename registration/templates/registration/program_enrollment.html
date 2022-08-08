@@ -4,12 +4,12 @@
 {% load static %}
 {% load humanize %}
 
-<div class="d-grid gap-3 me-5 mt-5 ms-5">
+<div class="d-grid gap-3 me-1 mt-1 ms-1">
     <div class="alert alert-primary" role="alert">
         {% if package == "golden" %}
         يمكنك الآن دفع رسوم النسخة الذهبية {{batch.golden_edition_price|intcomma}} على حساب بنكك:
         {% elif package == "basic" %}
-        يمكنك الآن دفع رسوم النسخة الذهبية {{batch.basic_edition_price|intcomma}} على حساب بنكك:
+        يمكنك الآن دفع رسوم النسخة الأساسية {{batch.basic_edition_price|intcomma}} على حساب بنكك:
         
         {% endif %}
         <br>
