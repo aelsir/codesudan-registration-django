@@ -38,6 +38,8 @@ class Program(models.Model):
     name_arabic = models.CharField(max_length=64, null = False)
     track = models.ForeignKey(Track, on_delete=models.CASCADE)
     code = models.CharField(max_length=4)
+    curriculum = models.TextField()
+    summery = models.TextField()
 
     def __str__(self):
         return(self.name_arabic)
@@ -59,8 +61,12 @@ class Batch(models.Model):
         choices= MODE_CHOICES,
         default= "online"
     )
-    curriculum = models.TextField()
-    summery = models.TextField()
+    instructor = models.CharField(max_length=64)
+    duration_in_weeks = models.SmallIntegerField()
+    sessions_per_week = models.SmallIntegerField()
+    session_duration_in_hours = models.FloatField()
+
+    
 
 
     def __str__(self):
@@ -79,6 +85,10 @@ class Registration(models.Model):
     is_phoned = models.BooleanField(default=False, blank=True)
     transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
     is_enroll = models.BooleanField(default=False, blank=True)
+    in_discord = models.BooleanField(default=False, blank=True)
+    is_graduated = models.BooleanField(default=False, blank=True)
+    is_certificated = models.BooleanField(default=False, blank=True)
+    
     
 
     def __str__(self):

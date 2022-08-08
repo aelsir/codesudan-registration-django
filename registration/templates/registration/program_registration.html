@@ -14,8 +14,8 @@
                     <!-- <img class="card-img-top pb-4" src="{{ batch.photo.url }}" alt="Card image cap"> -->
                     <h5 class="card-title">{{batch.program}} الدفعة رقم {{batch.number}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">نهاية التسجيل للبرنامج {{batch.ending_at}}</h6>
-                    <p class="card-text">{{batch.summery}}</p>
-                    <a class="btn btn-primary" href="{% url 'registration:program_details' batch_id=batch.id %}">تفاصيل أكثر</a>
+                    <p class="card-text">{{batch.program.summery}}</p>
+                    <a class="btn btn-primary" href="{% url 'registration:program_details' batch_id=batch.id %}">تفاصيل البرنامج</a>
 
                 </div>
             </div>
