@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .models import Registration, Student
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
+from django.db.models import Q
 from django.http import HttpResponse
 from .utils import *
 
@@ -34,13 +35,16 @@ def download_students_csv(request):
 @staff_member_required
 def dashboard(request):
     labels = []
-    data = []
+    data_true_count = []
+    data_total_count = []
 
-    queryset = Registration.objects.annotate(month=TruncMonth('created_at')).filter(is_enroll=True).values('month').annotate(c = Count('is_enroll')).values('month', 'c')
+    queryset = Registration.objects.annotate(month=TruncMonth('created_at')).values('month').annotate(true_count = Count('is_enroll', filter=Q(is_enroll=True))).values('month', 'true_count').annotate(total_count = Count('is_enroll')).values('month', 'true_count', 'total_count')
     for register in queryset:
-        labels.append(register['month'].strftime('%B'))
-        data.append(register['c'])
+        labels.append(register['month'].strftime("%b"))
+        data_true_count.append(register['true_count'])
+        data_total_count.append(register['total_count'])
     return render(request, "registration/dashboard.html", {
         'labels': labels,
-        'data': data,
+        'data_true_count': data_true_count,
+        'data_total_count': data_total_count,
         })
