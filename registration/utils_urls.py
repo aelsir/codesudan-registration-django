@@ -1,7 +1,9 @@
-from urllib import response
+from urllib import request, response
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 from .models import Registration, Student
+from django.db.models.functions import TruncMonth
+from django.db.models import Count
 from django.http import HttpResponse
 from .utils import *
 
@@ -28,3 +30,17 @@ def download_students_csv(request):
     data = download_csv(request, Student.objects.all())
     response = HttpResponse(data, content_type='text/csv; charset=utf-8-sig')
     return response
+
+@staff_member_required
+def dashboard(request):
+    labels = []
+    data = []
+
+    queryset = Registration.objects.annotate(month=TruncMonth('created_at')).filter(is_enroll=True).values('month').annotate(c = Count('is_enroll')).values('month', 'c')
+    for register in queryset:
+        labels.append(register['month'].strftime('%B'))
+        data.append(register['c'])
+    return render(request, "registration/dashboard.html", {
+        'labels': labels,
+        'data': data,
+        })

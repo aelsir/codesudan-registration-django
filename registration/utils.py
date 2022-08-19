@@ -48,3 +48,6 @@ def get_quote():
         print(e)
         return None
     return quote
+
+
+

@@ -19,4 +19,5 @@ urlpatterns = [
     path("registrations_list/", utils_urls.registrations_list, name="registrations_list"),
     path("download_registration_csv/", utils_urls.download_registration_csv, name="download_registration_csv"),
     path("download_students_csv/", utils_urls.download_students_csv, name="download_students_csv"),
+    path("dashboard/", utils_urls.dashboard, name="dashboard"),
 ]
