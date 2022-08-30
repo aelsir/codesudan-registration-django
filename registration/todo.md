@@ -10,16 +10,16 @@
 8. ~~Add a contact to codesudan list~~
 9. ~~Prevent students from registering for the same course twice.~~
 10. Add the registeration process in the platform.
-11. Add in_discord? is_graduated? have_certificate? fields to registration model.
+11. ~~Add in_discord? is_graduated? have_certificate? fields to registration model.~~
 12. Add simple dashboard that show students per month.
-13. Add comment on registration to show why the person didn't complete registration:
-    1. Closed.
-    2. Busy.
-    3. No Answer.
-    4. Cancelled.
-    5. Will complete soon.
-    6. Misunderstanding.
-    7. Next batch.
-    8. Another program.
+13. ~~Add comment on registration to show why the person didn't complete registration:~~
+    1. ~~Closed.~~
+    2. ~~Busy.~~
+    3. ~~No Answer.~~
+    4. ~~Cancelled.~~
+    5. ~~Will complete soon.~~
+    6. ~~Misunderstanding.~~
+    7. ~~Next batch.~~
+    8. ~~Another program.~~
 14. Adding who is the program for (a describtion to the person).
 15. Add Google Analytics. https://pypi.org/project/django-google-analytics-app/.

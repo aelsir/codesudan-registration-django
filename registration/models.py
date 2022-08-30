@@ -55,7 +55,9 @@ class Batch(models.Model):
     starting_at = models.DateField()
     ending_at = models.DateField()
     basic_edition_price = models.IntegerField()
+    basic_edition_details = models.TextField()
     golden_edition_price = models.IntegerField()
+    golden_edition_details = models.TextField()
     mode = models.CharField(
         max_length=20,
         choices= MODE_CHOICES,
@@ -73,6 +75,16 @@ class Batch(models.Model):
         return (f"الدفعة {self.number} من {self.program}")
 
 
+WHY_NOT_ENROLLED = (
+    ("phone off", "التلفون مقفول"),
+    ("busy", "مشغول"),
+    ("no answer", "مافي رد"),
+    ("cancelled", "قفل الخط"),
+    ("will complete soon", "حا يسجل قريب"),
+    ("misunderstood", "فهم غلط"),
+    ("next batch", "الدفعة الجاية"),
+    ("different program", "برنامج مختلف")
+)
 class Registration(models.Model):
     id = models.AutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -83,6 +95,12 @@ class Registration(models.Model):
     is_register = models.BooleanField(default=False)
     is_texted = models.BooleanField(default=False, blank=True)
     is_phoned = models.BooleanField(default=False, blank=True)
+    why_not_enrolled = models.CharField(
+        max_length=25,
+        choices= WHY_NOT_ENROLLED,
+        default= False,
+        blank=True
+    )
     transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
     is_enroll = models.BooleanField(default=False, blank=True)
     in_discord = models.BooleanField(default=False, blank=True)
