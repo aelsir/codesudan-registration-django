@@ -15,6 +15,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
 
+import re
+
 
 
 from .models import *
@@ -206,13 +208,24 @@ def student_details(request):
 
 @login_required(redirect_field_name=None)
 def program_registration(request):
+
     quote = get_quote()
+
     if request.method == "GET":
+
+        
+
         all_batches = Batch.objects.filter(ending_at__gte=datetime.today())
-        return render(request, "registration/program_registration.html", {
+
+        basic_edition_details = re.split('\n', all_batches[0].program.basic_edition_details)
+        golden_edition_details = re.split('\n', all_batches[0].program.golden_edition_details)
+
+        return render(request, "registration/program_choice.html", {
             "batches": all_batches,
             "progress": 40, 
             "quote": quote,
+            "basic_edition_details": basic_edition_details,
+            "golden_edition_details": golden_edition_details,
         })
                  
 
@@ -221,6 +234,11 @@ def program_details(request, batch_id):
     quote = get_quote()
     if request.method == "GET":
             batch = Batch.objects.get(id=batch_id)
+
+            basic_edition_details = re.split('\n', batch.program.basic_edition_details)
+            golden_edition_details = re.split('\n', batch.program.golden_edition_details)
+            
+            
 
             registrated = Registration.objects.filter(student=request.user, batch=batch, is_enroll=False).first()
             
@@ -234,10 +252,13 @@ def program_details(request, batch_id):
             else:
                 request.session['registration_id'] = registrated.id
                 
+            
             return render(request, "registration/program_details.html", {
                 "batch": batch,
                 "progress": 60,
                 "quote": quote,
+                "basic_edition_details": basic_edition_details,
+                "golden_edition_details": golden_edition_details
             })
             
 

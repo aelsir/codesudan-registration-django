@@ -2,6 +2,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import date
+from django.contrib.postgres.fields import ArrayField
+
 
 
 # Create your models here.
@@ -41,6 +43,10 @@ class Program(models.Model):
     code = models.CharField(max_length=4)
     curriculum = models.TextField()
     summery = models.TextField()
+    basic_edition_details = models.TextField()
+    golden_edition_details = models.TextField()
+
+
 
     def __str__(self):
         return(self.name_arabic)
@@ -57,9 +63,8 @@ class Batch(models.Model):
     starting_at = models.DateField()
     ending_at = models.DateField()
     basic_edition_price = models.IntegerField()
-    basic_edition_details = models.TextField()
+    
     golden_edition_price = models.IntegerField()
-    golden_edition_details = models.TextField()
     mode = models.CharField(
         max_length=20,
         choices= MODE_CHOICES,
