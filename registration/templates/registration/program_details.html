@@ -115,12 +115,12 @@
                             class="text-muted">/ شهر</small></h1>
                     <div class="mt-3 mb-4">
                         
-                        <p>مجتمع متفاعل ومحفز على التعلم</p>
-                        <p>شهادة إكمال البرنامج من كود_ سودان</p>
-                        <p>كل برامجنا أونلاين فممكن تتابعنا من أي مكان و أي زمان</p>
-                        <p>كل المدرسيين عندهم خبرة عملية في البرامج البدرسوها</p>
-                        <p>العمل على مشاريع صغيرة + مشروع تطبيق كامل</p>
-                        <p>تسجيل لكل المحاضرات لتفادي سوء الإنترنت وانقطاع الكهرباء</p>
+                        {% for detail in basic_edition_details %}
+                            <p>{{detail}}</p>
+                        {% endfor %}
+                            
+                        
+
                     </div>
                     <a class="btn btn-outline-primary btn-lg"
                         href="{% url 'registration:program_enrollment' package="basic" %}" role="button">قم
@@ -142,7 +142,10 @@
                     <div class="mt-3 mb-4">
                         <p>كل مميزات النسخة الأساسية</p>
                         <p>وصول مجاني و مدى الحياة لمكتبة كود_ سودان</p>
-                        <p>تسجيل مجاني لأي كورس على <a href="https://courses.codesudan.io/" target="_blank" rel="noopener noreferrer">منصة كود_ سودان التعليمية</a>.</p>
+                        <p></p>
+                        {% for detail in golden_edition_details %}
+                            <p>{{detail|safe}}</p>
+                        {% endfor %}
                     </div>
                     <a class="btn btn-outline-primary btn-lg" href="{% url 'registration:program_enrollment' package="golden" %}" role="button">قم بالتسجيل الآن</a>
                 </div>

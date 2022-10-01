@@ -1,0 +1,181 @@
+{% extends "registration/layout.html" %}
+
+{% block body %}
+{% load static %}
+{% load humanize %}
+
+<!-- The first hero in the landing page-->
+
+<div class="px-4 py-2" style="background-color:#EFEFEF">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-3">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="{% static '/img/landing.png/' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-1 fw-bold lh-1 mb-5" id="hero_title">كلنا كنا متحيرين في البداية</h1>
+            <h4 class="lead display-6">وما عارفين نبدأ من وين، كود_ سودان هي بدايتك الصحيحة</h4>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Program choices -->
+<div>
+    <h1 class="fs-2 m-5 text-center">برامجنا الحالية</h1>
+</div>
+
+<form action="{% url 'registration:program_registration' %}" method='POST'>
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            {% for batch in batches %}
+            <div class="col-md-6 d-flex">
+                {% if batch.id|divisibleby:"2" %}
+                <div class="card border-0 bg-warning" style="width:100%;">
+                    {% else %}
+                    <div class="card border-0" style="background-color:#EFEFEF; width:100%;">
+                        {% endif %}
+                        <div class="card-body">
+                            <!-- setting the min-height all the card with different summery length will be the same -->
+                            <p class="card-text fs-5 me-2" style="min-height: 6rem">{{batch.program.summery}}</p>
+
+                            <p class="card-subtitle fs-6 my-2">نهاية التسجيل للبرنامج {{batch.ending_at}}</p>
+
+                            <!-- adding the divider to add height so the card can be rectangle -->
+                            <div class="divider"></div>
+                            <div class="row justify-content-end">
+                                <div class="col-md-6">
+                                    <p class="card-title fs-3 fw-b float-start" style="display:inline;"
+                                        id="card_program_title">{{batch.program}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    {% if batch.id|divisibleby:"2" %}
+                                    <a class="btn btn-lg btn-light float-end mx-auto"
+                                        href="{% url 'registration:program_details' batch_id=batch.id %}">
+                                        {% else %}
+                                        <a class="btn btn-lg btn-warning float-end mx-auto"
+                                            href="{% url 'registration:program_details' batch_id=batch.id %}">
+                                            {% endif %}
+                                            التفاصيل <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                            </svg>
+                                        </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+</form>
+
+<!-- Program features -->
+<div>
+    <h1 class="fs-2 m-5 text-center">مميزات برامجنا</h1>
+</div>
+
+<div class="container">
+    <div class="row d-flex align-items-stretch justify-content-center">
+        <div class="col-md-5 card mx-4 mb-2" style="background-color:#EFEFEF;">
+            <div class="card-body">
+                <div class="card-title text-center mb-3">
+                    <img src="{% static '/svg/emoji-sunglass.svg' %}" alt="" style="width: 2rem;">
+                    <p class="fs-3 ps-3" style="display:inline; font-family: 'IBM Plex Sans Arabic Bold';">النسخة
+                        الأساسية</p>
+
+                </div>
+                {% for f in basic_edition_details %}
+                <div class="card-text m-3">
+
+                    <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                    <p class="fs-5 ms-1" style="display:inline; ">{{ f|safe }}</p>
+                    <br>
+
+
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-5 mx-4 mb-2 card" style="background-color:#EFEFEF;">
+            <div class="card-body">
+                <div class="card-title text-center mb-3">
+                    <img src="{% static '/svg/emoji-kiss.svg' %}" alt="" style="width: 2rem;">
+                    <p class="fs-3 ps-3" style="display:inline; font-family: 'IBM Plex Sans Arabic Bold';">النسخة
+                        الذهبية</p>
+
+                </div>
+                {% for f in golden_edition_details %}
+                <div class="card-text m-3">
+
+                    <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                    <p class="fs-5 ms-1" style="display:inline; ">{{ f|safe }}</p>
+                    <br>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- quote -->
+
+{% if quote %}
+<figure class="m-5 text-center">
+    <blockquote class="blockquote d-flex justify-content-center">
+        <p class="fs-2 mb-3" style="width:70%; font-family: 'IBM Plex Sans Arabic Bold';">{{ quote.quote }}
+        </p>
+    </blockquote>
+    <figcaption class="blockquote-footer p-2">
+        {{quote.by}}
+    </figcaption>
+    <img src="{% static '/svg/star-fill.svg' %}" alt="" style="width: 2rem;">
+    <img src="{% static '/svg/star-fill.svg' %}" alt="" style="width: 2rem;">
+    <img src="{% static '/svg/star-fill.svg' %}" alt="" style="width: 2rem;">
+    <img src="{% static '/svg/star-fill.svg' %}" alt="" style="width: 2rem;">
+    <img src="{% static '/svg/star-fill.svg' %}" alt="" style="width: 2rem;">
+</figure>
+
+<!-- كيفية التسجيل -->
+<div class="px-4 py-2" style="background-color:#EFEFEF">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-3">
+        <p class="display-4 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">كيفية التسجيل</p>
+        <div class="col-md-7">
+            <img src="{% static '/img/steps.png' %}" class="d-block mx-lg-auto img-fluid" alt="women with glass"
+                width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-md-5">
+            <ol class="fs-4">
+                <li>
+                    قم بإختيار البرنامج المناسب معك
+                </li>
+                <li>
+                    تأكيد من تفاصيل البرنامج و إختار الباقة المناسبة معك.
+                </li>
+                <li>
+                    قم بإكمال التسجيل بدفع رسوم البرنامج
+                </li>
+                <li>
+                    قم بتحميل تطبيق ديسكورد Discord
+                </li>
+                <li>
+                    سنتواصل معك عبر الواتس-أب أو البريد الإلكتروني لإضافتك لمنصة كودـ سودان على ديسكورد.
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endif %}
+
+
+{% endblock %}

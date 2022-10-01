@@ -23,3 +23,7 @@
     8. ~~Another program.~~
 14. Adding who is the program for (a describtion to the person).
 15. Add Google Analytics. https://pypi.org/project/django-google-analytics-app/.
+16. Clearify for people what is the next step after they finished the registration
+17. Where did you heared about our programs?
+19. Record the price the students paid in the registration
+20. newsletter email input in the footer

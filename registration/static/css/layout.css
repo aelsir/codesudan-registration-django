@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'IBM Plex Sans Arabic Regular';
+    src: url(../fonts/IBMPlexSansArabic-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans Arabic Thin';
+    src: url(../fonts/IBMPlexSansArabic-Thin.ttf);
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans Arabic Bold';
+    src: url(../fonts/IBMPlexSansArabic-Bold.ttf);
+}
+
+body {
+    height:100%;
+    font-family: 'IBM Plex Sans Arabic Regular', sans-serif;
+    align-items: center;
+    background-color: #F8F9FA;
+    font-size: large;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.nav-item{
+    margin-right: 4px;
+}
+
+#hero_title {
+    font-family: 'IBM Plex Sans Arabic Bold';
+}
+
+.divider {
+    width:100%; 
+    margin-bottom:6em;
+    display:inline-block; 
+    position:relative;
+}
+
+#card_program_title {
+    font-family: 'IBM Plex Sans Arabic Bold';
+}
