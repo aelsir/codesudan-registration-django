@@ -25,5 +25,10 @@
 15. Add Google Analytics. https://pypi.org/project/django-google-analytics-app/.
 16. Clearify for people what is the next step after they finished the registration
 17. Where did you heared about our programs?
-19. Record the price the students paid in the registration
-20. newsletter email input in the footer
+19. Record the price the students paid in the registration.
+20. newsletter email input in the footer.
+21. Adding discount to the price in percentage.
+22. Verified the phone number.
+23. Who is the program good for?
+24. Adding a level to each course for ex: Beginners ...
+

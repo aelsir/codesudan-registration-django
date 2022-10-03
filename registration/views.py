@@ -76,7 +76,8 @@ def index(request):
 
     request.session["programs_count"] = Registration.objects.filter(
         student=request.user, is_enroll=False).count()
-    return HttpResponseRedirect(reverse("registration:program_registration"))
+    return render(request, "registration/landing.html", {
+            })
 
 
 def logout_view(request):

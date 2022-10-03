@@ -1,0 +1,174 @@
+{% extends "registration/layout.html" %}
+
+{% block body %}
+{% load static %}
+{% load humanize %}
+
+
+<!-- Landing hero -->
+<div class="container">
+    <div class="row d-flex align-items-center justify-content-center shadow-sm py-5" style="background-image: url('{% static '/img/landing/landing.jpeg' %}'); background-color: rgba(255,255,255,0.2); background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;">
+        <div class="col-md-10 text-center">
+            <h1 class="display-1 py-4" style="font-family: 'IBM Plex Sans Arabic Bold';">كود_ سودان: بنمسكك درب البرمجة صاح</h1>
+            <p class="lead fs-2 py-4" style="margin-bottom:4rem;">هدفنا تقديم برامج تعليمية تحتوي على العديد من المشاريع العملية التطبيقية، التي تؤهلك لدخول سوق العمل السوداني، الخليجي و العآلمي</p>
+            <a class="btn btn-lg m-4" style="color:white; background-color: #0F9D58; font-size: 1.8rem;" href="{% url 'registration:program_registration' %}">برامجنا</a>
+            <a class="btn btn-lg m-4" style="color:white; background-color: #0F9D58; font-size: 1.8rem;" href="http://courses.codesudan.io/" target="_blank">كورسآتنا</a>
+        </div>
+    </div>
+</div>
+
+<!-- our studentss -->
+<div>
+    <h1 class="fs-1 m-5 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">إستمتع برحلة تعليمية ممتعة جدا، وكن جزء من مجتمع كود_ سودان، وهذه بعض آراء خريجينا في خدماتنا:</h1>
+</div>
+<div class="container bg-white p-4">
+    <div class="row">
+
+        <div class="col-lg-4">
+            <div class="card border-0">
+                <img src="{% static '/img/landing/student1.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">"كورس أساسيات البرمجة علمني كتير شديد، اتعلمت منه لغات متنوعة في البرمجة واستخدامات اللغات دي.
+                    الـ deadlines بتخلي الناس تلتزم، وفي فترة بتلقى نفسك بقيت فاهم حاجات كتيرة، وال mentors كانو كويسين"</p>
+                </div>
+              </div>
+        </div>
+
+
+        <div class="col-lg-4">
+            <div class="card border-0">
+                <img src="{% static '/img/landing/student2.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">"سجلت في كورس Code_ Sudan وحقيقي ساعدني في حل المشكلة دي شديد واتعلمت الأساسيات الكنت محتاجاها عشان أبدأ بيها، بطريقة مبسطه ومفهومه، وقدرت أطبق أكتر من نوع من التطبيقات."</p>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0">
+                <img src="{% static '/img/landing/student3.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">" الكورس غطي كل الاساسيات بي صوره مبسطة جدا وشرح جميل جدا وحاجه كويسه جدا كبدايه في المجال وصراحه استفدتا شديد من الكورس وما اظن في حاجه بتقيف لي تاني لي قدام بإذن الله"</p>
+                </div>
+              </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Program choices -->
+<div>
+    <h1 class="fs-2 m-5 text-center">برآمجنا VS كورسآتنا</h1>
+</div>
+
+<div class="container">
+    <div class="row d-flex align-items-stretch justify-content-center">
+
+        <div class="col-md-4 card border-0 mx-5 mb-3 align-items-center justify-content-center" style="color:white;background-color: #0F9D58;">
+                <h5 class="card-title text-center fs-2 my-3" style="font-family: 'IBM Plex Sans Arabic Bold';">برآمجنا</h5>
+                <img src="{% static '/img/landing/course1.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-white.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">برآمجنا دائما تبدأ في زمن معين، وتستمر غالبا لمدة ٤ أسابيع</p>
+                        <br>
+                    </div>
+
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-white.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">برآمجنا أونلاين و مباشرة حيث يمكنك متابعة البرنامج مباشرة مع مدرس البرنامج، وكذلك المشاريع</p>
+                        <br>
+                    </div>
+
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-white.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">بعد نهاية البرنامج ستكون لديك/ي الخبرة العلمية و العملية لدخول سوق العمل</p>
+                        <br>
+                    </div>
+
+                    <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:black; background-color: white; font-size: 1.2rem; width:10rem;" href="{% url 'registration:program_registration' %}">تصفح برآمجنا</a></div>
+                </div>
+        </div>
+
+
+
+        <div class="col-md-4 card border-0 mx-5 mb-3 align-items-center justify-content-center" style="color:black;background-color: #EFEFEF;">
+                <h5 class="card-title text-center fs-2 my-3" style="font-family: 'IBM Plex Sans Arabic Bold';">كورسآتنا</h5>
+                <img src="{% static '/img/landing/course2.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-black.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">كورسآتنا أونلاين و مسجلة، بحيث يمكنك متابعة الكورس من أي مكان وفي أي زمان تريد</p>
+                        <br>
+                    </div>
+
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-black.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">مدرسي الكورسات و البرامج لديهم خبرات علمية وعملية و إلمام بسوق العمل في السودان</p>
+                        <br>
+                    </div>
+
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-black.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">بعد نهاية الكورس ستكون ملم بالمفاهيم الأساسية و المتقدمة في المجال الذي إخترته.</p>
+                        <br>
+                    </div>
+
+                    <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:white; background-color: #0F9D58; font-size: 1.2rem; width:10rem;" href="http://courses.codesudan.io/">تصفح كورسآتنا</a></div>
+                </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- Our Impact -->
+<div>
+    <h1 class="fs-2 m-5 text-center">تأثيرنا حتى الآن</h1>
+</div>
+
+<div class="container">
+    <div class="row d-flex align-items-center justify-content-center" style="background-color: #EFEFEF;">
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">500+</p>
+            <p class="fs-5 text-center">خريج من
+                برآمجنا</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">1,000+</p>
+            <p class="fs-5 text-center">مبرمج في مجتمعنا</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">60%</p>
+            <p class="fs-5 text-center">من طلابنا من النساء</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">12+</p>
+            <p class="fs-5 text-center">برنامج وكورس متاح حآليا</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">أفضل</p>
+            <p class="fs-5 text-center">تجربة تعليمية أونلاين</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- FAQ -->
+<div>
+    <h1 class="fs-2 m-5 text-center"></h1>
+</div>
+
+
+
+{% endblock %}
