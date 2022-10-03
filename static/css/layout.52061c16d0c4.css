@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'IBM Plex Sans Arabic Regular';
-    src: url(../fonts/IBMPlexSansArabic-Regular.ttf);
+    src: url("../fonts/IBMPlexSansArabic-Regular.bf7497338196.ttf");
 }
 
 @font-face {
     font-family: 'IBM Plex Sans Arabic Thin';
-    src: url(../fonts/IBMPlexSansArabic-Thin.ttf);
+    src: url("../fonts/IBMPlexSansArabic-Thin.454434ea7b20.ttf");
 }
 
 @font-face {
     font-family: 'IBM Plex Sans Arabic Bold';
-    src: url(../fonts/IBMPlexSansArabic-Bold.ttf);
+    src: url("../fonts/IBMPlexSansArabic-Bold.3b112e6aa656.ttf");
 }
 
 body {
