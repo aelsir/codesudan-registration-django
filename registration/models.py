@@ -45,6 +45,7 @@ class Program(models.Model):
     def __str__(self):
         return(self.name_arabic)
 
+
 MODE_CHOICES = (
     ("online", "أونلاين"),
     ("offline", "اوفلاين")
