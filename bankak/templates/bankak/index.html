@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>
+        {% if status %}
+            شغّال
+        {% else %}
+            ما شغّال
+        {% endif %}
+    </title>
+    {% if status %}
+    <link rel="icon" type="image/x-icon" href="static/img/circle-green.svg">
+    {% else %}
+    <link rel="icon" type="image/x-icon" href="static/img/circle-red.svg">
+    {% endif %}
+    
+    <style>
+        body, html {
+            height: 100%;
+          }
+
+        .block {
+            display : flex;
+            color: white;
+            align-items : center;
+            justify-content : center;
+            width: 90%;
+            min-height: 90%;
+            border: none;
+            background-color: 
+            {% if status %}
+                green;
+            {% else %}
+                red;
+            {% endif %}
+        
+            padding: 14px 28px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            margin: 0 auto;
+            font-size: 15em;
+          }
+    </style>
+</head>
+<body>
+    <p class="block">
+        بنكك
+        {% if status %}
+            شغّال
+        {% else %}
+            ما شغّال
+        {% endif %}
+    </p>
+</body>
+
+</html>
