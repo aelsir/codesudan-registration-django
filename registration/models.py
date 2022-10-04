@@ -32,6 +32,7 @@ class Track(models.Model):
     def __str__(self):
         return(self.name_english)
 
+
 class Program(models.Model):
     id = models.AutoField(primary_key=True)
     name_english = models.CharField(max_length=64, null=False)
