@@ -57,7 +57,9 @@ class Batch(models.Model):
     starting_at = models.DateField()
     ending_at = models.DateField()
     basic_edition_price = models.IntegerField()
+    basic_edition_details = models.TextField()
     golden_edition_price = models.IntegerField()
+    golden_edition_details = models.TextField()
     mode = models.CharField(
         max_length=20,
         choices= MODE_CHOICES,
