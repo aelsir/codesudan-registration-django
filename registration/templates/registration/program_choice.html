@@ -6,8 +6,8 @@
 
 <!-- The first hero in the landing page-->
 
-<div class="px-4 py-2" style="background-color:#EFEFEF">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-3">
+<div class="px-4 py-2" style="background-color:#4285F4; border-radius: 20px">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-3 align-items-center justify-content-center">
         <div class="col-10 col-sm-8 col-lg-6">
             <img src="{% static '/img/landing.png/' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
                 width="700" height="500" loading="lazy">
@@ -19,6 +19,122 @@
     </div>
 </div>
 </div>
+
+<!-- Program features -->
+<div>
+    <h1 class="fs-2 m-5 text-center">مميزات برامجنا</h1>
+</div>
+
+<div class="container my-5">
+    <div class="row d-flex align-items-stretch justify-content-center">
+        <div class="col-md-5 card mx-4 mb-2" style="background-color:#EFEFEF;">
+            <div class="card-body">
+                <div class="card-title text-center mb-3">
+                    <img src="{% static '/svg/emoji-sunglass.svg' %}" alt="" style="width: 2rem;">
+                    <p class="fs-3 ps-3" style="display:inline; font-family: 'IBM Plex Sans Arabic Bold';">مهارات تقنية</p>
+
+                </div>
+                <div class="card-text m-3">
+                    <div class="my-2">
+                        <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1 my-2" style="display:inline; ">محاضرات عملية بتطبيق على كل المفاهيم الأساسية</p>
+                        <br>
+                    </div>
+
+                    <div class="my-2">
+                        <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">معرفة الأدوات بالادوات الأساسية اللازمة في المجال الذي إخترتة.</p>
+                        <br>
+                    </div>
+
+                    <div class="my-2">
+                        <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">متابعة شخصية في حال وآجهتك أي مشكلة.</p>
+                        <br>
+                    </div>
+
+                    <div class="my-2">
+                        <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">إكمال مشروع كامل للتخرج في المجال المعين بإرساد من مدرسيي البرنامج.</p>
+                        <br>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 mx-4 mb-2 card" style="background-color:#EFEFEF;">
+            <div class="card-body">
+                <div class="card-title text-center mb-3">
+                    <img src="{% static '/svg/emoji-kiss.svg' %}" alt="" style="width: 2rem;">
+                    <p class="fs-3 ps-3" style="display:inline; font-family: 'IBM Plex Sans Arabic Bold';">مهارات شخصية</p>
+
+                </div>
+                <div class="card-text m-3">
+
+                    <div class="my-2">
+                        <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">معرفة بي كل الادوات غير البرمجية التي يحتاجها المبرمجين في أكبر الشركات في العالم</p>
+                        <br>
+                    </div>
+
+                    <div class="my-2">
+                        <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">مقابلات مع مبرمجين سودانيين ذووي خبرة كبيرة في المجال.</p>
+                        <br>
+                    </div>
+
+                    <div class="my-2">
+                        <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">محاضرات إضافية في المهارات الشخصية مثل مهارات الإنترفيو وصنع السيرة الذاتية.</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- كيفية التسجيل -->
+<div class="px-4 py-2" style="background-color:#EFEFEF; border-radius: 20px;">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-3">
+        <p class="display-4 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">كيفية التسجيل</p>
+        <div class="col-md-7">
+            <img src="{% static '/img/steps.png' %}" class="d-block mx-lg-auto img-fluid" alt="women with glass"
+                width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-md-5">
+            <ol class="fs-4 g-5 text-justify">
+                <li class="mb-2">
+                     قم بإختيار البرنامج المناسب معك من القائمة أدناة
+                </li>
+                <li class="mb-2">
+                    تأكيد من تفاصيل البرنامج و إختار الباقة المناسبة معك.
+                </li>
+                <li class="mb-2">
+                    قم بإكمال التسجيل بدفع رسوم البرنامج
+                </li>
+                <li class="mb-2">
+                    قم بتحميل تطبيق <a href="https://discord.com/download" target="_blank">ديسكورد Discord</a>.
+                </li>
+                <li class="mb-2">
+                    قم بالتسجيل في تطبيق ديسكورد و بعد ذلك الدخول على سيرفر كودـ سودان من خلال  <a href="https://discord.gg/XMyG9wpj54" target="_blank">هذا الرابط</a>.
+                </li>
+                <li class="mb-2">
+                    قم بإرسال إسم المستخدم بعد دخولك على سيرفر كودـ سودان على ديسكورد على <a href="https://wa.me/message/HUWJ5XBW5CMCD1">الواتساب</a> او من خلال ديسكورد على إسم المستخدم aelsir#9879.
+                </li>
+                <li class="mb-2">
+                    خلال أقل من 72 ساعة سنقول بإضافتك لي قناة البرنامج و التواصل معاك لبداية البرنامج.
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+</div>
+
 
 <!-- Program choices -->
 <div>
@@ -40,7 +156,7 @@
                             <!-- setting the min-height all the card with different summery length will be the same -->
                             <p class="card-text fs-5 me-2" style="min-height: 6rem">{{batch.program.summery}}</p>
 
-                            <p class="card-subtitle fs-6 my-2">نهاية التسجيل للبرنامج {{batch.ending_at}}</p>
+                            <p class="card-subtitle fs-6 my-2">نهاية التسجيل للبرنامج {{batch.ending_at|date:"d-m-Y"}}</p>
 
                             <!-- adding the divider to add height so the card can be rectangle -->
                             <div class="divider"></div>
@@ -73,57 +189,7 @@
         </div>
 </form>
 
-<!-- Program features -->
-<div>
-    <h1 class="fs-2 m-5 text-center">مميزات برامجنا</h1>
-</div>
 
-<div class="container">
-    <div class="row d-flex align-items-stretch justify-content-center">
-        <div class="col-md-5 card mx-4 mb-2" style="background-color:#EFEFEF;">
-            <div class="card-body">
-                <div class="card-title text-center mb-3">
-                    <img src="{% static '/svg/emoji-sunglass.svg' %}" alt="" style="width: 2rem;">
-                    <p class="fs-3 ps-3" style="display:inline; font-family: 'IBM Plex Sans Arabic Bold';">النسخة
-                        الأساسية</p>
-
-                </div>
-                {% for f in basic_edition_details %}
-                <div class="card-text m-3">
-
-                    <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
-                    <p class="fs-5 ms-1" style="display:inline; ">{{ f|safe }}</p>
-                    <br>
-
-
-
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="col-md-5 mx-4 mb-2 card" style="background-color:#EFEFEF;">
-            <div class="card-body">
-                <div class="card-title text-center mb-3">
-                    <img src="{% static '/svg/emoji-kiss.svg' %}" alt="" style="width: 2rem;">
-                    <p class="fs-3 ps-3" style="display:inline; font-family: 'IBM Plex Sans Arabic Bold';">النسخة
-                        الذهبية</p>
-
-                </div>
-                {% for f in golden_edition_details %}
-                <div class="card-text m-3">
-
-                    <img src="{% static '/svg/check-fill.svg' %}" alt="" style="width: 2rem;">
-                    <p class="fs-5 ms-1" style="display:inline; ">{{ f|safe }}</p>
-                    <br>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
-
-    </div>
-</div>
 
 
 <!-- quote -->
@@ -143,39 +209,10 @@
     <img src="{% static '/svg/star-fill.svg' %}" alt="" style="width: 2rem;">
     <img src="{% static '/svg/star-fill.svg' %}" alt="" style="width: 2rem;">
 </figure>
+{% endif %}
 
 
 
-<!-- كيفية التسجيل -->
-<div class="px-4 py-2" style="background-color:#EFEFEF">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-3">
-        <p class="display-4 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">كيفية التسجيل</p>
-        <div class="col-md-7">
-            <img src="{% static '/img/steps.png' %}" class="d-block mx-lg-auto img-fluid" alt="women with glass"
-                width="700" height="500" loading="lazy">
-        </div>
-        <div class="col-md-5">
-            <ol class="fs-4">
-                <li>
-                    قم بإختيار البرنامج المناسب معك
-                </li>
-                <li>
-                    تأكيد من تفاصيل البرنامج و إختار الباقة المناسبة معك.
-                </li>
-                <li>
-                    قم بإكمال التسجيل بدفع رسوم البرنامج
-                </li>
-                <li>
-                    قم بتحميل تطبيق ديسكورد Discord
-                </li>
-                <li>
-                    سنتواصل معك عبر الواتس-أب أو البريد الإلكتروني لإضافتك لمنصة كودـ سودان على ديسكورد.
-                </li>
-            </ol>
-        </div>
-    </div>
-</div>
-</div>
 
 <!-- شركائنا -->
 <div>
@@ -212,9 +249,5 @@
         <div class="col-md-2 img-responsive text-center"><img src="{% static '/img/logos/zahra.jpeg' %}" style="max-height:5rem; max-width: 100%;"></div>
     </div>
 </div>
-
-
-{% endif %}
-
 
 {% endblock %}

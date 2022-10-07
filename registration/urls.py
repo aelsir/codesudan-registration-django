@@ -6,10 +6,11 @@ app_name = "registration"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("register_student/", views.register_student, name="register_student"),
+    path("register/", views.register, name="register"),
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
     path("student_details/", views.student_details, name="student_details"),
+    path("landing/", views.landing_view, name="landing"),
     path("program_registration/", views.program_registration, name='program_registration'),
     path("program_details/<int:batch_id>", views.program_details, name="program_details"),
     path("program_enrollment/<str:package>", views.program_enrollment, name="program_enrollment"),

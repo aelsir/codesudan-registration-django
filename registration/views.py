@@ -35,7 +35,7 @@ def login_view(request):
     if request.method == "GET":
         quote = get_quote()
 
-        return render(request, "registration/login_student.html", {
+        return render(request, "registration/login.html", {
             "form": register_login_form(),
             "progress": 0,
             "quote": quote,
@@ -58,12 +58,12 @@ def login_view(request):
                     login(request, student)
                     return HttpResponseRedirect(reverse("registration:index"))
                 else:
-                    return render(request, "registration/login_student.html", {
+                    return render(request, "registration/login.html", {
                         "form": form,
                         "error_message": "هذا الرقم غير مسجل، الرجاء التسجيل"
                     })
         else:
-            return render(request, "registration/login_student.html", {
+            return render(request, "registration/login.html", {
                 "form": form,
                 "error_message": "الرجاء المحاولة مرة أخرى"
             })
@@ -85,7 +85,7 @@ def logout_view(request):
     return HttpResponseRedirect(reverse("registration:login"))
 
 
-def register_student(request):
+def register(request):
     # if the request == GET then display the new registration form
 
     if request.method == "GET":
@@ -93,7 +93,7 @@ def register_student(request):
             return HttpResponseRedirect(reverse("registration:index"))
         else:
             quote = get_quote()
-            return render(request, "registration/register_student.html", {
+            return render(request, "registration/register.html", {
                 "form": register_login_form(),
                 "progress": 1,
                 "quote": quote,
@@ -108,13 +108,13 @@ def register_student(request):
             # check if the phone number length is more than or equal to 10, if yes, then slice the last 9 numbers, if no send and error
             # check if the pin number isn't numaric or isn't a one number.
             if len(pin) != 1 or not pin.isnumeric():
-                return render(request, "registration/register_student.html", {
+                return render(request, "registration/register.html", {
                     "form": new_student,
                     "error_message": "الرجاء إدخال معلومات صحيحة حسب وصف كل حقل",
                     "progress": 1,
                 })
             if len(phone_number) < 10 or len(pin) != 1 or not pin.isnumeric():
-                return render(request, "registration/register_student.html", {
+                return render(request, "registration/register.html", {
                     "form": new_student,
                     "error_message": "الرجاء إدخال معلومات صحيحة حسب وصف كل حقل",
                     "progress": 1,
@@ -128,7 +128,7 @@ def register_student(request):
 
             except Exception as e:
                 print(e)
-                return render(request, "registration/register_student.html", {
+                return render(request, "registration/register.html", {
                     "form": new_student,
                     "error_message": " رقم التلفون موجود بالفعل إذهب لصفحة تسجيل الدخول"
                 })
@@ -140,7 +140,7 @@ def register_student(request):
 
             return HttpResponseRedirect(reverse("registration:index"))
         else:
-            return render(request, "registration/register_student.html", {
+            return render(request, "registration/register.html", {
                 "form": new_student,
             })
 
@@ -206,6 +206,10 @@ def student_details(request):
                 "error_message": "للأسف واجهتنا مشكلة أثناء حفظ بياناتك الرجاء المحاولة مرة أخرى",
             })
 
+@login_required(redirect_field_name=None)
+def landing_view(request):
+    return render(request, "registration/landing.html", {
+            })
 
 @login_required(redirect_field_name=None)
 def program_registration(request):
@@ -238,6 +242,7 @@ def program_details(request, batch_id):
 
             basic_edition_details = re.split('\n', batch.program.basic_edition_details)
             golden_edition_details = re.split('\n', batch.program.golden_edition_details)
+            curriculum   = re.split('\n',batch.program.curriculum)
             
             
 
@@ -259,7 +264,8 @@ def program_details(request, batch_id):
                 "progress": 60,
                 "quote": quote,
                 "basic_edition_details": basic_edition_details,
-                "golden_edition_details": golden_edition_details
+                "golden_edition_details": golden_edition_details,
+                "curriculum": curriculum
             })
             
 

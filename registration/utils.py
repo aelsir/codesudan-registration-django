@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.core.exceptions import PermissionDenied
 import csv
 
+from datetime import datetime
+from babel.dates import format_date, format_datetime, format_time
 
 #for get_quote function
 from .models import *
@@ -49,5 +51,10 @@ def get_quote():
         return None
     return quote
 
+def date_en_to_ar(en_date):
+    ar_date = format_date(en_date, locale="ar")
+    return ar_date
 
+
+print(date_en_to_ar(datetime.now()))
 

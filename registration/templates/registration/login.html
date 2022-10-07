@@ -1,9 +1,12 @@
+{% extends "registration/layout.html" %}
 
 {% block body %}
 {% load static %}
+{% load humanize %}
 
 
-<div class="container px-5 py-1 col-xl-11 col-xxl-10">
+
+<div class="container col-xl-11 col-xxl-10">
     <div class="row align-items-center g-lg-5 py-5">
 
         <div class="col-lg-7 text-center justify-content-center mt-3">
@@ -20,8 +23,12 @@
             <form action="{% url 'registration:login' %}" method='POST' class="p-4 p-md-5 border rounded-3 bg-light">
                 {% csrf_token %}
                 <div class="row">
+                    <h1 class="fs-3 pb-2 text-center"><u>تسجيل الدخول</u></h1>
+                    {% if error_message %}
+                    <div class="alert alert-danger text-center"> {{ error_message }} </div>
+                    {% endif %}
                     <div class="md-6 mb-4 d-flex justify-content-center">
-
+                        
                         <div class="form-outline text-center">
                             <label class="form-label">{{ form.username.label }}</label>
                             <div>
@@ -52,7 +59,12 @@
                         </div>
                     </div>
                 </div>
+                <p>
+                    هل أنت مستخدم جديد؟
+                    <a href="{% url 'registration:register' %}">تسجيل جديد</a>
+                 </p>
             </form>
+            
         </div>
 
         

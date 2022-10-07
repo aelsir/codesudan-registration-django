@@ -1,92 +1,99 @@
 {% extends "registration/layout.html" %}
 
 {% block body %}
-<h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center">المعلومات الأساسية</h3>
-<form action="{% url 'registration:student_details' %}" method='POST'>
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="firstName">{{form.first_name.label}}</label>
-                <div>{{form.first_name}}</div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="lastName">{{form.father_name.label}}</label>
-                <div>{{form.father_name}}</div>
-            </div>
-        </div>
-    </div>
+{% load static %}
 
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="firstName">{{form.email.label}}</label>
-                <div>{{form.email}}</div>
+<div class="container py-1" style="background-color: #EFEFEF; border-radius: 20px;">
+    <div>
+        <h1 class="fs-2 m-5 text-center">المعلومات الأساسية</h1>
+    </div>
+    
+    <form action="{% url 'registration:student_details' %}" method='POST'>
+        {% csrf_token %}
+        <div class="row" >
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="firstName">{{form.first_name.label}}</label>
+                    <div>{{form.first_name}}</div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="lastName">{{form.father_name.label}}</label>
+                    <div>{{form.father_name}}</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="firstName">{{form.email.label}}</label>
+                    <div>{{form.email}}</div>
+                </div>
+            </div>
+            
+        </div>
+    
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="lastName">{{form.gender.label}}</label>
+                    <div>{{form.gender}}</div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="firstName">{{form.birthday.label}}</label>
+                    <div>{{form.birthday}}</div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="lastName">{{form.occupation.label}}</label>
+                    <div>{{form.occupation}}</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="lastName">{{form.university.label}}</label>
+                    <div>{{form.university}}</div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" for="firstName">{{form.specialization.label}}</label>
+                    <div>{{form.specialization}}</div>
+                </div>
             </div>
         </div>
         
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="lastName">{{form.gender.label}}</label>
-                <div>{{form.gender}}</div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <label class="form-label">{{form.state.label}}</label>
+                    <div>{{form.state}}</div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <label class="form-label" >{{form.address.label}}</label>
+                    <div>{{form.address}}</div>
+                </div>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="firstName">{{form.birthday.label}}</label>
-                <div>{{form.birthday}}</div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="lastName">{{form.occupation.label}}</label>
-                <div>{{form.occupation}}</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="lastName">{{form.university.label}}</label>
-                <div>{{form.university}}</div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="firstName">{{form.specialization.label}}</label>
-                <div>{{form.specialization}}</div>
-            </div>
-        </div>
-    </div>
     
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="form-outline">
-                <label class="form-label">{{form.state.label}}</label>
-                <div>{{form.state}}</div>
+        <div class="row">
+            <div class="md-6 mb-4 d-flex justify-content-center">
+                <div class="mt-4 pt-2">
+                    <button type="submit" class="btn btn-primary btn-lg">التسجيل للبرنامج</button>
+                </div>
             </div>
         </div>
-        <div class="col-md-6 mb-4">
-            <div class="form-outline">
-                <label class="form-label" >{{form.address.label}}</label>
-                <div>{{form.address}}</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="md-6 mb-4 d-flex justify-content-center">
-            <div class="mt-4 pt-2">
-                <button type="submit" class="btn btn-primary">التسجيل للبرنامج</button>
-            </div>
-        </div>
-    </div>
-</form>
+    </form>
 </div>
+
 {% endblock %}
