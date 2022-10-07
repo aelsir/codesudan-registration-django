@@ -4,15 +4,21 @@
 {% load static %} 
 
 
+{% if error_message %}
+<p> {{ error_message }} </p>
+{% endif %}
 
-
-<div class="container px-5 py-1 col-xl-11 col-xxl-10">
+<div class="container col-xl-11 col-xxl-10">
     <div class="row align-items-center g-lg-5 py-5">
-
+        
         <div class="col-md-10 mx-auto col-lg-5">
-            <form action="{% url 'registration:register_student' %}" method='POST' class="p-4 p-md-5 border rounded-3 bg-light">
+            <form action="{% url 'registration:register' %}" method='POST' class="p-4 p-md-5 border rounded-3 bg-light">
                 {% csrf_token %}
                 <div class="row">
+                    <h1 class="fs-3 pb-2 text-center"><u>تسجيل جديد</u></h1>
+                    {% if error_message %}
+                    <div class="alert alert-danger text-center"> {{ error_message }} </div>
+                    {% endif %}
                   <div class="md-6 mb-4 d-flex justify-content-center">
                     <div class="form-outline text-center">
                       <label class="form-label">{{form.username.label}}</label>
@@ -41,6 +47,10 @@
                     </div>
                   </div>
                 </div>
+                <p>
+                    هل لديك حساب مع كودـ سودان؟
+                    <a href="{% url 'registration:login' %}">تسجيل الدخول</a>
+                 </p>
               </form>
         </div>
 

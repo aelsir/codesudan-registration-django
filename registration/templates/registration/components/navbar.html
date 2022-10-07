@@ -13,11 +13,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'registration:landing' %}">الرئيسية</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'registration:program_registration' %}">برآمجنا</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">كورسآتنا</a>
+                    <a class="nav-link active" aria-current="page" href="https://courses.codesudan.io/" target="_blank">كورسآتنا</a>
                 </li>
 
                 <li class="nav-item">
@@ -31,10 +34,10 @@
 
             {% if user.is_authenticated %}
             <a class="btn btn-light mx-2" role="button" aria-disabled="true">مرحبا {{ user.first_name }}</a>
-            <a class="btn btn-warning mx-2" href="{% url 'registration:logout' %}">تسجيل الخروج</a>
+            <a class="btn btn-secondary mx-2" href="{% url 'registration:logout' %}">تسجيل الخروج</a>
             {% else %}
-            <a class="btn btn-warning mx-2" role="button" aria-disabled="true">تسجيل الدخول</a>
-            <a class="btn btn-warning mx-2" role="button" aria-disabled="true">التسجيل</a>
+            <a class="btn btn-warning mx-2" href="{% url 'registration:login' %}" role="button" aria-disabled="true">تسجيل الدخول</a>
+            <a class="btn btn-warning mx-2" href="{% url 'registration:register' %}" role="button" aria-disabled="true">التسجيل</a>
             {% endif %}
         </div>
     </div>
@@ -79,7 +82,7 @@
                             <a class="nav-link" href="{% url 'registration:login' %}">تسجيل الدخول</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:register_student' %}">التسجيل</a>
+                            <a class="nav-link" href="{% url 'registration:register' %}">التسجيل</a>
                         </li>
                         {% endif %}
                     </ul>

@@ -1,17 +1,78 @@
 {% extends "registration/layout.html" %}
 
 {% block body %}
-    <div class="d-grid gap-3 me-5 mt-5 ms-5">
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">شكرا جزيلا لتسجيلكم في كود_ سودان</h4>
-            <p>تم إكمال تسجيلكم في برامج كود_ سودان، كل تيم كود_ سودان بيتمنى ليكم رحلة تعليمية سعيدة و تستفيدوا للحد الأقصى من البرنامج.</p>
-            <hr>
-            <p class="mb-0">يمكنكم الآن التواصل معنا عبر الواتس  <a href="https://api.whatsapp.com/send?phone=249126755478">من هنا</a></p>
-            <br>
-            <div class="col-md-12">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfX5aUMVBk1zEVXSU0P1XZ8ldqhG1VfiFgR4a5TXHA84XQVyg/viewform?embedded=true" class="col-md-12" height="1137"  frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+{% load static %}
+
+
+<!--مبروك تسجيلك في برنامج كودـ سودان-->
+
+<div class="px-4 py-2" style="background-color: #EFEFEF; border-radius: 20px;">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-3 justify-content-center">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img src="{% static '/img/success.png' %}" class="d-block mx-lg-auto img-fluid" alt="women with glass"
+                width="80%" loading="lazy" class="justify-content-end" style="border-radius: 5%;">
+        </div>
+        <div class="col-md-6 justify-content-center">
+            <h1 class="display-4 mb-5 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">مبروك إكمال تسجيلكم لي البرنامج 🎉</h1>
+            <p class="lead fs-4 text-start ms-2">كل تيم كود_ سودان بيتمنى ليكم رحلة تعليمية سعيدة و تستفيدوا للحد الأقصى من البرنامج. الخطوات القادمة:</p>
+            <ol class="fs-5 ms-4">
+                <li>
+                    قم بتحميل تطبيق <a href="https://discord.com/download" target="_blank">ديسكورد Discord</a>.
+                </li>
+                <li>
+                    قم بالتسجيل في تطبيق ديسكورد و بعد ذلك الدخول على سيرفر كودـ سودان من خلال  <a href="https://discord.gg/XMyG9wpj54" target="_blank">هذا الرابط</a>.
+                </li>
+                <li>
+                    قم بإرسال إسم المستخدم بعد دخولك على سيرفر كودـ سودان على ديسكورد على <a href="https://wa.me/message/HUWJ5XBW5CMCD1">الواتساب</a> او من خلال ديسكورد على إسم المستخدم aelsir#9879.
+                </li>
+                <li>
+                    خلال أقل من 72 ساعة سنقول بإضافتك لي قناة البرنامج و التواصل معاك لبداية البرنامج.
+                </li>
+            </ol>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- هل واجهتكم أي مشكلة -->
+<div class="row d-flex align-items-center justify-content-center g-3 my-5" style="background-color: #0F9D58; color: white; border-radius: 20px;">
+    <div class="col-md-5">
+        <p class="d-flex fs-2 text-start" style="font-family: 'IBM Plex Sans Arabic Bold';">هل واجهتك أي مشكلة خلال إكمال عملية التسجيل؟ 
+        </p>
+    </div>
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <img class="me-3" src="{% static '/svg/whatsapp.svg' %}" alt="whatsapp" style="width: 2rem;">
+            <div calss="">
+              <h3 class="fw-bold mb-0 fs-4">عبر الواتساب</h3>
+              <p><a href="https://wa.me/message/HUWJ5XBW5CMCD1" target="_blank">من خلال هذا الرابط</a></p>
             </div>
-            
           </div>
+    </div>
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <img class="me-3" src="{% static '/svg/phone.svg' %}" alt="whatsapp" style="width: 2rem;">
+            <div calss="">
+              <h3 class="fw-bold mb-0 fs-4">إتصل بنا</h3>
+              <p>رقم الهاتف: 0903905000</p>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+
+
+<!-- رأيكم يهمنا -->
+
+<div>
+    <h1 class="fs-2 m-5 text-center">رأيكم يهمنا</h1>
+</div>
+
+    <div class="d-grid">
+            <div class="col-md-12">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfX5aUMVBk1zEVXSU0P1XZ8ldqhG1VfiFgR4a5TXHA84XQVyg/viewform?embedded=true" class="col-md-12" height="1137" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
     </div>
 {% endblock %}

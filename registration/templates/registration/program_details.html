@@ -3,157 +3,133 @@
 {% load static %}
 {% load humanize %}
 
-<div class="container p-3">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col">
-            <img src="{% static '/img/side_photo_details.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="CodeSudan"
-                height="700" loading="lazy">
+
+<!--عن كودـ سودن-->
+<div class="px-4 py-2" style="background-color: #EFEFEF; border-radius: 5%;">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-3 justify-content-center">
+        <div class="col-md-6">
+            <img src="{% static '/img/program-hero/5.png' %}" class="d-block mx-lg-auto img-fluid" alt="women with glass"
+                width="80%" loading="lazy" class="justify-content-end" style="border-radius: 5%;">
         </div>
-        <div class="col-lg-6">
-            <h1 class="display-5 fw-bold lh-1 mb-3">برنامج {{batch.program}}</h1>
-            <p class="lead">مرحبا بك في كود_ سودان، ونتمنى لك رحلة تعليمة متميزة، رؤية كود_ سودان هي جعل السودان مركز
+        <div class="col-md-5 justify-content-center">
+            <h1 class="display-3 mb-5 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">برنامج {{batch.program}}</h1>
+            <p class="lead fs-4 text-center">مرحبا بك في كود_ سودان، ونتمنى لك رحلة تعليمة متميزة، رؤية كود_ سودان هي جعل السودان مركز
                 تكنلوجي في أفريقيا، كل
                 برامجنا عملية بحيث تقوم ببناء 3 مشاريع على الأقل، و مبنية على إحتياج السوق بحيث تتوفر لك أفضل الفرص
                 لدخول سوق العمل
-                مباشرة بعد نهاية <mark>برنامج {{batch.program}}</mark>
+                مباشرة بعد نهاية برنامج {{batch.program}}
+        </div>
         </div>
     </div>
 </div>
 
 
-
-<div class="container px-4 py-5" id="icon-grid">
-    <h2 class="fw-bold pb-2 border-bottom">مميزات برامج كود_ سودان</h2>
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 py-5">
-
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/medal.png' %}" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1">شهادة من كود_ سودان</h4>
-                <p>بعد نهاية البرنامج مشروع التخرج ستستلم شهادتك</p>
-            </div>
-        </div>
-
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/idea.png' %}" class="ml-1" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1">قم ببناء مشاريع عملية</h4>
-                <p class="px-2">كل برنامج يحتوي على ٣ مشاريع كحد أقل</p>
-            </div>
-        </div>
-
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/rating.png' %}" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1">مدرسين خبراء في مجالهم</h4>
-                <p>كل مدرسيننا عندهم خبرة عملية و علمية في المجال البدرسوهو</p>
-            </div>
-        </div>
-
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/laptop.png' %}" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1">معظم برامجنا أونلاين</h4>
-                <p>تقدر تحضر كل برامجنا الأونلاينا من أي مكان</p>
-            </div>
-        </div>
-
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/live.png' %}" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1">كل برامجنا لايف</h4>
-                <p>تقدر تحضر مدرس/ة البرنامج عن أي سؤال لايف، وتشاهد</p>
-            </div>
-        </div>
-
-
+<!-- منهج البرنامج -->
+<div class="bg-warning my-5" style="border-radius: 5%;">
+    <div>
+        <h1 class="fs-2 pt-5 pb-2 text-center">منهج البرنامج</h1>
     </div>
-</div>
 
-<div class="container px-4 py-5" id="icon-grid">
-    <h2 class="fw-bold pb-2 border-bottom">زمن البرنامج</h2>
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 py-5">
-
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/hourglass.png' %}" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1 px-2">يمتد البرنامج ل{{batch.duration_in_weeks}} أسابيع</h4>
-                
-            </div>
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-5">
+            <img src="{% static '/img/curriculum1.png' %}" class="d-block mx-lg-auto img-fluid" alt="our curriculum"
+                width="80%" loading="lazy" class="justify-content-end">
         </div>
 
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/clock.png' %}" class="ml-1" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1 px-2">{{batch.sessions_per_week}} محاضرة لكل الإسبوع</h4>
+        <div class="col-md-6 justify-content-center">
+            <div class="card-text m-3 ps-5 fs-3">
+                <ol style="display:inline; font-family: 'IBM Plex Sans Arabic Bold';">
+                    {% for topic in curriculum %}
+                    <li class="mb-2">
+                        {{ topic }}
+                    </li>
+                    {% endfor %}
+                </ol>
             </div>
         </div>
-
-        <div class="col d-flex align-items-start">
-            <img src="{% static '/img/program_details/fast-time.png' %}" alt="" width="40em" height="40em">
-            <div>
-                <h4 class="fw-bold mb-1 px-2">{{batch.session_duration_in_hours}} ساعة في كل محاضرة</h4>
-                
-            </div>
-        </div>
-
+        
     </div>
 </div>
 
 
-<div class="row mb-5">
-    <div class="col-sm-6">
-        <div class="card-deck mb-3 text-center">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">النسخة الأساسية</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">{{batch.basic_edition_price|intcomma}} جنيه <small
-                            class="text-muted">/ شهر</small></h1>
-                    <div class="mt-3 mb-4">
-                        
-                        {% for detail in basic_edition_details %}
-                            <p>{{detail}}</p>
-                        {% endfor %}
-                            
-                        
+<!-- معلومات سريعة عن البرنامج -->
+<div>
+    <h1 class="fs-2 m-5 text-center">معلومات سريعة عن البرنامج</h1>
+</div>
 
+<div class="container">
+    <div class="row d-flex align-items-center justify-content-center" style="background-color: #EFEFEF;">
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">{{batch.session_duration_in_hours}}</p>
+            <p class="fs-5 text-center">سآعات زمن المحاضرة</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">{{batch.sessions_per_week}}</p>
+            <p class="fs-5 text-center">محاضرات في الإسبوع</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">لمدة {{batch.duration_in_weeks}}</p>
+            <p class="fs-5 text-center">أسآبيع</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">{{batch.duration_in_weeks}}</p>
+            <p class="fs-5 text-center">دفع سآبقة</p>
+        </div>
+
+        <div class="col-md-2">
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">أفضل</p>
+            <p class="fs-5 text-center">تجربة تعليمية أونلاين</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- مميزات البرامج و النسخ -->
+<div>
+    <h1 class="fs-2 m-5 text-center">مميزات برامجنا</h1>
+</div>
+
+<div class="container">
+    <div class="row d-flex align-items-stretch justify-content-center">
+
+        <div class="col-md-5 card border-0 mx-5 mb-3 align-items-center justify-content-center" style="color:black;background-color: #EFEFEF;">
+            <h5 class="card-header text-center fs-2 my-3" style="font-family: 'IBM Plex Sans Arabic Bold';">مميزات النسخة الأساسية</h5>
+            <div class="card-body">
+                <h5 class="text-center fs-2">{{batch.basic_edition_price|intcomma}} جنيه</h5>
+                    {% for detail in basic_edition_details %}
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-black.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">{{detail|safe}}</p>
+                        <br>
                     </div>
-                    <a class="btn btn-outline-primary btn-lg"
-                        href="{% url 'registration:program_enrollment' package="basic" %}" role="button">قم
-                        بالتسجيل الآن</a>
-                </div>
-            </div>
-        </div>
-    </div>
+                    {% endfor %}
 
-    <div class="col-sm-6">
-        <div class="card-deck mb-3 text-center ">
-            <div class="card mb-4 box-shadow border-primary">
-                <div class="card-header text-white bg-primary border-primary">
-                    <h4 class="my-0 font-weight-normal">النسخة الذهبية</h4>
+                    <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:white; background-color: #0F9D58; font-size: 1.8rem; width:10rem;" href="{% url 'registration:program_enrollment' package="basic" %}" role="button">سجّل الآن</a></div>
                 </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">{{batch.golden_edition_price|intcomma}} جنيه <small
-                            class="text-muted">/ شهر</small></h1>
-                    <div class="mt-3 mb-4">
-                        <p>كل مميزات النسخة الأساسية</p>
-                        <p>وصول مجاني و مدى الحياة لمكتبة كود_ سودان</p>
-                        <p></p>
-                        {% for detail in golden_edition_details %}
-                            <p>{{detail|safe}}</p>
-                        {% endfor %}
+        </div>
+
+
+        <div class="col-md-5 card border-0 mx-5 mb-3 align-items-center justify-content-center" style="color:white;background-color: #0F9D58;">
+            <h5 class="card-header text-center fs-2 my-3" style="font-family: 'IBM Plex Sans Arabic Bold';">مميزات النسخة الذهبية</h5>
+            <div class="card-body">
+                <h5 class="text-center fs-2">{{batch.golden_edition_price|intcomma}} جنيه</h5>
+                {% for detail in golden_edition_details %}
+                    <div class="card-text m-3" style="font-family: 'IBM Plex Sans Arabic Thin';">
+                        <img src="{% static '/svg/check-square-white.svg' %}" alt="" style="width: 2rem;">
+                        <p class="fs-5 ms-1" style="display:inline; ">{{ detail|safe }}</p>
+                        <br>
                     </div>
-                    <a class="btn btn-outline-primary btn-lg" href="{% url 'registration:program_enrollment' package="golden" %}" role="button">قم بالتسجيل الآن</a>
-                </div>
+                {% endfor %}
+
+                <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:black; background-color: white; font-size: 1.8rem; width:10rem;" href="{% url 'registration:program_enrollment' package="golden" %}" role="button">سجّل الآن</a></div>
             </div>
-        </div>
     </div>
 
-    
+    </div>
 </div>
 
 {% endblock %}

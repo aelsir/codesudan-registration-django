@@ -4,69 +4,76 @@
 {% load static %}
 {% load humanize %}
 
-<div class="d-grid gap-3 me-1 mt-1 ms-1">
-    <div class="alert alert-primary" role="alert">
-        {% if package == "golden" %}
-        يمكنك الآن دفع رسوم النسخة الذهبية {{batch.golden_edition_price|intcomma}} على حساب بنكك:
-        {% elif package == "basic" %}
-        يمكنك الآن دفع رسوم النسخة الأساسية {{batch.basic_edition_price|intcomma}} على حساب بنكك:
-        
-        {% endif %}
-        <br>
-        رقم الحساب: 1626615
-        <br>
-        الإسم: أحمد السر خلف الله
-        <br>
-        أو رقم البطاقة: 
-        <br>
-        6392-5600-0105-8531
+{% if error_message %}
+<p> {{ error_message }} </p>
+{% endif %}
 
+<div class="px-4 py-2" style="background-color:#EFEFEF; border-radius: 20px;">
+    <div>
+        <h1 class="fs-2 m-5 text-center">طريقة دفع الرسوم</h1>
     </div>
 
-    {% if error_message %}
-    <p> {{ error_message }} </p>
-    {% endif %}
-    <h1>إكمال التسجيل لبرامج كود_ سودان</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <img src="{% static '/img/bank2.jpg' %}" class="img-fluid" alt="...">
+    <div>
+        <h1 class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">لحجز مقعدك في البرنامج قم بإكمال
+            التسجيل بدفع رسوم البرنامج على حسب النسخة التي قمت/ي بإختيارها بإستخدام البيانات التالية:</h1>
+    </div>
+    <div class="container bg-warning p-3 my-3" id="icon-grid" style="border-radius: 20px;">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 mx-5">
+
+            <div class="col-md-2 align-items-center text-center">
+                {% if package == "golden" %}
+                <h3 class="fw-bold mb-2 fs-2">{{batch.golden_edition_price|intcomma}} جنيه</h3>
+                <p>رسوم النسخة الذهبية</p>
+                {% elif package == "basic" %}
+                <h3 class="fw-bold mb-2 fs-2">{{batch.basic_edition_price|intcomma}} جنيه</h3>
+                <p>رسوم النسخة الأساسية</p>
+                {% endif %}
             </div>
-            <div class="col-sm-6">
-                <img src="{% static '/img/bank3.jpg' %}" class="img-fluid" alt="...">
+            <div class="col-md-2 align-items-center text-center">
+                <h3 class="fw-bold mb-2 fs-2">162661</h3>
+                <p>رقم حساب بنكك</p>
+            </div>
+            <div class="col-md-2 align-items-center text-center">
+                <h3 class="fw-bold mb-2 fs-2">إسم الحساب</h3>
+                <p>أحمد السر خلف الله</p>
+            </div>
+            <div class="col-md-2 align-items-center text-center">
+                <h3 class="fw-bold mb-2 fs-2">رقم البطاقة</h3>
+                <p>6392-5600-0105-8531</p>
             </div>
         </div>
     </div>
-    <form action="{% url 'registration:program_enrollment' package="package" %}" method='POST'>
-        {% csrf_token %}
+</div>
 
-        <div class="row">
-            <div class="md-6 mb-4 d-flex justify-content-center">
-                <div class="form-outline text-center">
-                    <label class="form-label">{{form.transaction_id.label}}</label>
+<div class="container d-flex my-5 py-3 justify-content-center bg-white" style="border-radius: 20px;">
+    <div class="row">
+        <div class="col-md-5 d-flex justify-content-center align-items-center fs-3">
+            <form action="{% url 'registration:program_enrollment' package="package" %}" method='POST'>
+                {% csrf_token %}
+
+                <div class="form-outline text-center py-3">
+                    <label class="form-label pb-2">{{form.transaction_id.label}}</label>
                     {{form.transaction_id}}
                     <div class="form-text">{{form.transaction_id.help_text}}</div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="md-6 mb-4 d-flex justify-content-center">
-                <div class="form-outline text-center">
-                    <label class="form-label">{{form.confirm_transaction.label}}</label>
+                <div class="form-outline text-center py-3">
+                    <label class="form-label pb-2">{{form.confirm_transaction.label}}</label>
                     {{form.confirm_transaction}}
                     <div class="form-text">{{form.confirm_transaction.help_text}}</div>
                 </div>
-            </div>
+
+                <div class="py-3 text-center">
+                    <button type="submit" class="btn btn-lg btn-warning">إكمال التسجيل</button>
+                </div>
+            </form>
         </div>
 
-        <div class="row">
-            <div class="md-6 mb-4 d-flex justify-content-center">
-                <div class="mt-4 pt-2">
-                    <button type="submit" class="btn btn-primary">إكمال التسجيل</button>
-                </div>
-            </div>
+        <div class="col-md-7 text-center">
+            <img src="{% static '/img/bank2.jpg' %}" width="1000px" class="img-fluid" alt="..."
+                style="border-radius: 20px;" f>
         </div>
-    </form>
+
+    </div>
 </div>
 {% endblock %}

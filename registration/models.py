@@ -46,7 +46,6 @@ class Program(models.Model):
     golden_edition_details = models.TextField()
 
 
-
     def __str__(self):
         return(self.name_arabic)
 
@@ -61,7 +60,6 @@ class Batch(models.Model):
     starting_at = models.DateField()
     ending_at = models.DateField()
     basic_edition_price = models.IntegerField()
-    
     golden_edition_price = models.IntegerField()
     mode = models.CharField(
         max_length=20,
