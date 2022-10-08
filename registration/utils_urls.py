@@ -42,8 +42,45 @@ def dashboard(request):
         labels.append(register['week'].strftime("%a %d/%m"))
         data_true_count.append(register['true_count'])
         data_total_count.append(register['total_count'])
+
+    # register details to do analysis on people who registerd
+
+    queryset = Registration.objects.select_related('student').filter(is_enroll=True)
+    gender = []
+    occupation = []
+    for i in queryset:
+        gender.append(i.student.gender)
+        occupation.append(i.student.occupation)
+    gender_dict = dict((x, gender.count(x)) for x in set(gender))
+    occupation_dict = dict((x, occupation.count(x)) for x in set(occupation))
+
+    gender_lable = list(gender_dict.keys())
+    gender_date = list(gender_dict.values())
+
+    labels_occupation = list(occupation_dict.keys())
+    data_occupation = list(occupation_dict.values())
+
+
     return render(request, "registration/dashboard.html", {
         'labels': labels,
         'data_true_count': data_true_count,
         'data_total_count': data_total_count,
+        'gender_lable': gender_lable,
+        'gender_data': gender_date,
+        'labels_occupation': labels_occupation,
+        'data_occupation': data_occupation,
         })
+
+
+def demo(request):
+    
+    queryset = Registration.objects.select_related('student').filter(is_enroll=True)
+    gender = []
+    for i in queryset:
+        gender.append(i.student.gender)
+
+    gender_dict = dict((x, gender.count(x)) for x in set(gender))
+
+    print(list(gender_dict.key()))
+    return HttpResponse("thanks")
+

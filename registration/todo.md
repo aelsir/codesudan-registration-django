@@ -31,4 +31,9 @@
 22. Verified the phone number.
 23. Who is the program good for?
 24. Adding a level to each course for ex: Beginners ...
+25. Adding Discord videos to the registration page.
+    a. Registration on PC https://youtu.be/IOH3iqwCkPM
+    b. Discord explain in Arabic https://youtu.be/driiEuEzJjI
+    c. How to make Discord's account in Arabic https://www.youtube.com/watch?v=cJ5IxJT7H2s
+    
 

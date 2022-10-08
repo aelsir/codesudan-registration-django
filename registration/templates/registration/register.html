@@ -1,7 +1,7 @@
 {% extends "registration/layout.html" %}
 
 {% block body %}
-{% load static %} 
+{% load static %}
 
 
 {% if error_message %}
@@ -10,53 +10,53 @@
 
 <div class="container col-xl-11 col-xxl-10">
     <div class="row align-items-center g-lg-5 py-5">
-        
-        <div class="col-md-10 mx-auto col-lg-5">
-            <form action="{% url 'registration:register' %}" method='POST' class="p-4 p-md-5 border rounded-3 bg-light">
+
+        <div class="col-md-10 mx-auto col-lg-5" >
+            <form style="background-color:#EFEFEF;" action="{% url 'registration:register' %}" method='POST' class="p-4 p-md-5 border rounded-3" >
                 {% csrf_token %}
                 <div class="row">
                     <h1 class="fs-3 pb-2 text-center"><u>تسجيل جديد</u></h1>
                     {% if error_message %}
                     <div class="alert alert-danger text-center"> {{ error_message }} </div>
                     {% endif %}
-                  <div class="md-6 mb-4 d-flex justify-content-center">
-                    <div class="form-outline text-center">
-                      <label class="form-label">{{form.username.label}}</label>
-                      {{form.username}}
-                      <div class="form-text">{{form.username.help_text}}</div>
+                    <div class="md-6 mb-4 d-flex justify-content-center">
+                        <div class="form-outline text-center">
+                            <label class="form-label">{{form.username.label}}</label>
+                            {{form.username}}
+                            <div class="form-text">{{form.username.help_text}}</div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              
+
                 <div class="row">
-                  <div class="md-6 mb-4 d-flex justify-content-center">
-                    <div class="form-outline text-center">
-                      <label class="form-label">{{form.password.label}}</label>
-                      <div>
-                        <center>{{form.password}}</center>
-                      </div>
-                      <div class="form-text">{{form.password.help_text}}</div>
+                    <div class="md-6 mb-4 d-flex justify-content-center">
+                        <div class="form-outline text-center">
+                            <label class="form-label">{{form.password.label}}</label>
+                            <div>
+                                <center>{{form.password}}</center>
+                            </div>
+                            <div class="form-text">{{form.password.help_text}}</div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              
+
                 <div class="row">
-                  <div class="md-6 mb-4 d-flex justify-content-center">
-                    <div class="mt-4 pt-2">
-                      <button type="submit" class="btn btn-primary">تسجيل</button>
+                    <div class="md-6 mb-4 d-flex justify-content-center">
+                        <div class="mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary">تسجيل</button>
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <p>
                     هل لديك حساب مع كودـ سودان؟
                     <a href="{% url 'registration:login' %}">تسجيل الدخول</a>
-                 </p>
-              </form>
+                </p>
+            </form>
         </div>
 
         <div class="col-lg-7 text-center justify-content-center mt-3">
             <h4 class="mb-4 pb-2 pb-md-0 text-center">
-                <img src="{% static '/img/logo.png' %}" alt="" width="200">
+                <img src="{% static 'img/logo.png' %}" alt="" width="200">
             </h4>
 
             <h1 class="display-4 fw-bold lh-1 mb-3">مرحبا بكم في كود_ سودان</h1>

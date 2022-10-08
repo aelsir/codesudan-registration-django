@@ -11,7 +11,7 @@
 
         <div class="col-lg-7 text-center justify-content-center mt-3">
             <h4 class="mb-4 pb-2 pb-md-0 text-center">
-                <img src="{% static '/img/logo.png' %}" alt="" width="200">
+                <img src="{% static 'img/logo.png' %}" alt="" width="200">
             </h4>
 
             <h1 class="display-4 fw-bold lh-1 mb-3">مرحبا بكم في كود_ سودان</h1>
@@ -20,7 +20,7 @@
         </div>
         
         <div class="col-md-10 mx-auto col-lg-5">
-            <form action="{% url 'registration:login' %}" method='POST' class="p-4 p-md-5 border rounded-3 bg-light">
+            <form action="{% url 'registration:login' %}" method='POST' class="p-4 p-md-5 border rounded-3" style="background-color:#EFEFEF;">
                 {% csrf_token %}
                 <div class="row">
                     <h1 class="fs-3 pb-2 text-center"><u>تسجيل الدخول</u></h1>
