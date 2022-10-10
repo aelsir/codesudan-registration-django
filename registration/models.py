@@ -125,7 +125,6 @@ class Registration(models.Model):
 
     def __str__(self):
         return(f"{self.student.first_name} PN {self.student.username} registerd for {self.program} is_enroll {self.is_enroll}")
-
 class CodeSudanQuote(models.Model):
     id = models.AutoField(primary_key=True)
     quote = models.TextField()
