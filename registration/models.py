@@ -99,24 +99,27 @@ class Registration(models.Model):
     package = models.CharField(max_length=64, blank=True)
     is_register = models.BooleanField(default=False)
     is_texted = models.BooleanField(default=False, blank=True)
-    is_phoned = models.BooleanField(default=False, blank=True)
-    why_not_enrolled = models.CharField(
-        max_length=25,
-        choices= WHY_NOT_ENROLLED,
-        default= False,
-        blank=True
-    )
     transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
     is_enroll = models.BooleanField(default=False, blank=True)
-    in_discord = models.BooleanField(default=False, blank=True)
-    is_graduated = models.BooleanField(default=False, blank=True)
-    is_certificated = models.BooleanField(default=False, blank=True)
+    
     
     
 
     def __str__(self):
         return(f"{self.student.first_name} PN {self.student.username} registerd for {self.program} is_enroll {self.is_enroll}")
 
+    '''
+    Not needed for now because Ahmed (me) the only one working on the platform:
+    why_not_enrolled = models.CharField(
+        max_length=25,
+        choices= WHY_NOT_ENROLLED,
+        default= False,
+        blank=True
+    )
+    in_discord = models.BooleanField(default=False, blank=True)
+    is_graduated = models.BooleanField(default=False, blank=True)
+    is_certificated = models.BooleanField(default=False, blank=True)
+    '''
 
 class CodeSudanQuote(models.Model):
     id = models.AutoField(primary_key=True)
