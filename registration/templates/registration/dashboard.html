@@ -8,21 +8,30 @@
         <h1 class="fs-2 m-5 text-center">بريييين</h1>
     </div>
     
-    <div class="row d-flex align-items-stretch justify-content-center">
+    <div class="row d-flex align-items-stretch justify-content-center my-3">
         <div class="col-md-10">
             <canvas id="RegistrationCanvas"></canvas>
         </div>
     </div>
 
-    <div class="row d-flex align-items-stretch justify-content-center">
+    <div class="row d-flex align-items-stretch justify-content-center my-3 g-3">
         <div class="col-md-5">
             <canvas id="GenderCanvas"></canvas>
         </div>
-    </div>
-
-    <div class="row d-flex align-items-stretch justify-content-center">
         <div class="col-md-5">
             <canvas id="OccupationCanvas"></canvas>
+        </div>
+    </div>
+
+    <div class = "row d-flex align-items-stretch justify-content-center">
+        <div class="col-md-5">
+            <ol>
+               {% for student in registration %}
+            <li>
+                {{student.student.university}}
+            </li>
+               {% endfor %} 
+            </ol>
         </div>
     </div>
 

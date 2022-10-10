@@ -45,10 +45,10 @@ def dashboard(request):
 
     # register details to do analysis on people who registerd
 
-    queryset = Registration.objects.select_related('student').filter(is_enroll=True)
+    queryset_registration = Registration.objects.select_related('student').filter(is_enroll=True)
     gender = []
     occupation = []
-    for i in queryset:
+    for i in queryset_registration:
         gender.append(i.student.gender)
         occupation.append(i.student.occupation)
     gender_dict = dict((x, gender.count(x)) for x in set(gender))
@@ -69,6 +69,7 @@ def dashboard(request):
         'gender_data': gender_date,
         'labels_occupation': labels_occupation,
         'data_occupation': data_occupation,
+        'registration': queryset,
         })
 
 
