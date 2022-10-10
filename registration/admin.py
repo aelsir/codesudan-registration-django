@@ -9,7 +9,7 @@ def get_phone_number(obj):
 def get_batch(obj):
     return(f"{obj.batch.program.name_arabic} {obj.batch.number}")
 class RegistrationAdmin(admin.ModelAdmin):
-    list_display = ('student', get_phone_number, get_batch, 'created_at', 'is_enroll', 'transaction_id', 'is_texted',)
+    list_display = ('student', get_phone_number, get_batch, 'created_at', 'is_enroll', 'price', 'transaction_id', 'is_texted',)
     list_filter = ('created_at', 'is_enroll', 'program')
 
 def full_name(obj):

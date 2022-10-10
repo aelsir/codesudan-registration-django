@@ -285,6 +285,12 @@ def program_enrollment(request, package):
         try:
             registrated = Registration.objects.get(pk=request.session['registration_id'])
             registrated.package = package
+            if package == 'golden':
+                registrated.price = registrated.batch.golden_edition_price
+            elif package == 'basic':
+                registrated.price = registrated.batch.basic_edition_price
+            else:
+                registrated.price = 0
             registrated.save()
         except Exception as e:
             print(e)
