@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
 
 import re
-
+from datetime import datetime
 
 
 from .models import *
@@ -322,7 +322,7 @@ def program_enrollment(request, package):
             confirm_transaction = int(new_enrollment.cleaned_data["confirm_transaction"])
             if transaction_id == confirm_transaction and transaction_id > 100000:
                 try:
-                    Registration.objects.filter(pk=request.session.get("registration_id")).update(transaction_id=transaction_id, is_enroll=True)
+                    Registration.objects.filter(pk=request.session.get("registration_id")).update(transaction_id=transaction_id, is_enroll=True, created_at=datetime.now())
                     registration_form = Registration.objects.get(pk=request.session.get("registration_id"))
                     
                 except:

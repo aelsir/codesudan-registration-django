@@ -76,7 +76,7 @@
         </div>
 
         <div class="col-md-2">
-            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">{{batch.duration_in_weeks}}</p>
+            <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">{{batch.number}}</p>
             <p class="fs-5 text-center">دفع سآبقة</p>
         </div>
 
@@ -132,4 +132,30 @@
     </div>
 </div>
 
+
+<!-- هل واجهتكم أي مشكلة -->
+<div class="row d-flex align-items-center justify-content-center g-3 my-5" style="background-color: #0F9D58; color: white; border-radius: 20px;">
+    <div class="col-md-5">
+        <p class="d-flex fs-2 text-start" style="font-family: 'IBM Plex Sans Arabic Bold';">هل لديك أي أسئلة أو أي مشكلة تواجهها أثناء عملية التسجيل؟ تواصل معنا عبر: 
+        </p>
+    </div>
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <img class="me-3" src="{% static 'svg/whatsapp.svg' %}" alt="whatsapp" style="width: 2rem;">
+            <div calss="">
+              <h3 class="fw-bold mb-0 fs-4">عبر الواتساب</h3>
+              <p><a href="https://wa.me/message/HUWJ5XBW5CMCD1" target="_blank">من خلال هذا الرابط</a></p>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <img class="me-3" src="{% static 'svg/phone.svg' %}" alt="whatsapp" style="width: 2rem;">
+            <div calss="">
+              <h3 class="fw-bold mb-0 fs-4">إتصل بنا</h3>
+              <p>رقم الهاتف: 0903905000</p>
+            </div>
+          </div>
+    </div>
+</div>
 {% endblock %}
