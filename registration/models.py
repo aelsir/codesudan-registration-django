@@ -1,3 +1,4 @@
+from email.policy import default
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -80,16 +81,7 @@ class Batch(models.Model):
         return (f"الدفعة {self.number} من {self.program}")
 
 
-WHY_NOT_ENROLLED = (
-    ("phone off", "التلفون مقفول"),
-    ("busy", "مشغول"),
-    ("no answer", "مافي رد"),
-    ("cancelled", "قفل الخط"),
-    ("will complete soon", "حا يسجل قريب"),
-    ("misunderstood", "فهم غلط"),
-    ("next batch", "الدفعة الجاية"),
-    ("different program", "برنامج مختلف")
-)
+
 class Registration(models.Model):
     id = models.AutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -97,29 +89,42 @@ class Registration(models.Model):
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     package = models.CharField(max_length=64, blank=True)
+    price = models.IntegerField(default=0, blank=True)
     is_register = models.BooleanField(default=False)
     is_texted = models.BooleanField(default=False, blank=True)
     transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
     is_enroll = models.BooleanField(default=False, blank=True)
     
     
+
+    """
+    Not need for now because I'm the one managing the whole thing:
+
+    is_phoned = models.BooleanField(default=False, blank=True)
+    in_discord = models.BooleanField(default=False, blank=True)
+    is_graduated = models.BooleanField(default=False, blank=True)
+    is_certificated = models.BooleanField(default=False, blank=True)
+    why_not_enrolled = models.CharField(
+            max_length=25,
+            choices= WHY_NOT_ENROLLED,
+            default= False,
+            blank=True
+        )
+    WHY_NOT_ENROLLED = (
+        ("phone off", "التلفون مقفول"),
+        ("busy", "مشغول"),
+        ("no answer", "مافي رد"),
+        ("cancelled", "قفل الخط"),
+        ("will complete soon", "حا يسجل قريب"),
+        ("misunderstood", "فهم غلط"),
+        ("next batch", "الدفعة الجاية"),
+        ("different program", "برنامج مختلف")
+    )
+    """
     
 
     def __str__(self):
         return(f"{self.student.first_name} PN {self.student.username} registerd for {self.program} is_enroll {self.is_enroll}")
-
-    '''
-    Not needed for now because Ahmed (me) the only one working on the platform:
-    why_not_enrolled = models.CharField(
-        max_length=25,
-        choices= WHY_NOT_ENROLLED,
-        default= False,
-        blank=True
-    )
-    in_discord = models.BooleanField(default=False, blank=True)
-    is_graduated = models.BooleanField(default=False, blank=True)
-    is_certificated = models.BooleanField(default=False, blank=True)
-    '''
 
 class CodeSudanQuote(models.Model):
     id = models.AutoField(primary_key=True)
