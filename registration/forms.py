@@ -62,6 +62,22 @@ class student_details_from(ModelForm):
             ]
 
         GENDER_CHOICE = [("M", 'ذكر'), ("F", "أنثى")]
+        UNIVERSITY = [
+            ("University of Khartoum", "جامعة الخرطوم"),
+            ("Sudan University of Science and Technology", "جامعة السودان للعلوم و التكنلوجيا"),
+            ("Omdurman Islamic University", "جامعة أمدرمان الإسلامية"),
+            ("Al Neelain University", "جامعة النيلين"),
+            ("National Ribat University", "جامعة الرباط الوطني"),
+            ("Aljazeera University", "جامعة الجزيرة"),
+            ("Ahfad University for Women", "جامعة الأحفاد للبنات"),
+            ("Alzaiem Alazhari University", "جامعة الزعيم الأزهري"),
+            ("Karary University", "جامعة كرري"),
+            ("University of Science and Technology", "جامعة العلوم و التقانة"),
+            ("The Future university", "جامعة المستقبل"),
+            ("University of Medical Sciences and Technology", "جامعة العلوم الطبية والتكنولوجيا"),
+            ("Sudan international University", "جامعة السودان المفتوحة"),
+            ("Other", "أخرى")
+            ]
 
         fields=["first_name", "father_name", "email", "gender", "birthday", "occupation", "university", "specialization", "state", "address"]
         labels = {
@@ -95,7 +111,7 @@ class student_details_from(ModelForm):
             "gender": forms.Select(choices=GENDER_CHOICE, attrs={"class": "form-select", "required": True}),
             "birthday": forms.DateInput(attrs={"type": "date", "required": True}),
             "occupation": forms.Select(choices=OCCUPATIONS, attrs={"class": "form-select", "required": True}),
-            "university": forms.TextInput(attrs={"class": "form-control", "required": True}), 
+            "university": forms.Select(choices=UNIVERSITY, attrs={"class": "form-select", "required": True}), 
             "specialization": forms.TextInput(attrs={"class": "form-control", "required": True}), 
             "state": forms.Select(choices=SUDAN_STATES, attrs={"class": "form-select"}), 
             "address": forms.TextInput(attrs={"class": "form-control"}),
@@ -136,17 +152,30 @@ class new_enrollment_from(ModelForm):
     confirm_transaction = forms.IntegerField(label="تأكيد رقم العملية", widget=forms.TextInput(attrs={"class": "form-control"}))
     class Meta:
         model=Registration
-        fields = ["transaction_id"]
+        CHANNELS = [
+            ("Our Facebook Page", "صفحتنا على الفيسبوك"),
+            ("Our Instagram Page", "صفحتنا على إنستغرام"),
+            ("WhatsApp Group", "قروب وآتس-أب"),
+            ("Other Social Media", "شبكات تواصل إجتماعي أخرى"),
+            ("Email", "البريد الإلكتروني"),
+            ("Friend", "توصية صديق/ة"),
+            ("Other", "أخرى"),
+            ]
+
+        fields = ["transaction_id", "reach_channels"]
         labels = {
             "transaction_id": "الرجاء إدخال رقم العملية:",
+            "reach_channels": "أين سمعت عن كودـ سودان و هذا البرنامج؟",
         }
 
         widgets = {
             "transaction_id": forms.TextInput(attrs={"class": "form-control", "type": "number"}),
+            "gender": forms.Select(choices=CHANNELS, attrs={"class": "form-select", "required": True}),
         }
         
         required = (
-            "transaction_id"
+            "transaction_id",
+            "reach_channels"
         )
 
 

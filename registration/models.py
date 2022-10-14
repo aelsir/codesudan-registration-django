@@ -6,6 +6,22 @@ from datetime import date
 from django.contrib.postgres.fields import ArrayField
 
 
+UNIVERSITY = (
+    ("University of Khartoum", "جامعة الخرطوم"),
+    ("Sudan University of Science and Technology", "جامعة السودان للعلوم و التكنلوجيا"),
+    ("Omdurman Islamic University", "جامعة أمدرمان الإسلامية"),
+    ("Al Neelain University", "جامعة النيلين"),
+    ("National Ribat University", "جامعة الرباط الوطني"),
+    ("Aljazeera University", "جامعة الجزيرة"),
+    ("Ahfad University for Women", "جامعة الأحفاد للبنات"),
+    ("Alzaiem Alazhari University", "جامعة الزعيم الأزهري"),
+    ("Karary University", "جامعة كرري"),
+    ("University of Science and Technology", "جامعة العلوم و التقانة"),
+    ("The Future university", "جامعة المستقبل"),
+    ("University of Medical Sciences and Technology", "جامعة العلوم الطبية والتكنولوجيا"),
+    ("Sudan international University", "جامعة السودان المفتوحة"),
+    ("Other", "أخرى"),
+)
 
 # Create your models here.
 class Student(AbstractUser):
@@ -16,7 +32,11 @@ class Student(AbstractUser):
     gender = models.CharField(max_length=1, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
     occupation = models.CharField(max_length=64, blank=True, null=True)
-    university = models.CharField(max_length=64, blank=True, null=True)
+    university = models.CharField(
+        max_length=64,
+        choices= UNIVERSITY,
+        default= "Other"
+    )
     specialization = models.CharField(max_length=64, blank=True, null=True)
     state = models.CharField(max_length=64 ,blank=True, null=True)
     address = models.TextField(blank=True, null=True)
@@ -81,7 +101,15 @@ class Batch(models.Model):
         return (f"الدفعة {self.number} من {self.program}")
 
 
-
+CHANNELS = (
+    ("Our Facebook Page", "صفحتنا على الفيسبوك"),
+    ("Our Instagram Page", "صفحتنا على إنستغرام"),
+    ("WhatsApp Group", "قروب وآتس-أب"),
+    ("Other Social Media", "شبكات تواصل إجتماعي أخرى"),
+    ("Email", "البريد الإلكتروني"),
+    ("Friend", "توصية صديق/ة"),
+    ("Other", "أخرى"),
+)
 class Registration(models.Model):
     id = models.AutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -94,6 +122,12 @@ class Registration(models.Model):
     is_texted = models.BooleanField(default=False, blank=True)
     transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
     is_enroll = models.BooleanField(default=False, blank=True)
+    reach_channels = models.CharField(
+        max_length=64,
+        choices= CHANNELS,
+        default= "Other",
+        blank=True
+    )
     
     
 

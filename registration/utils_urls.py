@@ -75,13 +75,13 @@ def dashboard(request):
 
 def demo(request):
     
-    queryset = Registration.objects.select_related('student').filter(is_enroll=True)
-    gender = []
+    queryset = Registration.objects.raw('''
+    select to_char(created_at, 'yyyy-MM-dd') as date, count(is_enroll = true or null) as enrolled, count(id) as total from registration_registration
+    group by date
+    order by date desc;
+    ''')
     for i in queryset:
-        gender.append(i.student.gender)
+        print(i.enrolled)
 
-    gender_dict = dict((x, gender.count(x)) for x in set(gender))
-
-    print(list(gender_dict.key()))
-    return HttpResponse("thanks")
+    return HttpResponse("yoo")
 

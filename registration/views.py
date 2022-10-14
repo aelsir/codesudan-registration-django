@@ -302,6 +302,7 @@ def program_enrollment(request, package):
             enrollment_form = new_enrollment_from()
             enrollment_form.initial["transaction_id"] = registrated.transaction_id
             enrollment_form.initial["confirm_transaction"] = registrated.transaction_id
+            enrollment_form.initial["reach_channels"] = registrated.reach_channels
 
             #get the batch to update the prices accordingly in the html
             batch = Batch.objects.get(pk=registrated.batch.id)
@@ -320,9 +321,10 @@ def program_enrollment(request, package):
         if new_enrollment.is_valid():
             transaction_id = int(new_enrollment.cleaned_data["transaction_id"])
             confirm_transaction = int(new_enrollment.cleaned_data["confirm_transaction"])
+            reach_channels = str(new_enrollment.cleaned_data["reach_channels"])
             if transaction_id == confirm_transaction and transaction_id > 100000:
                 try:
-                    Registration.objects.filter(pk=request.session.get("registration_id")).update(transaction_id=transaction_id, is_enroll=True, created_at=datetime.now())
+                    Registration.objects.filter(pk=request.session.get("registration_id")).update(transaction_id=transaction_id, is_enroll=True, created_at=datetime.now(), reach_channels=reach_channels)
                     registration_form = Registration.objects.get(pk=request.session.get("registration_id"))
                     
                 except:
