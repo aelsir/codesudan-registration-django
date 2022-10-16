@@ -126,7 +126,6 @@ class Registration(models.Model):
     reach_channels = models.CharField(
         max_length=64,
         choices= CHANNELS,
-        default= "Other",
         blank=True,
         null=True,
     )
