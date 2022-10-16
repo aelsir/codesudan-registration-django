@@ -170,7 +170,7 @@ class new_enrollment_from(ModelForm):
 
         widgets = {
             "transaction_id": forms.TextInput(attrs={"class": "form-control", "type": "number"}),
-            "gender": forms.Select(choices=CHANNELS, attrs={"class": "form-select", "required": True}),
+            "reach_channels": forms.Select(choices=CHANNELS, attrs={"class": "form-select", "required": True}),
         }
         
         required = (
@@ -198,6 +198,7 @@ class first_lec_free_form(ModelForm):
         widgets = {
             "transaction_id": forms.TextInput(attrs={"class": "form-control", "type": "number"}),
             "package": forms.Select(choices=PACKAGES, attrs={"class": "form-select"}),
+            
         }
         
         required = (

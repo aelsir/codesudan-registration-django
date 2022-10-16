@@ -49,8 +49,8 @@ class Student(AbstractUser):
 
 class Track(models.Model):
     id = models.AutoField(primary_key=True)
-    name_english = models.CharField(max_length=64, null = False)
-    name_arabic = models.CharField(max_length=64, null = False)
+    name_english = models.CharField(max_length=128, null = False)
+    name_arabic = models.CharField(max_length=128, null = False)
 
     def __str__(self):
         return(self.name_english)
@@ -58,8 +58,8 @@ class Track(models.Model):
 
 class Program(models.Model):
     id = models.AutoField(primary_key=True)
-    name_english = models.CharField(max_length=64, null=False)
-    name_arabic = models.CharField(max_length=64, null = False)
+    name_english = models.CharField(max_length=128, null=False)
+    name_arabic = models.CharField(max_length=128, null = False)
     track = models.ForeignKey(Track, on_delete=models.CASCADE)
     code = models.CharField(max_length=4)
     curriculum = models.TextField()
@@ -108,6 +108,7 @@ CHANNELS = (
     ("Other Social Media", "شبكات تواصل إجتماعي أخرى"),
     ("Email", "البريد الإلكتروني"),
     ("Friend", "توصية صديق/ة"),
+    ("Intelligent Pattern Page", "صفحة Intelligent Pattern"),
     ("Other", "أخرى"),
 )
 class Registration(models.Model):
@@ -126,7 +127,8 @@ class Registration(models.Model):
         max_length=64,
         choices= CHANNELS,
         default= "Other",
-        blank=True
+        blank=True,
+        null=True,
     )
     
     

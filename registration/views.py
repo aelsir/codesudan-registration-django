@@ -220,7 +220,7 @@ def program_registration(request):
 
         
 
-        all_batches = Batch.objects.filter(ending_at__gte=datetime.today())
+        all_batches = Batch.objects.filter(ending_at__gte=datetime.today()).order_by("id")
 
         basic_edition_details = re.split('\n', all_batches[0].program.basic_edition_details)
         golden_edition_details = re.split('\n', all_batches[0].program.golden_edition_details)
