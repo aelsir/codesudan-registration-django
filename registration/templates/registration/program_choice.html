@@ -140,54 +140,50 @@
 <div>
     <h1 class="fs-2 m-5 text-center">برامجنا الحالية</h1>
 </div>
+<div class="container">
+    <div class="row">
+        {% for batch in batches %}
+        <div class="col-md-6 d-flex mb-4">
+            {% if batch.id|divisibleby:"2" %}
+            <div class="card border-0 bg-warning" style="width:100%;">
+                {% else %}
+                <div class="card border-0" style="background-color:#EFEFEF; width:100%;">
+                    {% endif %}
+                    <div class="card-body">
+                        <!-- setting the min-height all the card with different summery length will be the same -->
+                        <p class="card-text fs-5 me-2" style="min-height: 6rem">{{batch.program.summery}}</p>
 
-<form action="{% url 'registration:program_registration' %}" method='POST'>
-    {% csrf_token %}
-    <div class="container">
-        <div class="row">
-            {% for batch in batches %}
-            <div class="col-md-6 d-flex mb-4">
-                {% if batch.id|divisibleby:"2" %}
-                <div class="card border-0 bg-warning" style="width:100%;">
-                    {% else %}
-                    <div class="card border-0" style="background-color:#EFEFEF; width:100%;">
-                        {% endif %}
-                        <div class="card-body">
-                            <!-- setting the min-height all the card with different summery length will be the same -->
-                            <p class="card-text fs-5 me-2" style="min-height: 6rem">{{batch.program.summery}}</p>
+                        <p class="card-subtitle fs-6 my-2">نهاية التسجيل للبرنامج {{batch.ending_at|date:"d-m-Y"}}</p>
 
-                            <p class="card-subtitle fs-6 my-2">نهاية التسجيل للبرنامج {{batch.ending_at|date:"d-m-Y"}}</p>
-
-                            <!-- adding the divider to add height so the card can be rectangle -->
-                            <div class="divider"></div>
-                            <div class="row justify-content-end">
-                                <div class="col-md-6">
-                                    <p class="card-title fs-3 fw-b float-start" style="display:inline;"
-                                        id="card_program_title">{{batch.program}}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    {% if batch.id|divisibleby:"2" %}
-                                    <a class="btn btn-lg btn-light float-end mx-auto"
+                        <!-- adding the divider to add height so the card can be rectangle -->
+                        <div class="divider"></div>
+                        <div class="row justify-content-end">
+                            <div class="col-md-6">
+                                <p class="card-title fs-3 fw-b float-start" style="display:inline;"
+                                    id="card_program_title">{{batch.program}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                {% if batch.id|divisibleby:"2" %}
+                                <a class="btn btn-lg btn-light float-end mx-auto"
+                                    href="{% url 'registration:program_details' batch_id=batch.id %}">
+                                    {% else %}
+                                    <a class="btn btn-lg btn-warning float-end mx-auto"
                                         href="{% url 'registration:program_details' batch_id=batch.id %}">
-                                        {% else %}
-                                        <a class="btn btn-lg btn-warning float-end mx-auto"
-                                            href="{% url 'registration:program_details' batch_id=batch.id %}">
-                                            {% endif %}
-                                            التفاصيل <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
-                                            </svg>
-                                        </a>
-                                </div>
+                                        {% endif %}
+                                        التفاصيل <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                        </svg>
+                                    </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
-</form>
+    </div>
 
 
 

@@ -243,22 +243,8 @@ def program_details(request, batch_id):
             basic_edition_details = re.split('\n', batch.program.basic_edition_details)
             golden_edition_details = re.split('\n', batch.program.golden_edition_details)
             curriculum   = re.split('\n',batch.program.curriculum)
-            
-            
-
-            registrated = Registration.objects.filter(student=request.user, batch=batch, is_enroll=False).first()
-            
-            if registrated == None:
-                try:
-                    registration = Registration.objects.create(student=request.user, program=Program.objects.get(name_arabic=getattr(batch, "program")),batch= batch, is_register=True, is_enroll=False)
-                    request.session['registration_id'] = registration.id
-                except Exception as e:
-                    print(e)
-                    return HttpResponseRedirect(reverse("registration:index"))
-            else:
-                request.session['registration_id'] = registrated.id
                 
-            
+                
             return render(request, "registration/program_details.html", {
                 "batch": batch,
                 "progress": 60,
@@ -267,47 +253,43 @@ def program_details(request, batch_id):
                 "golden_edition_details": golden_edition_details,
                 "curriculum": curriculum
             })
-            
-
-
-            return render(request, "registration/program_details.html", {
-            "batch": batch,
-            "progress": 60,
-            "quote": quote,
-        })
 
 
 @login_required(redirect_field_name=None)
-def program_enrollment(request, package):
+def program_enrollment(request, batch_id, package):
     quote = get_quote()
     if request.method == "GET":
+        batch = Batch.objects.get(id=batch_id)
+        registration = Registration.objects.filter(student=request.user, batch=batch, is_enroll=False).first()
 
-        try:
-            registrated = Registration.objects.get(pk=request.session['registration_id'])
-            registrated.package = package
-            if package == 'golden':
-                registrated.price = registrated.batch.golden_edition_price
-            elif package == 'basic':
-                registrated.price = registrated.batch.basic_edition_price
-            else:
-                registrated.price = 0
-            registrated.save()
-        except Exception as e:
-            print(e)
-            return HttpResponseRedirect(reverse("registration:program_registration"))
+        if registration == None:
+            try:
+                registration = Registration.objects.create(student=request.user, program=batch.program,batch= batch, is_register=True, is_enroll=False)
+                registration.package = package
+                if package == 'golden':
+                    registration.price = batch.golden_edition_price
+                elif package == 'basic':
+                    registration.price = batch.basic_edition_price
+                else:
+                    registration.price = 0
+                registration.save()
+                request.session['registration_id'] = registration.id
+            except Exception as e:
+                print(e)
+                return HttpResponseRedirect(reverse("registration:program_registration"))
+        else:
+            request.session['registration_id'] = registration.id
 
-        if registrated.is_register == False:
+
+        if registration.is_register == False:
             return HttpResponseRedirect(reverse("registration:program_registration"))
         else:
             enrollment_form = new_enrollment_from()
-            enrollment_form.initial["transaction_id"] = registrated.transaction_id
-            enrollment_form.initial["confirm_transaction"] = registrated.transaction_id
-            enrollment_form.initial["reach_channels"] = registrated.reach_channels
+            enrollment_form.initial["transaction_id"] = registration.transaction_id
+            enrollment_form.initial["confirm_transaction"] = registration.transaction_id
+            enrollment_form.initial["reach_channels"] = registration.reach_channels
 
-            #get the batch to update the prices accordingly in the html
-            batch = Batch.objects.get(pk=registrated.batch.id)
 
-            #get the quotation using get_quote function from the utils file
             return render(request, "registration/program_enrollment.html", {
                 "form": enrollment_form,
                 "progress": 80,

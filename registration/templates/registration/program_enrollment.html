@@ -48,7 +48,7 @@
 <div class="container d-flex my-5 py-3 justify-content-center bg-white" style="border-radius: 20px;">
     <div class="row">
         <div class="col-md-5 d-flex justify-content-center align-items-center fs-3">
-            <form action="{% url 'registration:program_enrollment' package="package" %}" method='POST'>
+            <form action="{% url 'registration:program_enrollment' batch_id=batch.id package="package" %}" method='POST'>
                 {% csrf_token %}
 
                 <div class="form-outline text-center py-3">
