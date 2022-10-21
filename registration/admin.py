@@ -11,6 +11,7 @@ def get_batch(obj):
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = ('student', get_phone_number, get_batch, 'created_at', 'is_enroll', 'price', 'transaction_id', 'is_texted',)
     list_filter = ('created_at', 'is_enroll', 'program')
+    ordering = ['-created_at']
 
 def full_name(obj):
     return(f"{obj.first_name} {obj.father_name}")
