@@ -265,20 +265,19 @@ def program_enrollment(request, batch_id, package):
         if registration == None:
             try:
                 registration = Registration.objects.create(student=request.user, program=batch.program,batch= batch, is_register=True, is_enroll=False)
-                registration.package = package
-                if package == 'golden':
-                    registration.price = batch.golden_edition_price
-                elif package == 'basic':
-                    registration.price = batch.basic_edition_price
-                else:
-                    registration.price = 0
-                registration.save()
-                request.session['registration_id'] = registration.id
             except Exception as e:
                 print(e)
                 return HttpResponseRedirect(reverse("registration:program_registration"))
+
+        registration.package = package
+        if package == 'golden':
+            registration.price = batch.golden_edition_price
+        elif package == 'basic':
+            registration.price = batch.basic_edition_price
         else:
-            request.session['registration_id'] = registration.id
+            registration.price = 0
+        registration.save()
+        request.session['registration_id'] = registration.id
 
 
         if registration.is_register == False:
