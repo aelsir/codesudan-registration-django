@@ -1,0 +1,20 @@
+{% extends "registration/layout.html" %}
+
+{% block body %}
+<table>
+    {% for item in df %}
+    <tr>
+        {% for i in item %}
+        <td>
+            {{i }}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+    
+    
+    
+    
+
+    {% endblock %}

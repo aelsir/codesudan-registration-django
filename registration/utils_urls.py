@@ -7,6 +7,8 @@ from django.db.models import Count
 from django.db.models import Q
 from django.http import HttpResponse
 from .utils import *
+import pandas as pd
+from datetime import datetime, timedelta, date
 
 
 # show all of the registration, to easily contact them on whatsapp by creating custom whatsapp link
@@ -75,13 +77,12 @@ def dashboard(request):
 
 def demo(request):
     
-    queryset = Registration.objects.raw('''
-    select to_char(created_at, 'yyyy-MM-dd') as date, count(is_enroll = true or null) as enrolled, count(id) as total from registration_registration
-    group by date
-    order by date desc;
-    ''')
-    for i in queryset:
-        print(i.enrolled)
+    queryset = Student.objects.all().values('date_joined')
+    df = pd.DataFrame(list(queryset))
+    df['date_joined'] = pd.to_datetime(df['date_joined']).dt.date
+    df = df.groupby('date_joined').size().reset_index(name='count').sort_values(by='date_joined', ascending=False)
+    start = date.today()
+    df_date = pd.Series(pd.date_range(end=start, periods=100))
 
-    return HttpResponse("yoo")
+    return HttpResponse(df_date)
 

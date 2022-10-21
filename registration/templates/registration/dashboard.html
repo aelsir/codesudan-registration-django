@@ -3,35 +3,27 @@
 {% block body %}
 {% load static %}
 
-<div class="container py-2" style="background-color:#EFEFEF;" border-radius: 20px;>
-    <div>
-        <h1 class="fs-2 m-5 text-center">بريييين</h1>
-    </div>
+<div>
+    <h1 class="fs-2 m-5 text-center">PINKY</h1>
+</div>
+
+<div class="container my-5 py-2" style="background-color:#EFEFEF; border-radius: 20px;" >
+    
     
     <div class="row d-flex align-items-stretch justify-content-center my-3">
         <div class="col-md-10">
             <canvas id="RegistrationCanvas"></canvas>
         </div>
     </div>
+</div>
 
+<div class="container my-5 py-2" style="background-color:#EFEFEF; border-radius: 20px;" >
     <div class="row d-flex align-items-stretch justify-content-center my-3 g-3">
         <div class="col-md-5">
-            <canvas id="GenderCanvas"></canvas>
+            <canvas id="GenderCanvas" height="250px"></canvas>
         </div>
         <div class="col-md-5">
-            <canvas id="OccupationCanvas"></canvas>
-        </div>
-    </div>
-
-    <div class = "row d-flex align-items-stretch justify-content-center">
-        <div class="col-md-5">
-            <ol>
-               {% for student in registration %}
-            <li>
-                {{student.student.university}}
-            </li>
-               {% endfor %} 
-            </ol>
+            <canvas id="OccupationCanvas" height="250px"></canvas>
         </div>
     </div>
 
@@ -40,14 +32,15 @@
 <script src="{% static 'js/chart.min.js' %}"></script>
 
 <script>
+    Chart.defaults.font.family = 'IBM Plex Sans Arabic Bold';
     const labels = {{labels | safe }};
 
     const data = {
         labels: labels,
         datasets: [{
-                label: 'Completed Registrations',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                label: 'كمّل التسجيل',
+                backgroundColor: '#0F9D58',
+                borderColor: '#0F9D58',
                 data: {{data_true_count | safe}},
                 fill: false,
                 pointStyle: 'recRot',
@@ -55,9 +48,9 @@
                 pointHoverRadius: 10
             },
             {
-                label: 'Total Registrations',
-                backgroundColor: 'rgb(0, 0, 205)',
-                borderColor: 'rgb(0, 0, 205)',
+                label: 'مجموع المسجلين',
+                backgroundColor: '#DB4437',
+                borderColor: '#DB4437',
                 data: {{data_total_count | safe}},
                 fill: false,
                 pointStyle: 'circle',
@@ -96,7 +89,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Registrations For Each Week'
+                    text: 'المسجلين خلال كل إسبوع'
                 },
             }
         },
@@ -113,15 +106,17 @@
     const data_gender = {
     labels: labels_gender,
     datasets: [{
-        label: 'My First Dataset',
+        label: 'الرجال و النساء المسجلين',
         data: {{gender_data | safe}},
         backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
+        '#0000FF',
+        '#A020F0'
         ],
         borderColor: [
-        'rgb(255, 99, 132)',
+            '#0000FF',
+            '#A020F0'
         ],
-        borderWidth: 1
+        borderWidth: 2
     }]
     };
 
