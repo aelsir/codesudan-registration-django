@@ -36,3 +36,6 @@
    ~~ a. Registration on PC https://youtu.be/IOH3iqwCkPM~~
    ~~ b. Discord explain in Arabic https://youtu.be/driiEuEzJjI~~
    ~~ c. How to make Discord's account in Arabic https://www.youtube.com/watch?v=cJ5IxJT7H2s~~
+26. Adding page for Registration Process, where we get into details about how to complete your registration.
+27. Reset privace number.
+28. Sending emails confirmation.
