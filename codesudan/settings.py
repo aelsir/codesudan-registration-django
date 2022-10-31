@@ -15,6 +15,8 @@ from django.urls import reverse
 
 import os
 
+from numpy import true_divide
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -147,3 +149,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+# SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.codesudan.io'
+EMAIL_HOST_USER = 'noreply@codesudan.io'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = 'qoW4l%)Ydp9z'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False

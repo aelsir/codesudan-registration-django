@@ -23,7 +23,11 @@ from .models import *
 from .forms import *
 from .sms import send_sms
 from .utils import *
-# import requests as req
+
+# SMTP import to send an email
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -316,6 +320,25 @@ def program_enrollment(request, batch_id, package):
                 print(registration_form)
                 #send and SMS after enrollment
                 send_sms(request.user.username, sms_to_send="program_enrollment_sms", program=registration_form.program.name_arabic)
+
+                try:
+                    template = render_to_string('registration/email_success.html', {
+                        'name': registration_form.student.first_name,
+                        'program': registration_form.program.name_arabic,
+                    })
+                    # send SMTP email to the customer
+                    email = EmailMessage(
+                        'subject',
+                        template,
+                        settings.EMAIL_HOST_USER,
+                        ['ahmed.elsir.khalfalla@gmail.com'],
+                    )
+                    email.fail_silently = False
+                    email.content_subtype = 'html'
+                    email.send()
+                    print('The message send successful')
+                except Exception as e:
+                    print("The message isn't send XXX")
 
                 return render(request, "registration/successful.html", {
                     "progress": 100,
