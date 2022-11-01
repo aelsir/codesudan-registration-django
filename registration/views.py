@@ -328,15 +328,14 @@ def program_enrollment(request, batch_id, package):
                     })
                     # send SMTP email to the customer
                     email = EmailMessage(
-                        'subject',
+                        f'إكمال تسجيلك لبرنامج {registration_form.program.name_arabic}',
                         template,
                         settings.EMAIL_HOST_USER,
-                        ['ahmed.elsir.khalfalla@gmail.com'],
+                        [registration_form.student.email],
                     )
                     email.fail_silently = False
                     email.content_subtype = 'html'
                     email.send()
-                    print('The message send successful')
                 except Exception as e:
                     print("The message isn't send XXX")
 
@@ -347,7 +346,6 @@ def program_enrollment(request, batch_id, package):
                 return render(request, "registration/program_enrollment.html", {
                     "error_message": "هنالك مشكلة في رقم العملية الذي أدخلته",
                     "form": new_enrollment,
-                    "progress": 60
                 })
         else:
             return render(request, "registration/program_enrollment.html", {
