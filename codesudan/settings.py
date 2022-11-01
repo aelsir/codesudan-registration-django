@@ -15,8 +15,6 @@ from django.urls import reverse
 
 import os
 
-from numpy import true_divide
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
