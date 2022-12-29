@@ -67,6 +67,8 @@ class Program(models.Model):
     basic_edition_details = models.TextField()
     golden_edition_details = models.TextField()
 
+    class Meta:
+        ordering = ["-track", "-name_english"]
 
     def __str__(self):
         return(self.name_arabic)
@@ -94,7 +96,8 @@ class Batch(models.Model):
     sessions_per_week = models.SmallIntegerField()
     session_duration_in_hours = models.FloatField()
 
-    
+    class Meta:
+        ordering = ["-program", "-id"]
 
 
     def __str__(self):
