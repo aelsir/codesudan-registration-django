@@ -40,6 +40,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'registration',
     'bankak',
+    'blog',
     'django.contrib.humanize',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
