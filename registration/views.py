@@ -320,7 +320,7 @@ def program_enrollment(request, batch_id, package):
                 print(registration_form)
                 #send and SMS after enrollment
                 send_sms(request.user.username, sms_to_send="program_enrollment_sms", program=registration_form.program.name_arabic)
-
+                batch = Batch.objects.get(pk=batch_id)
                 try:
                     template = render_to_string('registration/email_success.html', {
                         'name': registration_form.student.first_name,
@@ -341,6 +341,7 @@ def program_enrollment(request, batch_id, package):
 
                 return render(request, "registration/successful.html", {
                     "progress": 100,
+                    'batch': batch,
                 })
             else:
                 return render(request, "registration/program_enrollment.html", {

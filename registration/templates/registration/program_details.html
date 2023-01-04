@@ -5,7 +5,7 @@
 
 
 <!--عن كودـ سودن-->
-<div class="px-4 py-2" style="background-color: #EFEFEF; border-radius: 5%;">
+<div class="px-4 py-2" style="background-color: #EFEFEF; border-radius: 25px;">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-3 justify-content-center">
         <div class="col-md-6">
             <img src="{% static 'img/program-hero/5.png' %}" class="d-block mx-lg-auto img-fluid" alt="women with glass"
@@ -25,7 +25,7 @@
 
 
 <!-- منهج البرنامج -->
-<div class="bg-warning my-5" style="border-radius: 5%;">
+<div class="bg-warning my-5" style="border-radius: 25px;">
     <div>
         <h1 class="fs-2 pt-5 pb-2 text-center">منهج البرنامج</h1>
     </div>
@@ -57,8 +57,8 @@
     <h1 class="fs-2 m-5 text-center">معلومات سريعة عن البرنامج</h1>
 </div>
 
-<div class="container">
-    <div class="row d-flex align-items-center justify-content-center" style="background-color: #EFEFEF;">
+<div class="container" >
+    <div class="row d-flex align-items-center justify-content-center" style="background-color: #EFEFEF; border-radius: 25px;">
 
         <div class="col-md-2">
             <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">{{batch.session_duration_in_hours}}</p>
@@ -83,6 +83,22 @@
         <div class="col-md-2">
             <p class="fs-1 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">أفضل</p>
             <p class="fs-5 text-center">تجربة تعليمية أونلاين</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- أراء طلابنا في البرنامج-->
+<div>
+    <h1 class="fs-2 m-5 text-center">آراء طلابنا وخريجيننا</h1>
+</div>
+
+<div class="container" >
+    <div class="row d-flex align-items-center justify-content-center" style="color:white;background-color: #0F9D58; border-radius: 25px;">
+
+        <div class='col-md-11'>
+            <p class="fs-3 pt-2 text-center" style="font-family: 'IBM Plex Sans Arabic Bold';">{{quote.quote}}</p>
+            <p class="fs-5 text-center">- {{ quote.by }}</p>
         </div>
     </div>
 </div>

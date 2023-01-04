@@ -95,6 +95,7 @@ class Batch(models.Model):
     duration_in_weeks = models.SmallIntegerField()
     sessions_per_week = models.SmallIntegerField()
     session_duration_in_hours = models.FloatField()
+    whatsapp_url = models.URLField()
 
     class Meta:
         ordering = ["-program", "-id"]
