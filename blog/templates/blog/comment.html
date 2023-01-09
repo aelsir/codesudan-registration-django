@@ -1,0 +1,18 @@
+{% extends 'registration/layout.html' %}
+
+{% block title %}
+اضف تعليق
+{% endblock %}
+
+{% block body %}
+
+{% if comment %}
+
+<h1>your comment has been added</h1>
+<p><a href="{{ post.get_absolute_url }}">back to the post</a></p>
+
+{% else %}
+    {% include 'blog/include/post_comment.html' %}
+{% endif %} 
+
+{% endblock body %}
