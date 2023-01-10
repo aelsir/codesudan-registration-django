@@ -298,6 +298,7 @@ def program_enrollment(request, batch_id, package):
             #render the successful page
             return render(request, "registration/successful.html", {
                     "progress": 100,
+                    "batch": batch
                 })
 
 
