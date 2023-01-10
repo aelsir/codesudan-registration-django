@@ -285,7 +285,7 @@ def program_enrollment(request, batch_id, package):
 
 
         # check if the price is zero automaticlly register the student and render the success page
-        if batch.basic_edition_price == 0 or batch.golden_edition_price == 0:
+        if registration.price == 0:
             registration.transaction_id = 123456789
             registration.is_enroll = True
             registration.created_at = datetime.now()
