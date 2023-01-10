@@ -284,6 +284,23 @@ def program_enrollment(request, batch_id, package):
         request.session['registration_id'] = registration.id
 
 
+        # check if the price is zero automaticlly register the student and render the success page
+        if batch.basic_edition_price == 0 or batch.golden_edition_price == 0:
+            registration.transaction_id = 123456789
+            registration.is_enroll = True
+            registration.created_at = datetime.now()
+            registration.reach_channels = 'Unknown'
+            registration.save()
+
+            # send enrollment SMS
+            send_sms(request.user.username, sms_to_send="program_enrollment_sms", program=batch.program.name_arabic)
+
+            #render the successful page
+            return render(request, "registration/successful.html", {
+                    "progress": 100,
+                })
+
+
         if registration.is_register == False:
             return HttpResponseRedirect(reverse("registration:program_registration"))
         else:

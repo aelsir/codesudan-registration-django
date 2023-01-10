@@ -114,6 +114,7 @@ CHANNELS = (
     ("Friend", "توصية صديق/ة"),
     ("Intelligent Pattern Page", "صفحة Intelligent Pattern"),
     ("Other", "أخرى"),
+    ("Unknown", "غير معروف"),
 )
 class Registration(models.Model):
     id = models.AutoField(primary_key=True)
