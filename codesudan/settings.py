@@ -31,8 +31,10 @@ if 'DEBUG' in os.environ:
 else:
     DEBUG = True
 
+CSRF_TRUSTED_ORIGINS = ['https://codesudan.sd']
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
