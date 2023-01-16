@@ -40,10 +40,16 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    # Local apps
     'registration',
     'bankak',
+    'ranking',
+
+    # Third-party apps
     'django.contrib.humanize',
     'whitenoise.runserver_nostatic',
+
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
