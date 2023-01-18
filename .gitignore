@@ -23,6 +23,7 @@ private_config/
 *.py[cod]
 *$py.class
 
+todo.md
 # C extensions
 *.so
 deploy.sh

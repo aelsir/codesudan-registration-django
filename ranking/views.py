@@ -12,3 +12,4 @@ class DevelopersListView(LoginRequiredMixin, ListView):
     model = Developer
     template_name = 'developers_list.html'
     context_object_name = 'developers'
+    ordering = 'rank'
