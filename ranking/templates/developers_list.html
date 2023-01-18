@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block body %}
-
-    <table class="table table-hover">
+<div class='table-responsive-md'>
+    <table class="table table-hover text-center align-middle">
         <thead>
             <tr>
                 <th>المرتبة</th>
@@ -17,7 +17,7 @@
             
             {% for developer in developers %}
             <tr>
-                <th>{{ developer.rank }}</th>
+                <th class="fs-1">{{ developer.rank }}</th>
                 <th>{{ developer.name_arabic }}</th>
                 <th>{{ developer.facebook_url }}</th>
             </tr>
@@ -27,6 +27,8 @@
         </tbody>
 
     </table>
+</div>
+    
 
 
 {% endblock body %}

@@ -18,3 +18,4 @@ class Developer(models.Model):
     def __str__(self):
         return f"{self.name_arabic} في المرتبة {self.rank}"
     
+    
