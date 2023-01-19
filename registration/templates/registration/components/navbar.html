@@ -15,17 +15,21 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'registration:landing' %}">الرئيسية</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'registration:program_registration' %}">برآمجنا</a>
                 </li>
+                {% endif %}
 
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="https://courses.codesudan.io/" target="_blank">كورسآتنا</a>
                 </li>
-
+                
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">من نحن</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'registration:student_details' user.id %}">تعديل بيآنآتي</a>
                 </li>
+                {% endif %}
 
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">تواصل معنا</a>
@@ -64,7 +68,7 @@
                         </li>
                         {% if user.is_complete %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:student_details' %}">تعديل بياناتي</a>
+
                         </li>
                         {% endif %}
                         <li class="nav-item">

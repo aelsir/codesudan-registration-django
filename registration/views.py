@@ -4,9 +4,9 @@
 
 from datetime import datetime
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render
-from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect, request
+from django.shortcuts import render, resolve_url
+from django.urls import reverse, reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -26,6 +26,7 @@ from django.template.loader import render_to_string
 
 
 # Class-base views import
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
 
 
@@ -76,7 +77,7 @@ def login_view(request):
 @login_required(redirect_field_name=None)
 def index(request):
     if not request.user.is_complete:
-        return HttpResponseRedirect(reverse("registration:student_details"))
+        return HttpResponseRedirect(resolve_url("registration:student_details", pk=request.user.id))
 
     request.session["programs_count"] = Registration.objects.filter(
         student=request.user, is_enroll=False).count()
@@ -149,8 +150,7 @@ def register(request):
             })
 
 
-@login_required(redirect_field_name=None)
-class StudentDetailView(UpdateView):
+class StudentDetailView(LoginRequiredMixin, UpdateView):
 
     '''
     What happened when studnet detatils
@@ -158,13 +158,22 @@ class StudentDetailView(UpdateView):
 
     If it POST: validate the forms data and save it to the database, and then make the person as complete.
     after completed return to the program_registration page
-
-
     '''
+
     model = Student
     form_class = student_details_from
     template_name = "registration/student_details.html"
-    success_url = reverse('registration:program_registration')
+    success_url = reverse_lazy('registration:program_registration')
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+
+        print(self.model.get())
+        self.object = form.save()
+        return super().form_valid(form)
+
+
+    
 
 
 @login_required(redirect_field_name=None)
