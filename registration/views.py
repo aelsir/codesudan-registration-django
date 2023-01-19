@@ -3,17 +3,12 @@
 
 
 from datetime import datetime
-from urllib import response
-from xml.dom.domreg import registered
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 from django.urls import reverse
-from django import forms
 from django.http import HttpResponse, HttpResponseRedirect, request
-from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.forms import formset_factory
 
 import re
 from datetime import datetime
@@ -28,6 +23,11 @@ from .utils import *
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
+
+
+# Class-base views import
+from django.views.generic.edit import UpdateView
+
 
 # Create your views here.
 
@@ -150,65 +150,22 @@ def register(request):
 
 
 @login_required(redirect_field_name=None)
-def student_details(request):
-    if request.method == "GET":
-        if request.user.is_authenticated:
-            student_details_form = student_details_from()
+class StudentDetailView(UpdateView):
 
-            user_details = Student.objects.filter(pk=request.user.id)
+    '''
+    What happened when studnet detatils
+    if it GET: if the person is authenticated then return back the information the person already wrote.  
 
-            student_details_form.initial["first_name"] = user_details[0].first_name
-            student_details_form.initial["father_name"] = user_details[0].father_name
-            student_details_form.initial["email"] = user_details[0].email
-            student_details_form.initial["gender"] = user_details[0].gender
-            student_details_form.initial["birthday"] = user_details[0].birthday
-            student_details_form.initial["occupation"] = user_details[0].occupation
-            student_details_form.initial["university"] = user_details[0].university
-            student_details_form.initial["specialization"] = user_details[0].specialization
-            student_details_form.initial["state"] = user_details[0].state
-            student_details_form.initial["address"] = user_details[0].address
+    If it POST: validate the forms data and save it to the database, and then make the person as complete.
+    after completed return to the program_registration page
 
-            return render(request, "registration/student_details.html", {
-                "form": student_details_form,
-            })
 
-        else:
-            return render(request, "registration/student_details.html", {
-                "form": student_details_from(),
-                "progress": 20,
-            })
-    elif request.method == "POST":
-        new_student_details = student_details_from(request.POST)
-        if new_student_details.is_valid():
-            first_name = new_student_details.cleaned_data["first_name"]
-            father_name = new_student_details.cleaned_data["father_name"]
-            email = new_student_details.cleaned_data["email"]
-            gender = new_student_details.cleaned_data["gender"]
-            birthday = new_student_details.cleaned_data["birthday"]
-            occupation = new_student_details.cleaned_data["occupation"]
-            university = new_student_details.cleaned_data["university"]
-            specialization = new_student_details.cleaned_data["specialization"]
-            state = new_student_details.cleaned_data["state"]
-            address = new_student_details.cleaned_data["address"]
+    '''
+    model = Student
+    form_class = student_details_from
+    template_name = "registration/student_details.html"
+    success_url = reverse('registration:program_registration')
 
-            try:
-                Student.objects.filter(pk=request.user.pk).update(first_name=first_name, father_name=father_name, email=email, gender=gender,
-                                                                  birthday=birthday, occupation=occupation, university=university, specialization=specialization, state=state, address=address)
-                Student.objects.filter(pk=request.user.pk).update(is_complete=True)
-            except:
-                return render(request, "registration/student_details.html", {
-                    "form": new_student_details,
-                    "error_message": "للأسف واجهتنا مشكلة أثناء حفظ بياناتك الرجاء المحاولة مرة أخرى",
-                })
-
-            # sending the SMS when recieving the data
-            # send_sms(phone_number=request.user.username, sms_to_send="details_completed", name=first_name)
-            return HttpResponseRedirect(reverse("registration:program_registration"))
-        else:
-            return render(request, "registration/student_details.html", {
-                "form": new_student_details,
-                "error_message": "للأسف واجهتنا مشكلة أثناء حفظ بياناتك الرجاء المحاولة مرة أخرى",
-            })
 
 @login_required(redirect_field_name=None)
 def landing_view(request):

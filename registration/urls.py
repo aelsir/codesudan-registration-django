@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from . import utils_urls
+from .views import StudentDetailView
 
 app_name = "registration"
 
@@ -9,7 +10,11 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
-    path("student_details/", views.student_details, name="student_details"),
+         
+
+    path("student_details/", StudentDetailView.as_view(), name="student_details"),
+         
+
     path("landing/", views.landing_view, name="landing"),
     path("program_registration/", views.program_registration, name='program_registration'),
     path("program_details/<int:batch_id>", views.program_details, name="program_details"),
