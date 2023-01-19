@@ -151,15 +151,6 @@ def register(request):
 
 
 class StudentDetailView(LoginRequiredMixin, UpdateView):
-
-    '''
-    What happened when studnet detatils
-    if it GET: if the person is authenticated then return back the information the person already wrote.  
-
-    If it POST: validate the forms data and save it to the database, and then make the person as complete.
-    after completed return to the program_registration page
-    '''
-
     model = Student
     form_class = student_details_from
     template_name = "registration/student_details.html"
@@ -168,7 +159,10 @@ class StudentDetailView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
 
-        print(self.model.get())
+        # Before saving the form change the is_complete attribute to True
+        self.object.is_complete = True
+
+
         self.object = form.save()
         return super().form_valid(form)
 
