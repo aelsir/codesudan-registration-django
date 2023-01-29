@@ -1,13 +1,23 @@
 {% extends "registration/layout.html" %} {% load static %} {% block body %}
+{% load humanize %}
+
 <div class="container">
+    <div class='row align-items-center justify-content-center py-3'>
+        <div class='col-md-8 text-center'>
+            <ul><p class="display-3" style="font-family: 'IBM Plex Sans Arabic Bold';">ترتيب المبرمجين السودانين</p></ul>
+        </div>
+    </div>
+
   <div class="row justify-content-center">
     <div class="col-md-9 table-responsive-md">
-      <table class="table table-hover text-center align-middle">
+      <table class="table table-hover text-center align-middle" style="LINE-HEIGHT:50px">
         <thead>
           <tr>
             <th>#</th>
             <th></th>
             <th>الإسم</th>
+            <th>الدوله</th>
+            <th>عدد المتابعين</th>
             <th>الرابط</th>
             
           </tr>
@@ -20,9 +30,41 @@
             <th>
                 <img src="https://ui-avatars.com/api/?name={{developer.name_arabic}}&background=random&rounded=true" alt="" srcset="">
             </th>
-            <th class="fs-1">{{ developer.name_arabic }}</th>
+            <th class="fs-3">{{ developer.name_arabic }}</th>
+            <th class=""><img
+                src="https://flagcdn.com/80x60/{{developer.country}}.png"
+                srcset="https://flagcdn.com/160x120/{{developer.country}}.png 2x,
+                  https://flagcdn.com/240x180/{{developer.country}}.png 3x"
+                width="40em"
+                alt="Sudan"></th>
+            <th class="fs-4">{{ developer.followers|intcomma }}</th>
+            <th>
+            
+            {% if developer.linkedin_url %}
+            <a href="{{developer.linkedin_url}}" class="px-1">
+                <img src="{% static 'svg/linkedin.svg' %}" alt="" width="40em">
+            </a>
+            {% endif %}
 
-            <th>{{ developer.facebook_url }}</th>
+            {% if developer.github_url %}
+            <a href="{{developer.github_url}}" class="px-1">
+                <img src="{% static 'svg/github.svg' %}" alt="" width="40em">
+            </a>
+            {% endif %}
+
+            {% if developer.twitter_url %}
+            <a href="{{developer.twitter_url}}" class="px-1">
+                <img src="{% static 'svg/twitter.svg' %}" alt="" width="40em">
+            </a>
+            {% endif %}
+
+            {% if developer.facebook_url %}
+            <a href="{{developer.facebook_url}}" class="px-1">
+                <img src="{% static 'svg/facebook.svg' %}" alt="" width="40em">
+            </a>
+            {% endif %}
+            
+            </th>
           </tr>
           {% endfor %}
         </tbody>
