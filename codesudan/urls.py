@@ -24,5 +24,7 @@ urlpatterns = [
     path('king/', admin.site.urls, name="admin"),
     path("", include('registration.urls'), name="registration"),
     path("bankak/", include('bankak.urls'), name="bankak"),
-    path("ranking/", include('ranking.urls'))
+    path("ranking/", include('ranking.urls')),
+    path("alumni/", include('alumni.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
