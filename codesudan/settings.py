@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'registration',
     'bankak',
     'ranking',
+    'alumni',
 
     # Third-party apps
     'django.contrib.humanize',

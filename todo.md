@@ -39,6 +39,6 @@
 26. Adding page for Registration Process, where we get into details about how to complete your registration.
 27. Reset privace number.
 28. Sending emails confirmation.
-29. Adding GitHub Ranking with the api https://commits.top/sudan.html.
+29. ~~ Adding GitHub Ranking with the api https://commits.top/sudan.html.~~
 30. Check this website design https://cleanvoice.ai/pricing/.
 
