@@ -10,7 +10,7 @@ class Developer(models.Model):
     name_english = models.CharField(max_length=64)
     country = models.CharField(max_length=2, choices=Countries.choices, default=Countries.SUDAN)
     rank = models.SmallIntegerField()
-    followers = models.IntegerField()
+    followers = models.IntegerField(blank=True)
     contribs = models.IntegerField(blank=True)
     facebook_url = models.URLField(blank=True)
     linkedin_url = models.URLField(blank=True)
