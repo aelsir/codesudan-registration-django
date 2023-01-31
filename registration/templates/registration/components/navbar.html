@@ -29,11 +29,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'registration:student_details' user.id %}">تعديل بيآنآتي</a>
                 </li>
-                {% endif %}
 
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">تواصل معنا</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'ranking:ranking' %}">ترتيب المبرمجين</a>
                 </li>
+
+                
             </ul>
 
             {% if user.is_authenticated %}
