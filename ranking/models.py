@@ -9,8 +9,6 @@ class Developer(models.Model):
     name_arabic = models.CharField(max_length=64)
     name_english = models.CharField(max_length=64)
     country = models.CharField(max_length=2, choices=Countries.choices, default=Countries.SUDAN)
-    rank = models.SmallIntegerField()
-    followers = models.IntegerField(blank=True, null=True)
     contribs = models.IntegerField(blank=True, null=True)
     facebook_url = models.URLField(blank=True)
     linkedin_url = models.URLField(blank=True)
@@ -23,6 +21,6 @@ class Developer(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.name_arabic} في المرتبة {self.rank}"
+        return f"{self.name_arabic} إسهامات  {self.contribs}"
     
     
