@@ -21,6 +21,6 @@ class Developer(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.name_arabic} إسهامات  {self.contribs}"
+        return f"{self.name_arabic} إسهامات {self.contribs}"
     
     
