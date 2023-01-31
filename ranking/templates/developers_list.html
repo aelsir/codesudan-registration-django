@@ -4,7 +4,7 @@
 <div class="container">
     <div class='row align-items-center justify-content-center py-3'>
         <div class='col-md-8 text-center'>
-            <ul><p class="display-3" style="font-family: 'IBM Plex Sans Arabic Bold';">ترتيب المبرمجين السودانين</p></ul>
+            <ul><p class="display-3" style="font-family: 'IBM Plex Sans Arabic Bold';">ترتيب المبرمجين السودانين على قيت-هب</p></ul>
         </div>
     </div>
 
@@ -17,8 +17,8 @@
             <th></th>
             <th>الإسم</th>
             <th>الدوله</th>
-            <th>عدد المتابعين</th>
-            <th>الرابط</th>
+            <th>عدد الإسهامات</th>
+            <th>البروفايل</th>
             
           </tr>
         </thead>
@@ -27,17 +27,21 @@
           {% for developer in developers %}
           <tr>
             <th class="fs-3 text-muted">{{ developer.rank }}</th>
+
             <th>
                 <img src="https://ui-avatars.com/api/?name={{developer.name_arabic}}&background=random&rounded=true" alt="" srcset="">
             </th>
+
             <th class="fs-3">{{ developer.name_arabic }}</th>
+
             <th class=""><img
                 src="https://flagcdn.com/80x60/{{developer.country}}.png"
                 srcset="https://flagcdn.com/160x120/{{developer.country}}.png 2x,
                   https://flagcdn.com/240x180/{{developer.country}}.png 3x"
                 width="40em"
                 alt="Sudan"></th>
-            <th class="fs-4">{{ developer.followers|intcomma }}</th>
+
+            <th class="fs-4">{{ developer.contribs|intcomma }}</th>
             <th>
             
             {% if developer.linkedin_url %}
@@ -69,6 +73,13 @@
           {% endfor %}
         </tbody>
       </table>
+    </div>
+  </div>
+  <br>
+  <div class='row'>
+    <div class='col-md-6 align-items-center justify-content-center'>
+        المصدر <a href="https://commits.top/sudan_private.html">من هنا</a>
+
     </div>
   </div>
 </div>
