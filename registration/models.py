@@ -118,7 +118,7 @@ CHANNELS = (
 )
 class Registration(models.Model):
     id = models.AutoField(primary_key=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='my_registrations')
     program = models.ForeignKey(Program, on_delete=models.CASCADE, default=None)
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField(auto_now_add=True)

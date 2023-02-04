@@ -120,6 +120,7 @@ class student_details_from(ModelForm):
 
         }
 
+
 class new_enrollment_form_1(ModelForm):
     class Meta:
         model=Batch
@@ -140,12 +141,10 @@ class new_registration_batch(ModelForm):
         }
 
 
-
 class new_program_form(ModelForm):
     class Meta:
         model=Batch
         fields = "__all__"
-
 
 
 class new_enrollment_from(ModelForm):
@@ -177,7 +176,6 @@ class new_enrollment_from(ModelForm):
             "transaction_id",
             "reach_channels"
         )
-
 
 
 class first_lec_free_form(ModelForm):
