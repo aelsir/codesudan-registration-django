@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AlumniRegistrationView, AlumniDetailView, alumni_registration
+from .views import AlumniDetailView, alumni_registration
 from .helper import change_is_complete
 
 app_name = 'alumni'

@@ -18,6 +18,7 @@ from .models import *
 from .forms import *
 from .sms import send_sms
 from .utils import *
+from .helper import valid_phone_number, valid_pin
 
 # SMTP import to send an email
 from django.core.mail import EmailMessage
@@ -30,35 +31,52 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
 
 
-# Create your views here.
+@login_required(redirect_field_name=None)
+def index(request):
+    # if the user didn't complete his info, you redirect him to complete it.
+    if not request.user.is_complete:
+        return HttpResponseRedirect(resolve_url("registration:student_details", pk=request.user.id))
+    return render(request, "registration/landing.html")
 
+class StudentDetailView(LoginRequiredMixin, UpdateView):
+    model = Student
+    form_class = student_details_from
+    template_name = "registration/student_details.html"
+    success_url = reverse_lazy('registration:program_registration')
+
+    def form_valid(self, form):
+        # If the form is valid, save the associated model.
+
+        # Before saving the form change the is_complete attribute to True
+        self.object.is_complete = True
+        self.object = form.save()
+        return super().form_valid(form)
+    
 
 def login_view(request):
     if request.user.is_authenticated:
             return HttpResponseRedirect(reverse("registration:index"))
 
     if request.method == "GET":
-        quote = get_quote()
 
+        # if the method is get render the login template
         return render(request, "registration/login.html", {
             "form": register_login_form(),
-            "progress": 0,
-            "quote": quote,
         })
+    
     elif request.method == "POST":
         form = register_login_form(request.POST)
         if form.is_valid():
             phone_number = form.cleaned_data["username"]
             pin = form.cleaned_data["password"]
             phone_number = f"249{phone_number[-9:]}"
-            if len(phone_number) < 10 or len(pin) != 1 or not pin.isnumeric():
+            if not valid_phone_number(phone_number) or not valid_pin(pin):
                 return render(request, "registration/login_student.html", {
                     "form": form,
                     "error_message": "الرجاء إدخال معلومات صحيحة حسب وصف كل حقل"
                 })
             else:
-                student = authenticate(
-                    request, username=phone_number, password=pin)
+                student = authenticate(request, username=phone_number, password=pin)
                 if student is not None:
                     login(request, student)
                     return HttpResponseRedirect(reverse("registration:index"))
@@ -74,17 +92,6 @@ def login_view(request):
             })
 
 
-@login_required(redirect_field_name=None)
-def index(request):
-    if not request.user.is_complete:
-        return HttpResponseRedirect(resolve_url("registration:student_details", pk=request.user.id))
-
-    request.session["programs_count"] = Registration.objects.filter(
-        student=request.user, is_enroll=False).count()
-    return render(request, "registration/landing.html", {
-            })
-
-
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("registration:login"))
@@ -97,11 +104,8 @@ def register(request):
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse("registration:index"))
         else:
-            quote = get_quote()
             return render(request, "registration/register.html", {
                 "form": register_login_form(),
-                "progress": 1,
-                "quote": quote,
             })
     # if the request == POST then check the information
     elif request.method == "POST":
@@ -109,26 +113,19 @@ def register(request):
         if new_student.is_valid():
             phone_number = new_student.cleaned_data["username"]
             pin = new_student.cleaned_data["password"]
+            phone_number = f"249{phone_number[-9:]}"
 
             # check if the phone number length is more than or equal to 10, if yes, then slice the last 9 numbers, if no send and error
             # check if the pin number isn't numaric or isn't a one number.
-            if len(pin) != 1 or not pin.isnumeric():
+            if not valid_phone_number(phone_number) or not valid_pin(pin):
                 return render(request, "registration/register.html", {
                     "form": new_student,
                     "error_message": "الرجاء إدخال معلومات صحيحة حسب وصف كل حقل",
-                    "progress": 1,
                 })
-            if len(phone_number) < 10 or len(pin) != 1 or not pin.isnumeric():
-                return render(request, "registration/register.html", {
-                    "form": new_student,
-                    "error_message": "الرجاء إدخال معلومات صحيحة حسب وصف كل حقل",
-                    "progress": 1,
-                })
-            phone_number = f"249{phone_number[-9:]}"
+            
             # try to save the new students to the database
             try:
-                student = Student.objects.create_user(
-                    username=phone_number, password=pin, is_complete=False)
+                student = Student.objects.create_user(username=phone_number, password=pin, is_complete=False)
                 student.save()
 
             except Exception as e:
@@ -150,20 +147,7 @@ def register(request):
             })
 
 
-class StudentDetailView(LoginRequiredMixin, UpdateView):
-    model = Student
-    form_class = student_details_from
-    template_name = "registration/student_details.html"
-    success_url = reverse_lazy('registration:program_registration')
 
-    def form_valid(self, form):
-        """If the form is valid, save the associated model."""
-        
-        # Before saving the form change the is_complete attribute to True
-        self.object.is_complete = True
-
-        self.object = form.save()
-        return super().form_valid(form)
 
 @login_required(redirect_field_name=None)
 def landing_view(request):
