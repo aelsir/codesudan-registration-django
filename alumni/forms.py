@@ -4,7 +4,7 @@ from .models import Alumni
 class AlumniRegistrationForm(forms.ModelForm):
     class Meta:
         model = Alumni
-        fields = ['language', 'framework', 'facebook_url', 'linkedin_url', 'twitter_url', 'whatsapp_number']
+        exclude = ('alumni',)
         labels = {
             'language': 'لغة البرمجة',
             'framework': 'إطار العمل',
@@ -16,8 +16,12 @@ class AlumniRegistrationForm(forms.ModelForm):
         required = (
             'language',
             'framework',
-            'whatsapp_number'
         )
         widgets = {
-            
+            "language": forms.Select(attrs={"class": "form-select"}),
+            'framework': forms.Select(attrs={"class": "form-select"}),
+            'facebook_url': forms.URLInput(attrs={'class': 'form-control'}),
+            'linkedin_url': forms.URLInput(attrs={'class': 'form-control'}),
+            'twitter_url': forms.URLInput(attrs={'class': 'form-control'}),
+            'whatsapp_number': forms.TextInput(attrs={'class': 'form-control'}),
         }
