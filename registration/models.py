@@ -128,6 +128,7 @@ class Registration(models.Model):
     is_texted = models.BooleanField(default=False, blank=True)
     transaction_id = models.PositiveBigIntegerField(null=True, default=None, blank=True)
     is_enroll = models.BooleanField(default=False, blank=True)
+    is_complete = models.BooleanField(default=False)
     reach_channels = models.CharField(
         max_length=64,
         choices= CHANNELS,

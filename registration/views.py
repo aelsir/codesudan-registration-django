@@ -158,17 +158,12 @@ class StudentDetailView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
-
+        
         # Before saving the form change the is_complete attribute to True
         self.object.is_complete = True
 
-
         self.object = form.save()
         return super().form_valid(form)
-
-
-    
-
 
 @login_required(redirect_field_name=None)
 def landing_view(request):
@@ -297,7 +292,7 @@ def program_enrollment(request, batch_id, package):
                     })
                 print(registration_form)
                 #send and SMS after enrollment
-                send_sms(request.user.username, sms_to_send="program_enrollment_sms", program=registration_form.program.name_arabic)
+                # send_sms(request.user.username, sms_to_send="program_enrollment_sms", program=registration_form.program.name_arabic)
                 batch = Batch.objects.get(pk=batch_id)
                 try:
                     template = render_to_string('registration/email_success.html', {

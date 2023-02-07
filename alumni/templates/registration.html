@@ -2,15 +2,47 @@
 {% load humanize %}
 
 <div class='container'>
-    <div class='row'>
+    
+    
+    <div class='row justify-content-center'>
         <div class='col-md-8'>
-            <form action="" method="post">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">إسم البرنامج</th>
+                      <th scope="col">خلّصت؟</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for registration in registrations %}
+                            <tr>
+                                <form action="{% url 'alumni:change_is_complete' form_id=registration.id %}" method='POST'>
+                                    {% csrf_token %}
+                                <th>{{ registration.batch.program.name_arabic }}</th>
+                                <td>
+                                    <button class="btn btn-lg btn-warning mx-auto" type="submit" {% if registration.is_complete %}disabled{% endif %}>نعم</button>
+                                </td>
+                                </form>
+                            </tr>
+                    {% endfor %}
+                  </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class='row justify-content-center'>
+        <div class='col-md-8'>
+            <form action="{% url 'alumni:registration' %}" method="post">
                 {% csrf_token %}
-                {{form.as_p}}
-                <button type="submit">التسجيل</button>
+                {{alumni_form.as_p}}
+                <button class="btn btn-lg btn-warning mx-auto" type="submit">إكمال التسجيل</button>
+
             </form>
             
         </div>
     </div>
+    
+        
+    
 </div>
 {% endblock body %}

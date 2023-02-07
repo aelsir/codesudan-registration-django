@@ -41,4 +41,4 @@
 28. Sending emails confirmation.
 29. ~~ Adding GitHub Ranking with the api https://commits.top/sudan.html.~~
 30. Check this website design https://cleanvoice.ai/pricing/.
-
+31. Make the Alumni submit only one time, and update it every time.

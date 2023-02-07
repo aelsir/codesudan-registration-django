@@ -25,7 +25,7 @@ class Alumni(models.Model):
     facebook_url = models.URLField(blank=True)
     linkedin_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
-    whatsapp_number = models.CharField(max_length=12)
+    whatsapp_number = models.CharField(max_length=12, blank=True)
 
     def __str__(self):
         return f"{self.alumni.first_name} {self.alumni.father_name}"
