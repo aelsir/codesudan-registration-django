@@ -127,26 +127,18 @@ def register(request):
             try:
                 student = Student.objects.create_user(username=phone_number, password=pin, is_complete=False)
                 student.save()
-
             except Exception as e:
-                print(e)
                 return render(request, "registration/register.html", {
                     "form": new_student,
                     "error_message": " رقم التلفون موجود بالفعل إذهب لصفحة تسجيل الدخول"
                 })
             login(request, student)
-
-            # We're not sending SMS to the customer upon registration because there are some user who didn't finished their details, so we don't know 
-            # Send the SMS to the customers when registered
-            # send_sms(phone_number=phone_number, sms_to_send="registration_sms")
-
             return HttpResponseRedirect(reverse("registration:index"))
+        
         else:
             return render(request, "registration/register.html", {
                 "form": new_student,
             })
-
-
 
 
 @login_required(redirect_field_name=None)
@@ -156,22 +148,14 @@ def landing_view(request):
 
 @login_required(redirect_field_name=None)
 def program_registration(request):
-
-    quote = get_quote()
-
     if request.method == "GET":
 
-        
-
         all_batches = Batch.objects.filter(ending_at__gte=datetime.today()).order_by("id")
-
         basic_edition_details = re.split('\n', all_batches[0].program.basic_edition_details)
         golden_edition_details = re.split('\n', all_batches[0].program.golden_edition_details)
 
         return render(request, "registration/program_choice.html", {
             "batches": all_batches,
-            "progress": 40, 
-            "quote": quote,
             "basic_edition_details": basic_edition_details,
             "golden_edition_details": golden_edition_details,
         })
@@ -179,7 +163,6 @@ def program_registration(request):
 
 @login_required(redirect_field_name=None)
 def program_details(request, batch_id):
-    quote = get_quote()
     if request.method == "GET":
             batch = Batch.objects.get(id=batch_id)
 
@@ -190,8 +173,6 @@ def program_details(request, batch_id):
                 
             return render(request, "registration/program_details.html", {
                 "batch": batch,
-                "progress": 60,
-                "quote": quote,
                 "basic_edition_details": basic_edition_details,
                 "golden_edition_details": golden_edition_details,
                 "curriculum": curriculum
