@@ -1,6 +1,5 @@
 def valid_phone_number(phone_number):
-    number = int(phone_number)
-    if len(number) < 12:
+    if len(phone_number) < 12:
         return False
     return True
 
