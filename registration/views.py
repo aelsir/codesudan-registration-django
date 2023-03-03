@@ -9,6 +9,7 @@ from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 import re
 from datetime import datetime
@@ -149,15 +150,16 @@ def landing_view(request):
 @login_required(redirect_field_name=None)
 def program_registration(request):
     if request.method == "GET":
+        
+        batches = Batch.objects.filter(ending_at__gte=datetime.today()).order_by("id")
 
-        all_batches = Batch.objects.filter(ending_at__gte=datetime.today()).order_by("id")
-        basic_edition_details = re.split('\n', all_batches[0].program.basic_edition_details)
-        golden_edition_details = re.split('\n', all_batches[0].program.golden_edition_details)
+        if len(batches) <= 0:
+            batches = None
+        
+        
 
         return render(request, "registration/program_choice.html", {
-            "batches": all_batches,
-            "basic_edition_details": basic_edition_details,
-            "golden_edition_details": golden_edition_details,
+            "batches": batches,
         })
                  
 
