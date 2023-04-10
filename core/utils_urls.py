@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from .utils import *
 
 
-# show all of the registration, to easily contact them on whatsapp by creating custom whatsapp link
+# show all of the core, to easily contact them on whatsapp by creating custom whatsapp link
 @staff_member_required
 def registrations_list(request):
     if request.method == "GET":
@@ -18,7 +18,7 @@ def registrations_list(request):
             "all_registrations": all_registrations,
         })
 
-# download the students registration list in a CSV
+# download the students core list in a CSV
 @staff_member_required
 def download_registration_csv(request):
     data = download_csv(request, Registration.objects.all())
@@ -61,7 +61,7 @@ def dashboard(request):
     data_occupation = list(occupation_dict.values())
 
 
-    return render(request, "registration/dashboard.html", {
+    return render(request, "core/dashboard.html", {
         'labels': labels,
         'data_true_count': data_true_count,
         'data_total_count': data_total_count,
@@ -69,7 +69,7 @@ def dashboard(request):
         'gender_data': gender_date,
         'labels_occupation': labels_occupation,
         'data_occupation': data_occupation,
-        'registration': queryset,
+        'core': queryset,
         })
 
 

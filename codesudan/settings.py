@@ -18,7 +18,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -33,15 +32,13 @@ else:
 
 CSRF_TRUSTED_ORIGINS = ['https://codesudan.sd']
 
-
 ALLOWED_HOSTS = ["*"]
-
 
 # Application definition
 
 INSTALLED_APPS = [
     # Local apps
-    'registration',
+    'core',
     'bankak',
     'ranking',
     'alumni',
@@ -49,6 +46,11 @@ INSTALLED_APPS = [
     # Third-party apps
     'django.contrib.humanize',
     'whitenoise.runserver_nostatic',
+
+    # tailwind
+    'tailwind',
+    'theme',
+    'django_browser_reload',
 
     # Django apps
     'django.contrib.admin',
@@ -69,6 +71,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Add whitenoise middleware here
     'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    # tailwind middleware
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'codesudan.urls'
@@ -91,11 +96,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'codesudan.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
+
     DATABASES = {'default': dj_database_url.config()}
 else:
     DATABASES = {
@@ -123,9 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'registration.Student'
-
-
+AUTH_USER_MODEL = 'core.Student'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -140,7 +143,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -151,14 +153,13 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'registration.Student'
+AUTH_USER_MODEL = 'core.Student'
 
-LOGIN_URL = '/login/'  #Define your login page url..
+LOGIN_URL = '/login/'  # Define your login page url..
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 # SMTP Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -169,3 +170,9 @@ EMAIL_HOST_PASSWORD = 'qoW4l%)Ydp9z'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
+
+# tailwind configuration
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

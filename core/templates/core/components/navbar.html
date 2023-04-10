@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg bg-light py-3">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'registration:index' %}">
+        <a class="navbar-brand" href="{% url 'core:index' %}">
             <img src="{% static 'img/logo.png' %}" alt="Code_ Sudan Logo" height="35">
           </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -13,11 +13,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'registration:landing' %}">الرئيسية</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'core:landing' %}">الرئيسية</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'registration:program_registration' %}">برآمجنا</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'core:program_registration' %}">برآمجنا</a>
                 </li>
                 {% endif %}
 
@@ -27,7 +27,7 @@
                 
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'registration:student_details' user.id %}">تعديل بيآنآتي</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'core:student_details' user.id %}">تعديل بيآنآتي</a>
                 </li>
 
                 {% endif %}
@@ -40,10 +40,10 @@
 
             {% if user.is_authenticated %}
             <a class="btn btn-light mx-2" role="button" aria-disabled="true">مرحبا {{ user.first_name }}</a>
-            <a class="btn btn-secondary mx-2" href="{% url 'registration:logout' %}">تسجيل الخروج</a>
+            <a class="btn btn-secondary mx-2" href="{% url 'core:logout' %}">تسجيل الخروج</a>
             {% else %}
-            <a class="btn btn-warning mx-2" href="{% url 'registration:login' %}" role="button" aria-disabled="true">تسجيل الدخول</a>
-            <a class="btn btn-warning mx-2" href="{% url 'registration:register' %}" role="button" aria-disabled="true">التسجيل</a>
+            <a class="btn btn-warning mx-2" href="{% url 'core:login' %}" role="button" aria-disabled="true">تسجيل الدخول</a>
+            <a class="btn btn-warning mx-2" href="{% url 'core:register' %}" role="button" aria-disabled="true">التسجيل</a>
             {% endif %}
         </div>
     </div>
@@ -66,7 +66,7 @@
                     <ul class="navbar-nav">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:index' %}">الرئيسية</a>
+                            <a class="nav-link" href="{% url 'core:index' %}">الرئيسية</a>
                         </li>
                         {% if user.is_complete %}
                         <li class="nav-item">
@@ -74,25 +74,25 @@
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:my_programs' %}">برامجي
+                            <a class="nav-link" href="{% url 'core:my_programs' %}">برامجي
                                 {% if request.session.programs_count %}
                                 <span class="badge bg-secondary">{{request.session.programs_count}}</span>
                                 {% endif %}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:logout' %}">تسجيل الخروج</a>
+                            <a class="nav-link" href="{% url 'core:logout' %}">تسجيل الخروج</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:login' %}">تسجيل الدخول</a>
+                            <a class="nav-link" href="{% url 'core:login' %}">تسجيل الدخول</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:register' %}">التسجيل</a>
+                            <a class="nav-link" href="{% url 'core:register' %}">التسجيل</a>
                         </li>
                         {% endif %}
                     </ul>
-                    <a class="navbar-brand" href="{% url 'registration:index' %}">
+                    <a class="navbar-brand" href="{% url 'core:index' %}">
                         <img src="{% static 'img/logo.png' %}" alt="CodeSudan Logo" width="100">
                     </a>
                 </div>

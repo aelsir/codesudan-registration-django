@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Alumni
 from .forms import AlumniRegistrationForm
-from registration.models import Registration
+from core.models import Registration
 
 # Create your views here.
 @login_required
@@ -17,7 +17,7 @@ def alumni_registration(request):
         # get all of the student registrations programmes 
         registrations = request.user.my_registrations.all().filter(is_enroll=True)
         if not registrations:
-             return HttpResponseRedirect(reverse('registration:index'))
+             return HttpResponseRedirect(reverse('coreregistration:index'))
         return render(request, 'registration.html', {
             'registrations': registrations,
             'alumni_form': AlumniRegistrationForm()

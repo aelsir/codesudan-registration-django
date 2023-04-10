@@ -1,18 +1,13 @@
 # TODO: Localization to english and then Sudanese Arabic
 # TODO: security for phone number and transaction IDs
 
-
-from datetime import datetime
-from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, resolve_url
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
 
 import re
-from datetime import datetime
 
 
 from .models import *
@@ -36,14 +31,14 @@ from django.views.generic.edit import UpdateView
 def index(request):
     # if the user didn't complete his info, you redirect him to complete it.
     if not request.user.is_complete:
-        return HttpResponseRedirect(resolve_url("registration:student_details", pk=request.user.id))
-    return render(request, "registration/landing.html")
+        return HttpResponseRedirect(resolve_url("core:student_details", pk=request.user.id))
+    return render(request, "core/landing.html")
 
 class StudentDetailView(LoginRequiredMixin, UpdateView):
     model = Student
     form_class = student_details_from
     template_name = "registration/student_details.html"
-    success_url = reverse_lazy('registration:program_registration')
+    success_url = reverse_lazy('core:program_registration')
 
     def form_valid(self, form):
         # If the form is valid, save the associated model.
@@ -56,12 +51,12 @@ class StudentDetailView(LoginRequiredMixin, UpdateView):
 
 def login_view(request):
     if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse("registration:index"))
+            return HttpResponseRedirect(reverse("core:index"))
 
     if request.method == "GET":
 
         # if the method is get render the login template
-        return render(request, "registration/login.html", {
+        return render(request, "core/login.html", {
             "form": register_login_form(),
         })
     
@@ -80,7 +75,7 @@ def login_view(request):
                 student = authenticate(request, username=phone_number, password=pin)
                 if student is not None:
                     login(request, student)
-                    return HttpResponseRedirect(reverse("registration:index"))
+                    return HttpResponseRedirect(reverse("core:index"))
                 else:
                     return render(request, "registration/login.html", {
                         "form": form,
@@ -95,15 +90,15 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse("registration:login"))
+    return HttpResponseRedirect(reverse("core:login"))
 
 
 def register(request):
-    # if the request == GET then display the new registration form
+    # if the request == GET then display the new core form
 
     if request.method == "GET":
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse("registration:index"))
+            return HttpResponseRedirect(reverse("core:index"))
         else:
             return render(request, "registration/register.html", {
                 "form": register_login_form(),
@@ -134,7 +129,7 @@ def register(request):
                     "error_message": " رقم التلفون موجود بالفعل إذهب لصفحة تسجيل الدخول"
                 })
             login(request, student)
-            return HttpResponseRedirect(reverse("registration:index"))
+            return HttpResponseRedirect(reverse("core:index"))
         
         else:
             return render(request, "registration/register.html", {
@@ -193,7 +188,7 @@ def program_enrollment(request, batch_id, package):
                 registration = Registration.objects.create(student=request.user, program=batch.program,batch= batch, is_register=True, is_enroll=False)
             except Exception as e:
                 print(e)
-                return HttpResponseRedirect(reverse("registration:program_registration"))
+                return HttpResponseRedirect(reverse("core:program_registration"))
 
         registration.package = package
         if package == 'golden':
@@ -225,7 +220,7 @@ def program_enrollment(request, batch_id, package):
 
 
         if registration.is_register == False:
-            return HttpResponseRedirect(reverse("registration:program_registration"))
+            return HttpResponseRedirect(reverse("core:program_registration"))
         else:
             enrollment_form = new_enrollment_from()
             enrollment_form.initial["transaction_id"] = registration.transaction_id
@@ -311,12 +306,12 @@ def my_programs(request):
 def edit_form(request, operation, form_id):
     if operation == "edit":
         request.session["form_id"] = form_id
-        return HttpResponseRedirect(reverse("registration:program_enrollment"))
+        return HttpResponseRedirect(reverse("core:program_enrollment"))
     elif operation == "delete":
         Registration.objects.filter(pk=form_id).delete()
         request.session["programs_count"] = Registration.objects.filter(
             student=request.user, is_enroll=False).count()
-        return HttpResponseRedirect(reverse("registration:my_programs"))
+        return HttpResponseRedirect(reverse("core:my_programs"))
 
 
 @login_required(redirect_field_name=None)

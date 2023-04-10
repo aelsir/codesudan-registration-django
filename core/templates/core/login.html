@@ -1,4 +1,4 @@
-{% extends "registration/layout.html" %}
+{% extends "core/components/layout.html" %}
 
 {% block body %}
 {% load static %}
@@ -20,7 +20,7 @@
         </div>
         
         <div class="col-md-10 mx-auto col-lg-5">
-            <form action="{% url 'registration:login' %}" method='POST' class="p-4 p-md-5 border rounded-3" style="background-color:#EFEFEF;">
+            <form action="{% url 'core:login' %}" method='POST' class="p-4 p-md-5 border rounded-3" style="background-color:#EFEFEF;">
                 {% csrf_token %}
                 <div class="row">
                     <h1 class="fs-3 pb-2 text-center"><u>تسجيل الدخول</u></h1>
@@ -61,7 +61,7 @@
                 </div>
                 <p>
                     هل أنت مستخدم جديد؟
-                    <a href="{% url 'registration:register' %}">تسجيل جديد</a>
+                    <a href="{% url 'core:register' %}">تسجيل جديد</a>
                  </p>
             </form>
             

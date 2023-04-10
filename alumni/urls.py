@@ -5,7 +5,7 @@ from .helper import change_is_complete
 app_name = 'alumni'
 
 urlpatterns = [
-    path('', alumni_registration, name='registration'),
+    path('', alumni_registration, name='core'),
     path('change_is_complete/<int:form_id>', change_is_complete, name='change_is_complete'),
     path('list/', AlumniDetailView.as_view(), name='list')
 ]

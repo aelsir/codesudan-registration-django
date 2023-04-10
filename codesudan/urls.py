@@ -17,14 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from django.conf import settings
-from django.conf.urls.static import static 
-
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('king/', admin.site.urls, name="admin"),
-    path("", include('registration.urls'), name="registration"),
-    path("bankak/", include('bankak.urls'), name="bankak"),
-    path("ranking/", include('ranking.urls')),
-    path("alumni/", include('alumni.urls')),
+                  path('king/', admin.site.urls, name="admin"),
+                  path("", include('core.urls'), name="core"),
+                  path("bankak/", include('bankak.urls'), name="bankak"),
+                  path("ranking/", include('ranking.urls')),
+                  path("alumni/", include('alumni.urls')),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  # tailwind url
+                  path("__reload__/", include("django_browser_reload.urls")),
+
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

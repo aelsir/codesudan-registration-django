@@ -32,7 +32,7 @@
 
     <div class='row justify-content-center'>
         <div class='col-md-8'>
-            <form action="{% url 'alumni:registration' %}" method="post">
+            <form action="{% url 'alumni:core' %}" method="post">
                 {% csrf_token %}
                 {{alumni_form.as_p}}
                 <button class="btn btn-lg btn-warning mx-auto" type="submit">إكمال التسجيل</button>

@@ -16,7 +16,7 @@
     {% for program in all_programs %}
     <tbody>
         <tr>
-            <th scope="row"><a href="{% url 'registration:edit_form' operation="edit" form_id=program.id %}">{{program.program.name_arabic}}</a></th>
+            <th scope="row"><a href="{% url 'core:edit_form' operation="edit" form_id=program.id %}">{{program.program.name_arabic}}</a></th>
             <td>{{program.package}}</td>
             <td>
                 {% if program.is_enroll %}
@@ -33,7 +33,7 @@
                 {% endif %}
             </td>
             <td>
-                <a class="btn btn-primary" href="{% url 'registration:edit_form' operation="delete" form_id=program.id %}">
+                <a class="btn btn-primary" href="{% url 'core:edit_form' operation="delete" form_id=program.id %}">
                     حذف
                 </a>
             </td>

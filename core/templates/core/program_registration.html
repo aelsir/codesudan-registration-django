@@ -4,7 +4,7 @@
 <h3 class="mb-4 mt-2 p-2 text-center">الدفع المتاحة حاليا
 </h3>
 <hr>
-<form action="{% url 'registration:program_registration' %}" method='POST'>
+<form action="{% url 'core:program_registration' %}" method='POST'>
     {% csrf_token %}
     <div class="container">
         <div class="row justify-content-center">
@@ -15,7 +15,7 @@
                     <h5 class="card-title">{{batch.program}} الدفعة رقم {{batch.number}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">نهاية التسجيل للبرنامج {{batch.ending_at}}</h6>
                     <p class="card-text">{{batch.program.summery}}</p>
-                    <a class="btn btn-primary" href="{% url 'registration:program_details' batch_id=batch.id %}">تفاصيل البرنامج</a>
+                    <a class="btn btn-primary" href="{% url 'core:program_details' batch_id=batch.id %}">تفاصيل البرنامج</a>
 
                 </div>
             </div>

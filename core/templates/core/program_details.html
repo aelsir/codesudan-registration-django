@@ -124,7 +124,7 @@
                     </div>
                     {% endfor %}
 
-                    <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:white; background-color: #0F9D58; font-size: 1.8rem; width:10rem;" href="{% url 'registration:program_enrollment' batch_id=batch.id package="basic" %}" role="button">سجّل الآن</a></div>
+                    <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:white; background-color: #0F9D58; font-size: 1.8rem; width:10rem;" href="{% url 'core:program_enrollment' batch_id=batch.id package="basic" %}" role="button">سجّل الآن</a></div>
                 </div>
         </div>
 
@@ -141,7 +141,7 @@
                     </div>
                 {% endfor %}
 
-                <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:black; background-color: white; font-size: 1.8rem; width:10rem;" href="{% url 'registration:program_enrollment' batch_id=batch.id package="golden" %}" role="button">سجّل الآن</a></div>
+                <div class=" row d-flex justify-content-center align-content-center "  ><a class="btn btn-lg m-4" style="color:black; background-color: white; font-size: 1.8rem; width:10rem;" href="{% url 'core:program_enrollment' batch_id=batch.id package="golden" %}" role="button">سجّل الآن</a></div>
             </div>
     </div>
 

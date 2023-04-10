@@ -12,7 +12,7 @@
     <div class="row align-items-center g-lg-5 py-5">
 
         <div class="col-md-10 mx-auto col-lg-5" >
-            <form style="background-color:#EFEFEF;" action="{% url 'registration:register' %}" method='POST' class="p-4 p-md-5 border rounded-3" >
+            <form style="background-color:#EFEFEF;" action="{% url 'core:register' %}" method='POST' class="p-4 p-md-5 border rounded-3" >
                 {% csrf_token %}
                 <div class="row">
                     <h1 class="fs-3 pb-2 text-center"><u>تسجيل جديد</u></h1>
@@ -49,7 +49,7 @@
                 </div>
                 <p>
                     هل لديك حساب مع كودـ سودان؟
-                    <a href="{% url 'registration:login' %}">تسجيل الدخول</a>
+                    <a href="{% url 'core:login' %}">تسجيل الدخول</a>
                 </p>
             </form>
         </div>

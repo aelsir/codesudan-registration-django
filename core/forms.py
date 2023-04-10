@@ -5,7 +5,7 @@ from .models import Batch, Registration, Student
 from django import forms
 
 
-# registration and login form
+# core and login form
 class register_login_form(ModelForm):
     class Meta:
         model=Student

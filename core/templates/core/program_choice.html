@@ -159,10 +159,10 @@
                             <div class="col-md-6">
                                 {% if batch.id|divisibleby:"2" %}
                                 <a class="btn btn-lg btn-light float-end mx-auto"
-                                    href="{% url 'registration:program_details' batch_id=batch.id %}">
+                                    href="{% url 'core:program_details' batch_id=batch.id %}">
                                     {% else %}
                                     <a class="btn btn-lg btn-warning float-end mx-auto"
-                                        href="{% url 'registration:program_details' batch_id=batch.id %}">
+                                        href="{% url 'core:program_details' batch_id=batch.id %}">
                                         {% endif %}
                                         التفاصيل <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">

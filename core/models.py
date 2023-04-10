@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser
 from datetime import date
 from django.contrib.postgres.fields import ArrayField
 
-
 UNIVERSITY = (
     ("University of Khartoum", "جامعة الخرطوم"),
     ("Sudan University of Science and Technology", "جامعة السودان للعلوم و التكنلوجيا"),
@@ -23,6 +22,7 @@ UNIVERSITY = (
     ("Other", "أخرى"),
 )
 
+
 # Create your models here.
 class Student(AbstractUser):
     is_complete = models.BooleanField(null=False, default=False)
@@ -34,32 +34,30 @@ class Student(AbstractUser):
     occupation = models.CharField(max_length=64, blank=True, null=True)
     university = models.CharField(
         max_length=64,
-        choices= UNIVERSITY,
-        default= "Other"
+        choices=UNIVERSITY,
+        default="Other"
     )
     specialization = models.CharField(max_length=64, blank=True, null=True)
-    state = models.CharField(max_length=64 ,blank=True, null=True)
+    state = models.CharField(max_length=64, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
-    
 
     def __str__(self):
-        return(f"{self.first_name} {self.father_name}")
-
+        return (f"{self.first_name} {self.father_name}")
 
 
 class Track(models.Model):
     id = models.AutoField(primary_key=True)
-    name_english = models.CharField(max_length=128, null = False)
-    name_arabic = models.CharField(max_length=128, null = False)
+    name_english = models.CharField(max_length=128, null=False)
+    name_arabic = models.CharField(max_length=128, null=False)
 
     def __str__(self):
-        return(self.name_english)
+        return (self.name_english)
 
 
 class Program(models.Model):
     id = models.AutoField(primary_key=True)
     name_english = models.CharField(max_length=128, null=False)
-    name_arabic = models.CharField(max_length=128, null = False)
+    name_arabic = models.CharField(max_length=128, null=False)
     track = models.ForeignKey(Track, on_delete=models.CASCADE)
     code = models.CharField(max_length=4)
     curriculum = models.TextField()
@@ -71,15 +69,17 @@ class Program(models.Model):
         ordering = ["-track", "-name_english"]
 
     def __str__(self):
-        return(self.name_arabic)
+        return (self.name_arabic)
 
 
 MODE_CHOICES = (
     ("online", "أونلاين"),
     ("offline", "اوفلاين")
 )
+
+
 class Batch(models.Model):
-    id=models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
     number = models.SmallIntegerField()
     starting_at = models.DateField()
@@ -88,8 +88,8 @@ class Batch(models.Model):
     golden_edition_price = models.IntegerField()
     mode = models.CharField(
         max_length=20,
-        choices= MODE_CHOICES,
-        default= "online"
+        choices=MODE_CHOICES,
+        default="online"
     )
     instructor = models.CharField(max_length=64)
     duration_in_weeks = models.SmallIntegerField()
@@ -99,7 +99,6 @@ class Batch(models.Model):
 
     class Meta:
         ordering = ["-program", "-id"]
-
 
     def __str__(self):
         return (f"الدفعة {self.number} من {self.program}")
@@ -116,6 +115,8 @@ CHANNELS = (
     ("Other", "أخرى"),
     ("Unknown", "غير معروف"),
 )
+
+
 class Registration(models.Model):
     id = models.AutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='my_registrations')
@@ -131,12 +132,10 @@ class Registration(models.Model):
     is_complete = models.BooleanField(default=False)
     reach_channels = models.CharField(
         max_length=64,
-        choices= CHANNELS,
+        choices=CHANNELS,
         blank=True,
         null=True,
     )
-    
-    
 
     """
     Not need for now because I'm the one managing the whole thing:
@@ -162,14 +161,16 @@ class Registration(models.Model):
         ("different program", "برنامج مختلف")
     )
     """
-    
 
     def __str__(self):
-        return(f"{self.student.first_name} PN {self.student.username} registerd for {self.program} is_enroll {self.is_enroll}")
+        return (
+            f"{self.student.first_name} PN {self.student.username} registerd for {self.program} is_enroll {self.is_enroll}")
+
+
 class CodeSudanQuote(models.Model):
     id = models.AutoField(primary_key=True)
     quote = models.TextField()
     by = models.CharField(max_length=64)
-    
+
     def __str__(self):
-        return(f"{self.quote[:40]}: {self.by}")
+        return (f"{self.quote[:40]}: {self.by}")
