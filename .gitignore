@@ -22,7 +22,7 @@ private_config/
 # Byte-compiled / optimized / DLL files
 *.py[cod]
 *$py.class
-
+heroku.dump
 /todo.md
 ./todo.md
 # C extensions
